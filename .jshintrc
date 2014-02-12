@@ -32,7 +32,8 @@
     "afterEach",
     "it",
     "inject",
-    "expect"
+    "expect",
+    "should"
   ],
   "indent": 2, // Specify indentation spacing
   "devel": true, // Allow development statements e.g. `console.log();`.
