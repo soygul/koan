@@ -1,3 +1,5 @@
+# Node.js
+
 lib-cov
 *.seed
 *.log
@@ -12,4 +14,22 @@ logs
 results
 
 npm-debug.log
-node_modules
+node_modules/
+
+# KOAN
+
+dist
+.tmp
+client/bower_components
+.DS_Store
+.nodemonignore
+.sass-cache/
+.bower-*/
+test/coverage/
+logs/*
+!.gitkeep
+
+# IntelliJ IDEA
+
+.idea/
+koan.iml

@@ -1,0 +1,20 @@
+{
+  "name": "mean",
+  "version": "0.1.3",
+  "dependencies": {
+    "angular": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "angular-bootstrap": "latest",
+    "angular-resource": "latest",
+    "angular-cookies": "latest",
+    "angular-sanitize": "latest",
+    "angular-route": "latest",
+    "jquery-autosize": "latest",
+    "lodash": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest",
+    "angular-scenario": "latest"
+  }
+}
