@@ -20,7 +20,7 @@ node_modules/
 
 dist
 .tmp
-client/bower_components
+bower_components/
 .DS_Store
 .nodemonignore
 .sass-cache/
