@@ -1,5 +1,7 @@
 # KOAN Stack
 
+[![Build Status](https://travis-ci.org/soygul/koan.png)](https://travis-ci.org/soygul/koan)
+
 KOAN is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 ## Prerequisites
@@ -81,7 +83,6 @@ Bower Clean Cache:
 $ bower cache clean
 ```
 
- 
 ## Configuration
 All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file and the [env](config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
 
@@ -127,7 +128,6 @@ git push heroku master
 ```
 
 ## Running unit tests
-
 We recommend using [jasmine](http://pivotal.github.com/jasmine/) and
 [Karma](http://karma-runner.github.io) for your unit tests/specs, but you are free
 to use whatever works for you.
@@ -141,7 +141,6 @@ or remote browser.
 
 
 ## End to end testing
-
 We recommend using [protractor](https://github.com/angular/protractor) for end-to-end tests. It
 uses native events and has special features for Angular applications.
 
