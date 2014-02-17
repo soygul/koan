@@ -1,5 +1,6 @@
 var session = require('koa-session'),
-  logger = require('koa-logger');
+    logger = require('koa-logger'),
+    route = require('koa-route');
 
 module.exports = function (app) {
   var env = process.env.NODE_ENV || 'development';
@@ -17,7 +18,6 @@ module.exports = function (app) {
   });
 
   app.use(route.get('/', list));
-  app.use(route.get('/post/new', add));
   app.use(route.get('/post/:id', show));
   app.use(route.post('/post', create));
 

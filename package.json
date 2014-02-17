@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "koa": "latest",
+    "koa-route": "latest",
     "koa-mount": "latest",
     "koa-response-time": "latest",
     "koa-logger": "latest",
@@ -28,7 +29,7 @@
     "koa-compress": "latest",
     "koa-ratelimit": "latest",
     "koa-session": "latest",
-    "node-client-sessions": "latest",
+    "client-sessions": "latest",
     "co-views": "latest",
     "swig": "latest",
     "co-body": "latest",
