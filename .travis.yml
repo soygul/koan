@@ -14,9 +14,9 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - npm install --quiet -g karma
   - npm install --quiet -g protractor
-  - ./scripts/web-server.js > /dev/null &
+  - ./test/scripts/web-server.js > /dev/null &
   - sleep 1 # give server time to start
 script:
-  - karma start config/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
+  - karma start test/config/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
   - webdriver-manager update
-  - protractor config/protractor-conf.js --browser=firefox
+  - protractor test/config/protractor-conf.js --browser=firefox
