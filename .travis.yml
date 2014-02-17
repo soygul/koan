@@ -10,9 +10,7 @@ before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
 
-// angular-seed part
-before_script:
-  - export DISPLAY=:99.0
+  - export DISPLAY=:99.0 # following are angular-seed commands
   - sh -e /etc/init.d/xvfb start
   - npm install --quiet -g karma
   - npm install --quiet -g protractor

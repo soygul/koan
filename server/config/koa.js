@@ -2,6 +2,7 @@
 
 var logger = require('koa-logger'),
     route = require('koa-route'),
+    session = require('koa-session'),
     render = require('views'),
     parse = require('co-body');
 
@@ -10,9 +11,18 @@ module.exports = function (app) {
 
   // middleware configuration
   app.keys = ['some secret hurr'];
+  app.use(session());
   if (env !== 'test') {
     app.use(logger());
   }
+
+  app.use(function (next) {
+    return function *viewCount() {
+      var n = this.session.views || 0;
+      yield next;
+      this.session.views = ++n;
+    };
+  });
 
   // routes
   app.use(route.get('/', list));

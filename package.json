@@ -29,6 +29,7 @@
     "koa-compress": "latest",
     "koa-ratelimit": "latest",
     "koa-session": "latest",
+    "koa-session": "latest",
     "client-sessions": "latest",
     "co-views": "latest",
     "swig": "latest",
