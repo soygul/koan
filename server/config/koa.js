@@ -3,7 +3,7 @@
 var logger = require('koa-logger'),
     route = require('koa-route'),
     session = require('koa-session'),
-    render = require('views'),
+    render = require('co-views'),
     parse = require('co-body');
 
 module.exports = function (app) {
@@ -16,13 +16,13 @@ module.exports = function (app) {
     app.use(logger());
   }
 
-  app.use(function (next) {
+  /*app.use(function (next) {
     return function *viewCount() {
       var n = this.session.views || 0;
       yield next;
       this.session.views = ++n;
     };
-  });
+  });*/
 
   // routes
   app.use(route.get('/', list));
