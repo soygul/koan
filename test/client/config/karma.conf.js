@@ -1,6 +1,6 @@
 module.exports = function(config){
     config.set({
-    basePath : '../',
+    basePath : '../../../',
 
     files : [
       'client/lib/angular/angular.js',
