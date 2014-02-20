@@ -19,4 +19,4 @@ before_script:
 script:
   - karma start test/client/config/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
   - webdriver-manager update
-  - protractor test/client/config/protractor-conf.js --browser=firefox
+  # - protractor test/client/config/protractor-conf.js --browser=firefox
