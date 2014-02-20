@@ -19,7 +19,7 @@ var env = {
     uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
   },
   setEnv: function (e) {
-    env = _.extend(env, conf[e]);
+    _.extend(env, conf[e]);
   }
 };
 
