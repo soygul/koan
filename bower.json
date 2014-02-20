@@ -1,6 +1,6 @@
 {
-  "name": "mean",
-  "version": "0.1.3",
+  "name": "koan",
+  "version": "0.0.1",
   "dependencies": {
     "angular": "latest",
     "jquery": "latest",
