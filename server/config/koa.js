@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('./config'),
+    fs = require('fs'),
     logger = require('koa-logger'),
     route = require('koa-route'),
     session = require('koa-session'),
@@ -15,36 +16,8 @@ module.exports = function (app) {
     app.use(logger());
   }
 
-  // routes
-  app.use(route.get('/', list));
-  app.use(route.get('/post/new', add));
-  app.use(route.get('/post/:id', show));
-  app.use(route.post('/post', create));
-
-  // route definitions
-  var posts = [];
-
-  function *list() {
-    this.body = yield render('list', { posts: posts });
-  }
-
-  function *add() {
-    this.body = yield render('new');
-  }
-
-  function *show(id) {
-    var post = posts[id];
-    if (!post) {
-      this.throw(404, 'invalid post id');
-    }
-    this.body = yield render('show', { post: post });
-  }
-
-  function *create() {
-    var post = yield parse(this);
-    var id = posts.push(post) - 1;
-    post.created_at = new Date();
-    post.id = id;
-    this.redirect('/');
-  }
+  // mount all the routes defined in the controllers
+  fs.readdirSync('./server/controllers').forEach(function(file) {
+    require('./server/controllers/' + file).init(app);
+  });
 };
