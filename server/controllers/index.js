@@ -2,6 +2,10 @@
 
 var path = require('path');
 
+exports.init = function (app) {
+
+};
+
 /**
  * Send partial, or 404 if it doesn't exist
  */
