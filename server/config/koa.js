@@ -1,18 +1,17 @@
 'use strict';
 
-var logger = require('koa-logger'),
+var config = require('./config'),
+    logger = require('koa-logger'),
     route = require('koa-route'),
     session = require('koa-session'),
     render = require('co-views'),
     parse = require('co-body');
 
 module.exports = function (app) {
-  var env = process.env.NODE_ENV || 'development';
-
   // middleware configuration
   app.keys = ['some secret hurr'];
   app.use(session());
-  if (env !== 'test') {
+  if (config.app.env !== 'test') {
     app.use(logger());
   }
 

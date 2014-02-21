@@ -6,28 +6,20 @@ var path = require('path'),
 /**
  * Environment variables and application configuration.
  */
-module.exports = env;
-
-var env = {
+var base = {
   app: {
     root: path.normalize(__dirname + '/../..'),
     port: process.env.PORT || 3000,
     env: process.env.NODE_ENV || 'development',
-    masterToken: process.env.MASTER_TOKEN || 'master token secret'
+    masterToken: process.env.MASTER_TOKEN || 'master_token_secret'
   },
   mongo: {
     uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
-  },
-  setEnv: function (e) {
-    _.extend(env, conf[e]);
   }
 };
 
-var conf = {
-  dev: {
-    app: {
-      env: 'development'
-    },
+var platforms = {
+  development: {
     mongo: {
       uri: 'mongodb://localhost:27017/koan-dev'
     }
@@ -35,17 +27,15 @@ var conf = {
 
   test: {
     app: {
-      port: 3001,
-      env: 'test'
+      port: 3001
     },
     mongo: {
       uri: 'mongodb://localhost:27017/koan-test'
     }
   },
 
-  prod: {
+  production: {
     app: {
-      env: 'production',
       masterToken: null
     },
     mongo: {
@@ -73,7 +63,6 @@ var conf = {
   staging: {
     app: {
       port: 3002,
-      env: 'staging',
       masterToken: null
     },
     mongo: {
@@ -81,3 +70,7 @@ var conf = {
     }
   }
 };
+
+// override the base configuration with the platform specific values
+_.assign(base, platforms[base.app.env]);
+module.exports = base;
