@@ -15,14 +15,6 @@ module.exports = function (app) {
     app.use(logger());
   }
 
-  /*app.use(function (next) {
-    return function *viewCount() {
-      var n = this.session.views || 0;
-      yield next;
-      this.session.views = ++n;
-    };
-  });*/
-
   // routes
   app.use(route.get('/', list));
   app.use(route.get('/post/new', add));
