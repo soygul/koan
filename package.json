@@ -29,10 +29,11 @@
     "koa-compress": "latest",
     "koa-ratelimit": "latest",
     "koa-session": "latest",
+    "co": "latest",
     "co-views": "latest",
     "swig": "latest",
     "co-body": "latest",
-    "mongodb": "latest",
+    "co-mongodb": "latest",
     "lodash": "latest",
 
     "ws": "latest",

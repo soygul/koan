@@ -14,14 +14,14 @@ var base = {
     masterToken: process.env.MASTER_TOKEN || 'master_token_secret'
   },
   mongo: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
+    url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
   }
 };
 
 var platforms = {
   development: {
     mongo: {
-      uri: 'mongodb://localhost:27017/koan-dev'
+      url: 'mongodb://localhost:27017/koan-dev'
     }
   },
 
@@ -30,7 +30,7 @@ var platforms = {
       port: 3001
     },
     mongo: {
-      uri: 'mongodb://localhost:27017/koan-test'
+      url: 'mongodb://localhost:27017/koan-test'
     }
   },
 
@@ -39,7 +39,7 @@ var platforms = {
       masterToken: null
     },
     mongo: {
-      uri: 'mongodb://localhost:27017/koan'
+      url: 'mongodb://localhost:27017/koan'
     },
     passport: {
       facebook: {
@@ -66,7 +66,7 @@ var platforms = {
       masterToken: null
     },
     mongo: {
-      uri: 'mongodb://localhost:27017/koan-staging'
+      url: 'mongodb://localhost:27017/koan-staging'
     }
   }
 };
