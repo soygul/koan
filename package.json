@@ -50,6 +50,7 @@
     "mocha": "latest",
     "should": "latest",
     "sinon": "latest",
+    "supertest": "latest",
 
     "phantomjs" : "latest",
     "karma" : "latest",
@@ -57,7 +58,6 @@
     "karma-jasmine" : "latest",
     "protractor" : "latest",
 
-    "supertest": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest",
