@@ -5,6 +5,7 @@ var config = require('./config'),
     logger = require('koa-logger'),
     session = require('koa-session'),
     route = require('koa-route'),
+    serve = require('koa-static'),
     render = require('./render');
 
 module.exports = function (app) {
@@ -14,6 +15,9 @@ module.exports = function (app) {
   if (config.app.env !== 'test') {
     app.use(logger());
   }
+
+  // mount the angular static resources route from base_uri/client path
+  app.use(serve('client'));
 
   // mount the angular partial routes
 
