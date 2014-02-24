@@ -7,14 +7,14 @@ var config = require('./server/config/config'),
     app = module.exports = koa();
 
 co(function *() {
-  // koa config
-  require('./server/config/koa')(app);
-
   // initialize mongo
   yield mongo.connect();
+
+  // koa config
+  require('./server/config/koa')(app);
 
   if (!module.parent) {
     app.listen(config.app.port);
     console.log('listening on port ' + config.app.port);
   }
-})();
+})(/*function (err, result) { }*/);

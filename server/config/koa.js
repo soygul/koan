@@ -3,7 +3,9 @@
 var config = require('./config'),
     fs = require('fs'),
     logger = require('koa-logger'),
-    session = require('koa-session');
+    session = require('koa-session'),
+    route = require('koa-route'),
+    render = require('./render');
 
 module.exports = function (app) {
   // middleware configuration
@@ -13,7 +15,14 @@ module.exports = function (app) {
     app.use(logger());
   }
 
-  // mount all the routes defined in the controllers
+  // mount the angular partial routes
+
+  // mount the angular app route
+  app.use(route.get('/*', function *() {
+    this.body = yield render('index', {user: this.user});
+  }));
+
+  // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function(file) {
     require('../controllers/' + file).init(app);
   });

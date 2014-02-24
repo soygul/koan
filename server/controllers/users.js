@@ -1,16 +1,17 @@
 'use strict';
 
 var route = require('koa-route'),
-    parse = require('co-body');
+    parse = require('co-body'),
+    render = require('../config/render');
 
 /**
  * Register koa routes.
  */
 exports.init = function (app) {
-  app.use(route.get('/', list));
-  app.use(route.get('/post/new', add));
-  app.use(route.get('/post/:id', show));
-  app.use(route.post('/post', create));
+  app.use(route.get('/api/', list));
+  app.use(route.get('/api/post/new', add));
+  app.use(route.get('/api/post/:id', show));
+  app.use(route.post('/api/post', create));
 };
 
 var posts = [];
