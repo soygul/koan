@@ -58,6 +58,7 @@
     "karma-jasmine" : "latest",
     "protractor" : "latest",
 
+    "grunt-protractor-runner": "latest",
     "grunt-contrib-watch": "latest",
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest",
