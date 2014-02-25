@@ -16,29 +16,23 @@ module.exports = function (app) {
     app.use(logger());
   }
 
+  // mount the view routes
+  app.use(route.get('/partials/*', function *() {
+    var stripped = this.url.split('.')[0];
+    var requestedView = require('path').join('./', stripped);
+    this.body = yield render(requestedView);
+  }));
+
   // mount the angular static resources route, use caching (14 days) only in production
   app.use(serve('client', config.app.env === 'production' ? null : {maxage: 1000 * 60 * 60 * 24 * 14}));
-
-  // mount the angular partial routes
-  /*exports.partials = function(req, res) {
-    var stripped = req.url.split('.')[0];
-    var requestedView = path.join('./', stripped);
-    res.render(requestedView, function(err, html) {
-      if(err) {
-        res.send(404);
-      } else {
-        res.send(html);
-      }
-    });
-  };*/
-
-  // mount the angular app route
-  /*app.use(route.get('/*', function *() {
-    this.body = yield render('index', {user: this.user});
-  }));*/
 
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function(file) {
     require('../controllers/' + file).init(app);
   });
+
+  // mount the angular app route
+  app.use(route.get('/*', function *() {
+    this.body = yield render('index', {user: this.user});
+  }));
 };

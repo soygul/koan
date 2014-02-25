@@ -31,7 +31,7 @@
     "koa-session": "latest",
     "co": "latest",
     "co-views": "latest",
-    "swig": "latest",
+    "ejs": "latest",
     "co-body": "latest",
     "co-mongodb": "latest",
     "lodash": "latest",
