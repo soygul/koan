@@ -27,12 +27,13 @@ module.exports = function (app) {
   app.use(serve('client', config.app.env === 'production' ? null : {maxage: 1000 * 60 * 60 * 24 * 14}));
 
   // mount all the routes defined in the api controllers
-  fs.readdirSync('./server/controllers').forEach(function(file) {
+  fs.readdirSync('./server/controllers').forEach(function (file) {
     require('../controllers/' + file).init(app);
   });
 
-  // mount the angular app route
+  // mount the angular app route, which basically captures all the unhandled routes and redirect them to index
+  // if user is not authenticated, login page is displayed
   app.use(route.get('/*', function *() {
-    this.body = yield render('index', {user: this.user});
+    this.body = yield this.user ? render('index', {user: this.user}) : render('unauthed/login');
   }));
 };
