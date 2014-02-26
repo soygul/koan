@@ -6,15 +6,17 @@ var config = require('./config'),
     session = require('koa-session'),
     route = require('koa-route'),
     serve = require('koa-static'),
-    render = require('./render');
+    render = require('./render'),
+    auth = require('../middleware/token-auth');
 
 module.exports = function (app) {
   // middleware configuration
-  app.keys = ['some_secret'];
-  app.use(session());
   if (config.app.env !== 'test') {
     app.use(logger());
   }
+  app.keys = ['some_secret'];
+  app.use(session());
+  app.use(auth({path: '/api'}));
 
   // mount the view routes
   app.use(route.get('/partials/*', function *() {
