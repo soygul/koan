@@ -4,7 +4,7 @@ var config = require('../config/config');
 
 /**
  * Provides access token based authentication middleware for koa. If the request is authenticated, a user object is appended to the koa context.
- * Otherwise, a 401 error is thrown.
+ * Otherwise, a 401 error is thrown. Simple usage is: app.use(auth({path: '/api'}));
  */
 module.exports = function (opts) {
   opts = opts || {};

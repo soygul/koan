@@ -1,148 +1,58 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    LocalStrategy = require('passport-local').Strategy,
-    TwitterStrategy = require('passport-twitter').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy,
-    GitHubStrategy = require('passport-github').Strategy,
-    GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
-    LinkedinStrategy = require('passport-linkedin').Strategy,
-    User = mongoose.model('User'),
-    config = require('./config');
+var passport = module.exports = require('koa-passport');
 
-module.exports = function(passport) {
+var user = { id: 1, username: 'test' };
 
-  // Serialize the user id to push into the session
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
 
-  // Deserialize the user object based on a pre-serialized token
-  // which is the user id
-  passport.deserializeUser(function(id, done) {
-    User.findOne({
-      _id: id
-    }, '-salt -hashed_password', function(err, user) {
-      done(err, user);
-    });
-  });
+passport.deserializeUser(function (id, done) {
+  done(null, user);
+});
 
-  // Use local strategy
-  passport.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password'
-      },
-      function(email, password, done) {
-        User.findOne({
-          email: email
-        }, function(err, user) {
-          if (err) {
-            return done(err);
-          }
-          if (!user) {
-            return done(null, false, {
-              message: 'Unknown user'
-            });
-          }
-          if (!user.authenticate(password)) {
-            return done(null, false, {
-              message: 'Invalid password'
-            });
-          }
-          return done(null, user);
-        });
-      }
-  ));
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(function (username, password, done) {
+  // retrieve user ...
+  if (username === 'test' && password === 'test') {
+    done(null, user);
+  } else {
+    done(null, false);
+  }
+}));
 
-  // Use twitter strategy
-  passport.use(new TwitterStrategy({
-        consumerKey: config.twitter.clientID,
-        consumerSecret: config.twitter.clientSecret,
-        callbackURL: config.twitter.callbackURL
-      },
-      function(token, tokenSecret, profile, done) {
-        User.findOne({
-          'twitter.id_str': profile.id
-        }, function(err, user) {
-          if (err) {
-            return done(err);
-          }
-          if (!user) {
-            user = new User({
-              name: profile.displayName,
-              username: profile.username,
-              provider: 'twitter',
-              twitter: profile._json
-            });
-            user.save(function(err) {
-              if (err) console.log(err);
-              return done(err, user);
-            });
-          } else {
-            return done(err, user);
-          }
-        });
-      }
-  ));
+var FacebookStrategy = require('passport-facebook').Strategy;
+passport.use(new FacebookStrategy({
+      clientID: 'your-client-id',
+      clientSecret: 'your-secret',
+      callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/facebook/callback'
+    },
+    function (token, tokenSecret, profile, done) {
+      // retrieve user ...
+      done(null, user);
+    }
+));
 
-  // Use facebook strategy
-  passport.use(new FacebookStrategy({
-        clientID: config.facebook.clientID,
-        clientSecret: config.facebook.clientSecret,
-        callbackURL: config.facebook.callbackURL
-      },
-      function(accessToken, refreshToken, profile, done) {
-        User.findOne({
-          'facebook.id': profile.id
-        }, function(err, user) {
-          if (err) {
-            return done(err);
-          }
-          if (!user) {
-            user = new User({
-              name: profile.displayName,
-              email: profile.emails[0].value,
-              username: profile.username,
-              provider: 'facebook',
-              facebook: profile._json
-            });
-            user.save(function(err) {
-              if (err) console.log(err);
-              return done(err, user);
-            });
-          } else {
-            return done(err, user);
-          }
-        });
-      }
-  ));
+var TwitterStrategy = require('passport-twitter').Strategy;
+passport.use(new TwitterStrategy({
+      consumerKey: 'your-consumer-key',
+      consumerSecret: 'your-secret',
+      callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/twitter/callback'
+    },
+    function (token, tokenSecret, profile, done) {
+      // retrieve user ...
+      done(null, user);
+    }
+));
 
-  // Use google strategy
-  passport.use(new GoogleStrategy({
-        clientID: config.google.clientID,
-        clientSecret: config.google.clientSecret,
-        callbackURL: config.google.callbackURL
-      },
-      function(accessToken, refreshToken, profile, done) {
-        User.findOne({
-          'google.id': profile.id
-        }, function(err, user) {
-          if (!user) {
-            user = new User({
-              name: profile.displayName,
-              email: profile.emails[0].value,
-              username: profile.emails[0].value,
-              provider: 'google',
-              google: profile._json
-            });
-            user.save(function(err) {
-              if (err) console.log(err);
-              return done(err, user);
-            });
-          } else {
-            return done(err, user);
-          }
-        });
-      }
-  ));
-};
+/*var GoogleStrategy = require('passport-google-oauth').Strategy;
+passport.use(new GoogleStrategy({
+      returnURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/google/callback',
+      realm: 'http://localhost:' + (process.env.PORT || 3000)
+    },
+    function (identifier, profile, done) {
+      // retrieve user ...
+      done(null, user);
+    }
+));*/

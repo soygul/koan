@@ -7,7 +7,7 @@ var config = require('./config'),
     route = require('koa-route'),
     serve = require('koa-static'),
     render = require('./render'),
-    auth = require('../middleware/token-auth');
+    passport = require('./passport');
 
 module.exports = function (app) {
   // middleware configuration
@@ -16,7 +16,8 @@ module.exports = function (app) {
   }
   app.keys = ['some_secret'];
   app.use(session());
-  app.use(auth({path: '/api'}));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // mount the view routes
   app.use(route.get('/partials/*', function *() {
@@ -27,6 +28,16 @@ module.exports = function (app) {
 
   // mount the angular static resources route, use caching (14 days) only in production
   app.use(serve('client', config.app.env === 'production' ? null : {maxage: 1000 * 60 * 60 * 24 * 14}));
+
+  // everything below this point will require authentication
+  app.use(function *(next) {
+    if (this.req.isAuthenticated()) {
+      this.user = this.req.user;
+      yield next;
+    } else {
+      yield render('unauthed/login');
+    }
+  });
 
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function (file) {

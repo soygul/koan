@@ -41,6 +41,7 @@
     "client-sessions": "latest",
     "express-validator": "latest",
     "koa-passport": "latest",
+    "koa-formidable": "latest",
     "passport-local": "latest",
     "passport-facebook": "latest",
     "passport-twitter": "latest",
