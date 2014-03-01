@@ -151,6 +151,9 @@ Requires a webserver, node.js + `./scripts/web-server.js` or your backend server
   * run the tests from console with [Protractor](https://github.com/angular/protractor) via
     `scripts/e2e-test.sh` (on windows: `scripts\e2e-test.bat`)
 
+## Receiving updates from upstream
+When we upgrade KOAN's repo with updates or patches, you can just fetch the changes and merge them into your project with git.
+
 ## Credits
 This project puts the best parts from following: [Angular Seed](https://github.com/angular/angular-seed), [MEAN](https://github.com/linnovate/mean), [AngularJS Full Stack](https://github.com/DaftMonk/generator-angular-fullstack).
 

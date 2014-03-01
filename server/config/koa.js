@@ -29,24 +29,43 @@ module.exports = function (app) {
   // mount the angular static resources route, use caching (14 days) only in production
   app.use(serve('client', config.app.env === 'production' ? null : {maxage: 1000 * 60 * 60 * 24 * 14}));
 
-  // everything below this point will require authentication
-  app.use(function *(next) {
-    if (this.req.isAuthenticated()) {
-      this.user = this.req.user;
-      yield next;
-    } else {
-      yield render('unauthed/login');
-    }
-  });
-
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function (file) {
     require('../controllers/' + file).init(app);
   });
 
+  // mount passport routes
+  app.use(route.post('/login', function *() {
+    require('koa-formidable')(); // this is a hack required to get express like req.body back
+    passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/'
+    });
+  }));
+
+  app.use(route.get('/logout', function *() {
+    this.req.logout();
+    this.redirect('/');
+  }));
+
+  app.use(route.get('/auth/facebook/callback', function *() {
+    passport.authenticate('facebook', {
+      successRedirect: '/app',
+      failureRedirect: '/'
+    });
+  }));
+
+  app.use(route.get('/auth/facebook', function *() {
+    passport.authenticate('facebook');
+  }));
+
   // mount the angular app route, which basically captures all the unhandled routes and redirect them to index
   // if user is not authenticated, login page is displayed
   app.use(route.get('/*', function *() {
+    if (this.req.isAuthenticated()) {
+      this.user = this.req.user;
+    }
+
     this.body = yield this.user ? render('index', {user: this.user}) : render('unauthed/login');
   }));
 };
