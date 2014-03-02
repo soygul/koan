@@ -34,7 +34,7 @@ module.exports = function (app) {
     require('../controllers/' + file).init(app);
   });
 
-  // mount passport routes
+  // mount passport login/logout/oauth routes
   app.use(route.post('/login', function *() {
     require('koa-formidable')(); // this is a hack required to get express like req.body back
     passport.authenticate('local', {
@@ -48,14 +48,14 @@ module.exports = function (app) {
     this.redirect('/');
   }));
 
-  app.use(route.get('/auth/facebook/callback', function *() {
+  app.use(route.get('/login/facebook/callback', function *() {
     passport.authenticate('facebook', {
-      successRedirect: '/app',
+      successRedirect: '/',
       failureRedirect: '/'
     });
   }));
 
-  app.use(route.get('/auth/facebook', function *() {
+  app.use(route.get('/login/facebook', function *() {
     passport.authenticate('facebook');
   }));
 
@@ -66,6 +66,6 @@ module.exports = function (app) {
       this.user = this.req.user;
     }
 
-    this.body = yield this.user ? render('index', {user: this.user}) : render('unauthed/login');
+    this.body = yield this.user ? render('index', {user: this.user}) : render('auth/login');
   }));
 };
