@@ -18,20 +18,15 @@ module.exports = function (app) {
   app.use(passport.session());
 
   // mount passport oauth routes
-  app.use(route.get('/logout', function *() {
-    this.req.logout();
-    this.redirect('/');
+  app.use(route.get('/login/facebook', function *() {
+    passport.authenticate('facebook');
   }));
 
   app.use(route.get('/login/facebook/callback', function *() {
     passport.authenticate('facebook', {
       successRedirect: '/',
-      failureRedirect: '/'
+      failureRedirect: '/login'
     });
-  }));
-
-  app.use(route.get('/login/facebook', function *() {
-    passport.authenticate('facebook');
   }));
 
   // mount jwt authentication uri
