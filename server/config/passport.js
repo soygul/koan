@@ -5,7 +5,7 @@ var passport = module.exports = require('koa-passport');
 var user = { id: 1, username: 'test' };
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
 passport.deserializeUser(function (id, done) {

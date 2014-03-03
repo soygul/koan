@@ -2,14 +2,13 @@
 
 var route = require('koa-route'),
     parse = require('co-body'),
-    render = require('../config/render');
+    jwt = require('koa-jwt');
 
 /**
  * Register koa routes.
  */
 exports.init = function (app) {
   app.use(route.get('/api/', list));
-  app.use(route.get('/api/post/new', add));
   app.use(route.get('/api/post/:id', show));
   app.use(route.post('/api/post', create));
 };
@@ -17,11 +16,7 @@ exports.init = function (app) {
 var posts = [];
 
 function *list() {
-  this.body = yield render('list', { posts: posts });
-}
-
-function *add() {
-  this.body = yield render('new');
+  this.body = posts;
 }
 
 function *show(id) {
@@ -29,7 +24,7 @@ function *show(id) {
   if (!post) {
     this.throw(404, 'invalid post id');
   }
-  this.body = yield render('show', { post: post });
+  this.body = post;
 }
 
 function *create() {
