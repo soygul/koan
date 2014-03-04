@@ -40,12 +40,13 @@ module.exports = function (app) {
       first_name: 'John',
       last_name: 'Doe',
       email: 'john@doe.com',
-      id: 123
+      id: 123,
+      v: 1 /*token version*/
     };
 
     // We are sending the profile inside the token
-    var token = require('jsonwebtoken').sign(profile, 'shared-secret', {expiresInMinutes: 60 * 5});
-    this.body = token;
+    var token = require('jsonwebtoken').sign(profile, 'shared-secret', {expiresInMinutes: 60 * 24 * 60});
+    this.body = {token: token};
   }));
 
   // mount the angular static resources route, use caching (7 days) only in production

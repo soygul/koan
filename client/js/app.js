@@ -20,7 +20,11 @@ angular.module('koan', [
             templateUrl: 'partials/partial2.html',
             controller: 'MyCtrl2'
           })
+          .when('/user', {
+            templateUrl: 'partials/user.html',
+            controller: 'UserCtrl'
+          })
           .otherwise({
-            redirectTo: '/view1'
+            redirectTo: '/user'
           });
     });
