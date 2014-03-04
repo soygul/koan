@@ -9,7 +9,7 @@ angular.module('koan.controllers', []).
     .controller('MyCtrl2',function () {
 
     }).controller('UserCtrl',function ($scope, $http, $window) {
-      $scope.user = {username: 'john.doe', password: 'foobar'};
+      $scope.user = {username: 'test', password: 'test'};
       $scope.isAuthenticated = false;
       $scope.welcome = '';
       $scope.message = '';

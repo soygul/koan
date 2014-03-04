@@ -55,6 +55,11 @@ module.exports = function (app) {
   // middleware below this line is only reached if jwt token is valid
   app.use(jwt({secret: 'shared-secret'}));
 
+  app.use(route.get('/api/restricted', function *() {
+    console.log('user ' + this.user.email + ' is calling /api/restricted');
+    this.body = {name: 'foo'};
+  }));
+
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function (file) {
     require('../controllers/' + file).init(app);
