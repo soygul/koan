@@ -49,10 +49,10 @@ module.exports = function (app) {
   }));
 
   // mount the angular static resources route, use caching (7 days) only in production
-  app.use(serve('client', config.app.env === 'production' ? null : {maxage: 1000 * 60 * 60 * 24 * 7}));
+  app.use(serve('client', config.app.env === 'production' ? {maxage: 1000 * 60 * 60 * 24 * 7} : null));
 
   // middleware below this line is only reached if jwt token is valid
-  app.use(route.get('/api', jwt({secret: 'shared-secret'}))); // todo: use route.all when available
+  app.use(jwt({secret: 'shared-secret'}));
 
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function (file) {
