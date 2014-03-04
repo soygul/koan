@@ -30,7 +30,7 @@ module.exports = function (app) {
   }));
 
   // mount jwt authentication uri
-  app.use(route.post('/api/users/authenticate', function *authenticate() {
+  app.use(route.post('/authenticate', function *authenticate() {
     var credentials = yield parse(this);
     if (!(credentials.username === 'test' && credentials.password === 'test')) {
       this.throw(401, 'Wrong user or password');
@@ -44,7 +44,7 @@ module.exports = function (app) {
     };
 
     // We are sending the profile inside the token
-    var token = require('jsonwebtoken').sign(profile, 'shared-secret', { expiresInMinutes: 60 * 5 });
+    var token = require('jsonwebtoken').sign(profile, 'shared-secret', {expiresInMinutes: 60 * 5});
     this.body = token;
   }));
 
@@ -52,7 +52,14 @@ module.exports = function (app) {
   app.use(serve('client', config.app.env === 'production' ? null : {maxage: 1000 * 60 * 60 * 24 * 7}));
 
   // middleware below this line is only reached if jwt token is valid
-  app.use(jwt({secret: 'shared-secret'}));
+  app.use(jwt({secret: 'shared-secret', passthrough: true}));
+  app.use(function *(next) {
+    if (!this.user && this.request.url.substr(0, 4) === '/api'){
+      this.throw(401);
+    } else {
+      yield next;
+    }
+  });
 
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function (file) {
