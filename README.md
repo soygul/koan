@@ -3,87 +3,43 @@
 
 KOAN is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
-## Prerequisites
-* Node.js - Download and Install [Node.js](http://www.nodejs.org/).
-* MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port (27017).
+## Quick Start
 
-### Tools Prerequisites
-* NPM - Node.js package manager, should be installed when you install node.js.
-* Bower - Web package manager, installing [Bower](http://bower.io/) is simple when you have npm:
+### Prerequisites
+Make sure you have installed all these prerequisites on your development machine.
+* Node.js - [Download & Install Node.js](http://www.nodejs.org/download/) and the npm package manager, if you encounter any problems, you can also use this [Github Gist](https://gist.github.com/isaacs/579814) to install Node.js.
+* MongoDB - [Download & Install MongoDB](http://www.mongodb.org/downloads), and make sure it's running on the default port (27017).
+* Bower - You're going to use the [Bower Package Manager](http://bower.io/) to manage your front-end packages, in order to install it make sure you've installed Node.js and npm, then install bower globally using npm:
 
 ```
 $ npm install -g bower
 ```
 
-### Optional
-* Grunt - Download and Install [Grunt](http://gruntjs.com). Highly recommended. Used in automating tests and many other tasks.
+* Grunt - You're going to use the [Grunt Task Runner](http://gruntjs.com/) to automate your development process, in order to install it make sure you've installed Node.js and npm, then install grunt globally using npm:
 
-## Additional Packages
-* Koa - Defined as npm module in the [package.json](package.json) file.
-* AngularJS - Defined as bower module in the [bower.json](bower.json) file.
-* MongoDB - Defined as npm module in the [package.json](package.json) file.
-* Passport - Defined as npm module in the [package.json](package.json) file.
-* Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
-* UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
-
-## Quick Install
-  The quickest way to get started with KOAN is to clone the project and utilize it like this:
-
-  Install dependencies:
-
-    $ npm install
-
-  We recommend using [Grunt](https://github.com/gruntjs/grunt-cli) to start the server:
-
-    $ grunt
-    
-  When not using grunt you can use:
-
-    $ node --harmony app
-    
-  Then open a browser and go to:
-
-    http://localhost:3000
-
-
-## Troubleshooting
-During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
-If you went through all this and still can't solve the issue, feel free to contact me(Amos), via the repository issue tracker or the links provided below.
-
-#### Update NPM, Bower or Grunt
-Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
-
-Updating NPM:
 ```
-$ npm update -g npm
+$ npm install -g grunt-cli
 ```
 
-Updating Grunt:
+### Installation
+The quickest way to get started with KOAN is to clone the project repository and do following:
+
+Install dependencies:
+
 ```
-$ npm update -g grunt-cli
+$ npm install
 ```
 
-Updating Bower:
+After the install process is over, you'll be able to run your application using Grunt, just run grunt default task:
+
 ```
-$ npm update -g bower
+$ grunt
 ```
 
-#### Cleaning NPM and Bower cache
-NPM and Bower has a caching system for holding packages that you already installed.
-We found that often cleaning the cache solves some troubles this system creates.
-
-NPM Clean Cache:
-```
-$ npm cache clean
-```
-
-Bower Clean Cache:
-```
-$ bower cache clean
-```
+Your application should run on the 3000 port so in your browser just go to [http://localhost:3000](http://localhost:3000)
 
 ## Configuration
-All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file and the [env](config/env/) files. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, GitHub or Google.
+All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
 ### Environmental Settings
 
@@ -105,18 +61,8 @@ If you are using node instead of grunt, it is very similar:
 
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
-## Getting Started
-  We pre-included an article example, check it out:
-  * [The Model](app/models/article.js) - Where we define our object schema.
-  * [The Controller](app/controllers/articles.js) - Where we take care of our backend logic.
-  * [NodeJS Routes](app/routes/articles.js) - Where we define our REST service routes.
-  * [AngularJs Routes](public/js/config.js) - Where we define our CRUD routes.
-  * [The AngularJs Service](public/js/services/articles.js) - Where we connect to our REST service.
-  * [The AngularJs Controller](public/js/controllers/articles.js) - Where we take care of  our frontend logic.
-  * [The AngularJs Views Folder](public/views/articles) - Where we keep our CRUD views.
-
-## Heroku Quick Deployment
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup )
+## Heroku Deployment
+Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup.
 
 ```bash
 git init
@@ -128,6 +74,56 @@ git push heroku master
 
 ## Receiving updates from upstream
 When we upgrade KOAN's repo with updates or patches, you can just fetch the changes and merge them into your project with git.
+
+## Third Party Framework Documentation
+Before you begin we recommend you read about the basic building blocks that assemble a KOAN application:
+* Koa - The best way to understand Koa is through its [Official Website](http://koajs.com/).
+* AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and the [Egghead Videos](https://egghead.io/).
+* Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
+* MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and proceed to their [Official Manual](http://docs.mongodb.org/manual/), which should help you understand NoSQL and MongoDB better.
+
+## Main Packages
+* Koa - Defined as npm module in the [package.json](package.json) file.
+* AngularJS - Defined as bower module in the [bower.json](bower.json) file.
+* MongoDB - Defined as npm module in the [package.json](package.json) file.
+* Passport - Defined as npm module in the [package.json](package.json) file.
+* Twitter Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
+* UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
+
+## Troubleshooting
+During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
+
+### Update NPM, Bower or Grunt
+Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
+
+Updating NPM:
+```
+$ npm update -g npm
+```
+
+Updating Grunt:
+```
+$ npm update -g grunt-cli
+```
+
+Updating Bower:
+```
+$ npm update -g bower
+```
+
+### Cleaning NPM and Bower cache
+NPM and Bower has a caching system for holding packages that you already installed.
+We found that often cleaning the cache solves some troubles this system creates.
+
+NPM Clean Cache:
+```
+$ npm cache clean
+```
+
+Bower Clean Cache:
+```
+$ bower cache clean
+```
 
 ## Credits
 This project puts the best parts from following: [Angular Seed](https://github.com/angular/angular-seed), [MEAN](https://github.com/linnovate/mean), [AngularJS Full Stack](https://github.com/DaftMonk/generator-angular-fullstack).
