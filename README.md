@@ -4,8 +4,8 @@
 KOAN is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 ## Prerequisites
-* Node.js - Download and Install [Node.js](http://www.nodejs.org/download/). You can also follow [this gist](https://gist.github.com/isaacs/579814) for a quick and easy way to install Node.js and npm
-* MongoDB - Download and Install [MongoDB](http://www.mongodb.org/downloads) - Make sure it's running on the default port (27017).
+* Node.js - Download and Install [Node.js](http://www.nodejs.org/).
+* MongoDB - Download and Install [MongoDB](http://www.mongodb.org/) - Make sure it's running on the default port (27017).
 
 ### Tools Prerequisites
 * NPM - Node.js package manager, should be installed when you install node.js.
@@ -16,7 +16,7 @@ $ npm install -g bower
 ```
 
 ### Optional
-* Grunt - Download and Install [Grunt](http://gruntjs.com).
+* Grunt - Download and Install [Grunt](http://gruntjs.com). Highly recommended. Used in automating tests and many other tasks.
 
 ## Additional Packages
 * Koa - Defined as npm module in the [package.json](package.json) file.
@@ -39,7 +39,7 @@ $ npm install -g bower
     
   When not using grunt you can use:
 
-    $ node server
+    $ node --harmony app
     
   Then open a browser and go to:
 
@@ -101,7 +101,7 @@ To run with a different environment, just specify NODE_ENV as you call grunt:
 
 If you are using node instead of grunt, it is very similar:
 
-	$ NODE_ENV=test node server
+	$ NODE_ENV=test node --harmony app
 
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
@@ -125,31 +125,6 @@ git commit -m "initial version"
 heroku apps:create
 git push heroku master
 ```
-
-## Running unit tests
-We recommend using [jasmine](http://pivotal.github.com/jasmine/) and
-[Karma](http://karma-runner.github.io) for your unit tests/specs, but you are free
-to use whatever works for you.
-
-Requires [node.js](http://nodejs.org/), Karma (`sudo npm install -g karma`) and a local
-or remote browser.
-
-* start `scripts/test.sh` (on windows: `scripts\test.bat`)
-  * a browser will start and connect to the Karma server (Chrome is default browser, others can be captured by loading the same url as the one in Chrome or by changing the `config/karma.conf.js` file)
-* to run or re-run tests just change any of your source or test javascript files
-
-
-## End to end testing
-We recommend using [protractor](https://github.com/angular/protractor) for end-to-end tests. It
-uses native events and has special features for Angular applications.
-
-Requires a webserver, node.js + `./scripts/web-server.js` or your backend server that hosts the angular static files.
-
-* create your end-to-end tests in `test/e2e/scenarios.js`
-* serve your project directory with your http/backend server or node.js + `scripts/web-server.js`
-* to run:
-  * run the tests from console with [Protractor](https://github.com/angular/protractor) via
-    `scripts/e2e-test.sh` (on windows: `scripts\e2e-test.bat`)
 
 ## Receiving updates from upstream
 When we upgrade KOAN's repo with updates or patches, you can just fetch the changes and merge them into your project with git.
