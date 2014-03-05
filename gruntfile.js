@@ -4,21 +4,20 @@ module.exports = function(grunt) {
   // Project Configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    env: {
+      test: {
+        NODE_ENV: 'test'
+      }
+    },
     watch: {
-      js: {
-        files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
+      client: {
+        files: ['client/**', '!client/bower_components/**'],
         options: {
           livereload: true
         }
       },
-      html: {
-        files: ['public/views/**', 'app/views/**'],
-        options: {
-          livereload: true
-        }
-      },
-      css: {
-        files: ['public/css/**'],
+      server: {
+        files: ['gruntfile.js', 'app.js', 'server/**'],
         options: {
           livereload: true
         }
@@ -26,17 +25,9 @@ module.exports = function(grunt) {
     },
     nodemon: {
       dev: {
-        script: 'server.js',
+        script: 'app.js',
         options: {
-          args: [],
-          ignore: ['public/**'],
-          ext: 'js',
-          nodeArgs: ['--debug'],
-          delayTime: 1,
-          env: {
-            PORT: 3000
-          },
-          cwd: __dirname
+          nodeArgs: ['--debug', '--harmony']
         }
       }
     },
@@ -49,14 +40,9 @@ module.exports = function(grunt) {
     mochaTest: {
       options: {
         reporter: 'spec',
-        require: 'server.js'
+        require: 'app.js'
       },
-      src: ['test/mocha/**/*.js']
-    },
-    env: {
-      test: {
-        NODE_ENV: 'test'
-      }
+      src: ['test/server/mocha/**/*.js']
     },
     karma: {
       unit: {
