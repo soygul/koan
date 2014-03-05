@@ -1,7 +1,7 @@
 # KOAN Stack
 [![Build Status](https://travis-ci.org/soygul/koan.png)](https://travis-ci.org/soygul/koan)
 
-KOAN is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
+KOAN stack is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 
 ## Quick Start
 
@@ -22,7 +22,7 @@ $ npm install -g grunt-cli
 ```
 
 ### Installation
-The quickest way to get started with KOAN is to clone the project repository and do following:
+The quickest way to get started with KOAN stack is to clone the project repository and do following:
 
 Install dependencies:
 
@@ -39,13 +39,12 @@ $ grunt
 Your application should run on the 3000 port so in your browser just go to [http://localhost:3000](http://localhost:3000)
 
 ## Configuration
-All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your application name, database name, as well as hook up any social app keys if you want integration with Twitter, Facebook, or Google.
+All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your database name and hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
 ### Environmental Settings
 
 There are three environments provided by default, __development__, __test__, and __production__. Each of these environments has the following configuration options:
 * __db__ - This is the name of the MongoDB database to use, and is set by default to __koan-dev__ for the development environment.
-* __app.name__ - This is the name of your app or website, and can be different for each environment. You can tell which environment you are running by looking at the TITLE attribute that your app generates.
 * __Social OAuth Keys__ - Facebook, GitHub, Google, Twitter. You can specify your own social application keys here for each platform:
 	* __clientID__
 	* __clientSecret__
@@ -53,16 +52,14 @@ There are three environments provided by default, __development__, __test__, and
 
 To run with a different environment, just specify NODE_ENV as you call grunt:
 
-	$ NODE_ENV=test grunt
-
-If you are using node instead of grunt, it is very similar:
-
-	$ NODE_ENV=test node --harmony app
+```
+$ NODE_ENV=test grunt
+```
 
 > NOTE: Running Node.js applications in the __production__ environment enables caching, which is disabled by default in all other environments.
 
 ## Heroku Deployment
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed and an accessible mongo db instance - you can try <a href="http://www.mongohq.com/">mongohq</a> which have an easy setup.
+Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed.
 
 ```bash
 git init
@@ -70,6 +67,8 @@ git add .
 git commit -m "initial version"
 heroku apps:create
 git push heroku master
+heroku addons:add mongohq
+heroku open
 ```
 
 ## Receiving updates from upstream
@@ -91,7 +90,21 @@ Before you begin we recommend you read about the basic building blocks that asse
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## Troubleshooting
-During install some of you may encounter some issues, most of this issues can be solved by one of the following tips.
+During install some of you may encounter some issues, most of this issues can be solved by one of the following tips:
+
+### Cleaning NPM and Bower cache
+NPM and Bower has a caching system for holding packages that you already installed.
+We found that often cleaning the cache solves some troubles this system creates.
+
+NPM Clean Cache:
+```
+$ npm cache clean
+```
+
+Bower Clean Cache:
+```
+$ bower cache clean
+```
 
 ### Update NPM, Bower or Grunt
 Sometimes you may find there is a weird error during install like npm's *Error: ENOENT*, usually updating those tools to the latest version solves the issue.
@@ -111,22 +124,11 @@ Updating Bower:
 $ npm update -g bower
 ```
 
-### Cleaning NPM and Bower cache
-NPM and Bower has a caching system for holding packages that you already installed.
-We found that often cleaning the cache solves some troubles this system creates.
-
-NPM Clean Cache:
-```
-$ npm cache clean
-```
-
-Bower Clean Cache:
-```
-$ bower cache clean
-```
-
 ## Credits
-This project puts the best parts from following: [Angular Seed](https://github.com/angular/angular-seed), [MEAN](https://github.com/linnovate/mean), [AngularJS Full Stack](https://github.com/DaftMonk/generator-angular-fullstack).
+This project puts the best parts from following project together: [Angular Seed](https://github.com/angular/angular-seed), [MEAN](https://github.com/linnovate/mean), and [AngularJS Full Stack](https://github.com/DaftMonk/generator-angular-fullstack).
 
 ## The Name
 The project name is an acronym for Koa, Angular, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
+
+## License
+MIT
