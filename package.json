@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node node_modules/grunt-cli/bin/grunt",
     "test": "node node_modules/grunt-cli/bin/grunt test",
-    "postinstall": "node node_modules/bower/bin/bower install"
+    "postinstall": "node node_modules/bower/bin/bower install",
+    "postupdate": "node node_modules/bower/bin/bower update"
   },
   "dependencies": {
     "koa": "latest",

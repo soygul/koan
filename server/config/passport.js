@@ -12,16 +12,6 @@ passport.deserializeUser(function (id, done) {
   done(null, user);
 });
 
-var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(function (username, password, done) {
-  // retrieve user ...
-  if (username === 'test' && password === 'test') {
-    done(null, user);
-  } else {
-    done(null, false);
-  }
-}));
-
 var FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
       clientID: 'your-client-id',
