@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   // Project Configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -39,8 +39,7 @@ module.exports = function(grunt) {
     },
     mochaTest: {
       options: {
-        reporter: 'spec',
-        require: 'app.js'
+        reporter: 'spec'
       },
       src: ['test/server/mocha/**/*.js']
     },

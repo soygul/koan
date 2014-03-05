@@ -1,8 +1,8 @@
-module.exports = function(config){
-    config.set({
-    basePath : '../../../',
+module.exports = function (config) {
+  config.set({
+    basePath: '../../../',
 
-    files : [
+    files: [
       'client/bower_components/angular/angular.js',
       'client/bower_components/**/angular-*.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
@@ -10,28 +10,33 @@ module.exports = function(config){
       'test/client/unit/**/*.js'
     ],
 
-    exclude : [
+    exclude: [
       'client/bower_components/angular-loader/angular-loader.js',
       'client/bower_components/**/*.min.js',
       'client/bower_components/angular-scenario/angular-scenario.js'
     ],
 
-    autoWatch : true,
+    autoWatch: true,
 
     frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+    browsers: ['Chrome'],
 
-    plugins : [
-            'karma-junit-reporter',
-            'karma-chrome-launcher',
-            'karma-firefox-launcher',
-            'karma-jasmine'
-            ],
+    plugins: [
+      'karma-junit-reporter',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-jasmine'
+    ],
 
-    junitReporter : {
+    junitReporter: {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
-    }
+    },
 
-})}
+    // Continuous Integration mode
+    // If true, it capture browsers, run tests and exit
+    singleRun: true
+
+  });
+};
