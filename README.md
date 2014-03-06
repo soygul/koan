@@ -66,9 +66,9 @@ git init
 git add .
 git commit -m "initial version"
 heroku apps:create
-git push heroku master
 heroku addons:add mongohq
 heroku config:add NODE_ENV=production
+git push heroku master
 heroku open
 ```
 
