@@ -2,7 +2,7 @@
   "name": "koan",
   "version": "1.0.0",
   "dependencies": {
-    "angular": "latest",
+    "angular": "1.2.14",
     "jquery": "latest",
     "bootstrap": "latest",
     "angular-bootstrap": "latest",
