@@ -38,9 +38,6 @@ var platforms = {
     app: {
       masterToken: null
     },
-    mongo: {
-      url: 'mongodb://localhost:27017/koan'
-    },
     passport: {
       facebook: {
         clientID: 'APP_ID',
