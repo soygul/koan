@@ -5,7 +5,7 @@
     "angular": "~1.2",
     "jquery": "~2.1",
     "bootstrap": "~3",
-    "angular-bootstrap": "~1.2",
+    "angular-bootstrap": "~0.10",
     "angular-resource": "~1.2",
     "angular-cookies": "~1.2",
     "angular-sanitize": "~1.2",
