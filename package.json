@@ -35,7 +35,11 @@
     "koa-passport": "latest",
     "passport-facebook": "latest",
     "passport-twitter": "latest",
-    "passport-google-oauth": "latest"
+    "passport-google-oauth": "latest",
+
+    "forever": "~0.10.11",
+    "bower": "~1.2.8",
+    "grunt-cli": "~0.1.13"
   },
   "devDependencies": {
     "mocha": "latest",
