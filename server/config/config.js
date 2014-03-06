@@ -35,9 +35,6 @@ var platforms = {
   },
 
   production: {
-    app: {
-      masterToken: null
-    },
     passport: {
       facebook: {
         clientID: 'APP_ID',
