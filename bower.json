@@ -2,16 +2,16 @@
   "name": "koan",
   "version": "1.0.0",
   "dependencies": {
-    "angular": "1.2.14",
-    "jquery": "latest",
-    "bootstrap": "latest",
-    "angular-bootstrap": "latest",
-    "angular-resource": "latest",
-    "angular-cookies": "latest",
-    "angular-sanitize": "latest",
-    "angular-route": "latest",
-    "jquery-autosize": "latest",
-    "lodash": "latest"
+    "angular": "~1.2",
+    "jquery": "~2.1",
+    "bootstrap": "~3",
+    "angular-bootstrap": "~1.2",
+    "angular-resource": "~1.2",
+    "angular-cookies": "~1.2",
+    "angular-sanitize": "~1.2",
+    "angular-route": "~1.2",
+    "jquery-autosize": "~1",
+    "lodash": "~2.4"
   },
   "devDependencies": {
     "angular-mocks": "latest",
