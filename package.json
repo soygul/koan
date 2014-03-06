@@ -59,10 +59,6 @@
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest",
     "grunt-mocha-test": "latest",
-    "grunt-karma": "latest",
-    "bower": "latest",
-    "grunt": "latest",
-    "grunt-cli": "latest",
-    "forever": "latest"
+    "grunt-karma": "latest"
   }
 }
