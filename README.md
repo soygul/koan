@@ -74,6 +74,9 @@ heroku open
 ## Receiving updates from upstream
 When we upgrade KOAN's repo with updates or patches, you can just fetch the changes and merge them into your project with git.
 
+## Live Example
+Browse the live KOAN example on [http://koan.herokuapp.com](http://koan.herokuapp.com).
+
 ## Third Party Framework Documentation
 Before you begin we recommend you read about the basic building blocks that assemble a KOAN application:
 * Koa - The best way to understand Koa is through its [Official Website](http://koajs.com/).
