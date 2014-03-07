@@ -5,9 +5,6 @@
     "angular": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
-    "angular-resource": "latest",
-    "angular-cookies": "latest",
-    "angular-sanitize": "latest",
     "angular-route": "latest",
     "lodash": "latest"
   },
