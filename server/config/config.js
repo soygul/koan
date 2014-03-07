@@ -10,8 +10,7 @@ var base = {
   app: {
     root: path.normalize(__dirname + '/../..'),
     port: process.env.PORT || 3000,
-    env: process.env.NODE_ENV || 'development',
-    masterToken: process.env.MASTER_TOKEN || 'master_token_secret'
+    env: process.env.NODE_ENV || 'development'
   },
   mongo: {
     url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
@@ -52,19 +51,9 @@ var platforms = {
         callbackURL: 'http://localhost:3000/auth/google/callback'
       }
     }
-  },
-
-  staging: {
-    app: {
-      port: 3002,
-      masterToken: null
-    },
-    mongo: {
-      url: 'mongodb://localhost:27017/koan-staging'
-    }
   }
 };
 
 // override the base configuration with the platform specific values
-_.assign(base, platforms[base.app.env]);
+_.merge(base, platforms[base.app.env]);
 module.exports = base;
