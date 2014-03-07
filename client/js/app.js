@@ -9,8 +9,9 @@ angular.module('koan', [
       'koan.directives',
       'koan.controllers'
     ]).
-    config(function ($routeProvider, $locationProvider) {
+    config(function ($routeProvider, $locationProvider, $httpProvider) {
       $locationProvider.html5Mode(true);
+      $httpProvider.interceptors.push('authInterceptor');
       $routeProvider
           .when('/view1', {
             templateUrl: 'partials/partial1.html',
