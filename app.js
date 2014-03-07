@@ -15,7 +15,6 @@ co(function *() {
 
   if (!module.parent) {
     app.listen(config.app.port);
-    console.log('KOAN listening on port ' + config.app.port + ' with configuration:');
-    console.log(config);
+    console.log('KOAN listening on port ' + config.app.port);
   }
 })();
