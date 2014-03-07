@@ -37,9 +37,9 @@
     "passport-twitter": "latest",
     "passport-google-oauth": "latest",
 
-    "forever": "~0.10.11",
-    "bower": "~1.2.8",
-    "grunt-cli": "~0.1.13"
+    "forever": "latest",
+    "bower": "latest",
+    "grunt-cli": "latest"
   },
   "devDependencies": {
     "mocha": "latest",
