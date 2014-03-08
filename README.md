@@ -1,4 +1,4 @@
-![KOAN](http://drive.google.com/uc?export=view&id=0B0uKkvnB7kp5QzhLcGMtZUpaaTA)
+[![KOAN](http://drive.google.com/uc?export=view&id=0B0uKkvnB7kp5QzhLcGMtZUpaaTA)](http://koanjs.com/)
 
 [![Build Status](https://travis-ci.org/soygul/koan.png)](https://travis-ci.org/soygul/koan)
 
