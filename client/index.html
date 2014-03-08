@@ -38,16 +38,14 @@
                 <button type="button" class="btn btn-info btn-xs" ng-click="layout.acceptFriendRequest(notification.from.id)">
                   <span class="glyphicon glyphicon-ok"></span> Accept
                 </button>
-                <button type="button" class="btn btn-default btn-xs"
-                        ng-click="layout.rejectFriendRequest(notification.from.id)"><span
-                    class="glyphicon glyphicon-remove"></span> Reject
+                <button type="button" class="btn btn-default btn-xs" ng-click="layout.rejectFriendRequest(notification.from.id)">
+                  <span class="glyphicon glyphicon-remove"></span> Reject
                 </button>
               </div>
             </li>
             <li ng-if="!layout.user.notifications" class="dropdown-header">No new notifications</li>
           </ul>
         </li>
-
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-envelope"></span>
@@ -63,15 +61,12 @@
           </ul>
         </li>
       </ul>
-
       <form ng-submit="layout.search()" class="navbar-form navbar-left">
         <div class="form-group">
-          <input name="q" type="text" ng-model="layout.searchQuery" class="form-control"
-                 placeholder="Search for people">
+          <input name="q" type="text" ng-model="layout.searchQuery" class="form-control" placeholder="Search for people">
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
-
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -86,7 +81,6 @@
         <li><a href="/">Home</a></li>
       </ul>
     </div>
-
   </div>
 </div>
 
@@ -99,18 +93,14 @@
           Messages</a></li>
       </ul>
     </div>
-
     <div class="col-md-7" ng-view></div>
-
     <div class="col-md-3"></div>
   </div>
-
   <hr>
-
   <footer>
     <p>
-      <span>NBusy &copy; 2014</span> &middot;
-      <span><a href="/about">About</a> | <a href="https://github.com/nbusy">Developers</a></span>
+      <span>KOAN &copy; 2014</span> &middot;
+      <span><a href="/about">About</a> | <a href="https://github.com/soygul/koan">GitHub</a></span>
     </p>
   </footer>
 </div>
