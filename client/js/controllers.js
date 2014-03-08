@@ -3,12 +3,11 @@
 /* Controllers */
 
 angular.module('koan.controllers', []).
-    controller('MyCtrl1', function () {
+    controller('layout', function () {
 
-    })
-    .controller('MyCtrl2',function () {
+    }).controller('home', function () {
 
-    }).controller('UserCtrl', function ($scope, $http, $window) {
+    }).controller('user', function ($scope, $http, $window) {
       $scope.user = {username: 'test', password: 'test'};
       $scope.isAuthenticated = false;
       $scope.welcome = '';

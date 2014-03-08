@@ -3,7 +3,6 @@
 // Declare app level module which depends on filters, and services
 angular.module('koan', [
       'ngRoute',
-      'ngSanitize',
       'koan.filters',
       'koan.services',
       'koan.directives',
@@ -13,19 +12,15 @@ angular.module('koan', [
       $locationProvider.html5Mode(true);
       $httpProvider.interceptors.push('authInterceptor');
       $routeProvider
-          .when('/view1', {
-            templateUrl: 'partials/partial1.html',
-            controller: 'MyCtrl1'
-          })
-          .when('/view2', {
-            templateUrl: 'partials/partial2.html',
-            controller: 'MyCtrl2'
+          .when('/', {
+            templateUrl: 'partials/home.html',
+            controller: 'home'
           })
           .when('/user', {
             templateUrl: 'partials/user.html',
-            controller: 'UserCtrl'
+            controller: 'user'
           })
           .otherwise({
-            redirectTo: '/user'
+            redirectTo: '/'
           });
     });
