@@ -1,4 +1,39 @@
 /*----------------------------------------------------------------------
+/* Bootstrap overrides
+/*---------------------------------------------------------------------*/
+
+/* Top Navigation */
+
+.navbar .brand-image {
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.dropdown-toggle img {
+  width: 23px;
+  height: 23px;
+  margin-top: -3px;
+  margin-bottom: -2px;
+}
+
+/* Side Navigation */
+
+.sidenav > li > a {
+  padding: 5px 15px;
+}
+
+/* Make sure that we're always taking up enough space on the screen. */
+/* ToDo: This shouldn't be necessary once we have all the content in place. */
+
+html, body, .container {
+  height: 85%;
+}
+
+.row {
+  min-height: 100%;
+}
+
+/*----------------------------------------------------------------------
  * KOAN global style sheet
  *---------------------------------------------------------------------*/
 
@@ -28,25 +63,11 @@ body {
   padding-top: 70px;
 }
 
-/*ToDo: This shouldn't be necessary once we have all the content in place.*/
-/*Make sure that we're always taking up enough space on the screen.*/
-html, body, .container {
-  height: 85%;
-}
-
-.row {
-  min-height: 100%;
-}
-
-.top-search-bar {
-  margin-left: 15px;
-}
-
 .block {
   display: block;
 }
 
-/* Elements */
+/* Widgets */
 
 .self-online-indicator {
   background-color: lightgrey;
@@ -57,28 +78,4 @@ html, body, .container {
   margin-right: -1px;
   margin-left: 1px;
   margin-bottom: 1px;
-}
-
-/*----------------------------------------------------------------------
-/* Bootstrap overrides
-/*---------------------------------------------------------------------*/
-
-/* Top Navigation */
-
-.navbar .brand-image {
-  margin-top: -10px;
-  margin-bottom: -10px;
-}
-
-.dropdown-toggle img {
-  width: 23px;
-  height: 23px;
-  margin-top: -3px;
-  margin-bottom: -2px;
-}
-
-/* Side Navigation */
-
-.sidenav > li > a {
-  padding: 5px 15px;
 }
