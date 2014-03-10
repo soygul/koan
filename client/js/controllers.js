@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('koan.controllers', []).
-    controller('layout', function () {
-
+    controller('layout', function ($rootScope) {
+      var layout = $rootScope.layout = $rootScope.layout || {active: {}};
     }).controller('home', function () {
 
     }).controller('user', function ($scope, $http, $window) {
