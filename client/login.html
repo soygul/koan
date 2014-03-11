@@ -156,6 +156,7 @@
       success: function (data) {
         var storage = $("#rememberme").is(':checked') ? window.localStorage : window.sessionStorage;
         storage.token = data.token;
+        storage.user = JSON.stringify(data.user);
         window.location.replace('/');
       }
     });

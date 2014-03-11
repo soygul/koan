@@ -38,14 +38,13 @@ module.exports = function (app) {
 
     var user = {
       id: 123,
-      first_name: 'John',
-      last_name: 'Doe',
-      email: 'john@doe.com'
+      email: 'john@doe.com',
+      name: 'John Doe'
     };
 
     // we are sending the user data inside the token
     var token = require('jsonwebtoken').sign(user, 'shared-secret', {expiresInMinutes: 60 * 24 * 60});
-    this.body = {token: token};
+    this.body = {token: token, user: user};
   }));
 
   // mount the angular static resources route, use caching (7 days) only in production

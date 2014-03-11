@@ -4,6 +4,15 @@
   <meta charset="utf-8">
   <title ng-bind="layout.title">KOAN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // authentication check before anything
+    var token = window.sessionStorage.token || window.localStorage.token,
+        user = JSON.parse(window.sessionStorage.user || window.localStorage.user);
+    if (!token || !user || user.exp < Math.round(new Date().getTime() / 1000)) {
+      // token is non-existent, invalid, or expired so redirect to login page
+      window.location.replace('/login.html');
+    }
+  </script>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
