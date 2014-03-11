@@ -36,16 +36,15 @@ module.exports = function (app) {
       this.throw(401, 'Wrong user or password');
     }
 
-    var profile = {
+    var user = {
+      id: 123,
       first_name: 'John',
       last_name: 'Doe',
-      email: 'john@doe.com',
-      id: 123,
-      v: 1 /*token version*/
+      email: 'john@doe.com'
     };
 
-    // We are sending the profile inside the token
-    var token = require('jsonwebtoken').sign(profile, 'shared-secret', {expiresInMinutes: 60 * 24 * 60});
+    // we are sending the user data inside the token
+    var token = require('jsonwebtoken').sign(user, 'shared-secret', {expiresInMinutes: 60 * 24 * 60});
     this.body = {token: token};
   }));
 

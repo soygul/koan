@@ -37,22 +37,4 @@ angular.module('koan', [
           delete $rootScope.layout.active[previousCtrl];
         }
       });
-      $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        /*if ( $rootScope.loggedUser == null ) {
-         // no logged user, we should be going to #login
-         if ( next.templateUrl == "partials/login.html" ) {
-         // already going to #login, no redirect needed
-         } else {
-         // not going to #login, we should redirect now
-         $location.path( "/login" );
-         }
-         }*/
-
-        // actually a better solution would be to load just the user view for the search page.. (which should already be done with login?)
-        if (next.controller === 'SearchCtrl' && !$rootScope.layout.user) {
-          $location.url('/');
-        } else {
-          $rootScope.layout.searchQuery = null;
-        }
-      });
     });

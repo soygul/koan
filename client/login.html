@@ -118,7 +118,7 @@
         </div>
         <div class="checkbox">
           <label>
-            <input type="checkbox" checked> Remember me
+            <input type="checkbox" id="rememberme" checked> Remember me
           </label>
         </div>
         <button type="submit" class="btn btn-default">Login</button>
@@ -154,7 +154,8 @@
       contentType: 'application/json',
       dataType: 'json',
       success: function (data) {
-        window.localStorage.token = data.token;
+        var storage = $("#rememberme").is(':checked') ? window.localStorage : window.sessionStorage;
+        storage.token = data.token;
         window.location.replace('/');
       }
     });

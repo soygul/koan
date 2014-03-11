@@ -2,12 +2,35 @@
 
 /* Controllers */
 
-angular.module('koan.controllers', []).
-    controller('layout', function ($rootScope) {
-      var layout = $rootScope.layout = $rootScope.layout || {active: {}};
-    }).controller('home', function () {
+angular.module('koan.controllers', [])
+    .controller('layout', function ($rootScope, $window, $location) {
+      // layout controller is always invoked once, regardless of the given route, to prepare the UI layout variables (like user profile image, display name, online status, etc.)
+      var layout = $rootScope.layout = $rootScope.layout || {active: {}, logout: function () {
+        delete $window.localStorage.token;
+        delete $window.sessionStorage.token;
+        $window.location.replace('/login.html');
+      }};
 
-    }).controller('user', function ($scope, $http, $window) {
+      // verify that user is logged in and has a valid token, or our http requests to the backend will 401
+      var token = $window.sessionStorage.token || $window.localStorage.token;
+      if (token) {
+        try {
+          var encodedUser = token.split('.')[1];
+          // append user data to layout object
+          layout.user = JSON.parse(atob(encodedUser));
+        } catch (err) {
+          // token is invalid..
+        }
+      }
+      if (!token || !layout.user || layout.user.exp < Math.round(new Date().getTime() / 1000)) {
+        // token is non-existent, invalid, or expired so redirect to login page
+        $window.location.replace('/login.html');
+      }
+    })
+    .controller('home', function () {
+
+    })
+    .controller('user', function ($scope, $http, $window) {
       $scope.user = {username: 'test', password: 'test'};
       $scope.isAuthenticated = false;
       $scope.welcome = '';
