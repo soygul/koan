@@ -6,7 +6,6 @@
   <meta name="description" content="KOAN (Koa, Angular, Node) - A simple and scalable starting point for full stack JavaScript Web development."/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-  <link rel="stylesheet" href="css/app.css"/>
   <style type="text/css">
     body {
       background-color: #f8f8f8;
@@ -30,13 +29,17 @@
     }
 
     .logo-align .media {
-      margin-top: 30px;
+      margin-top: 35px;
+    }
+
+    .logo-align .media img {
+      margin-right: 10px;
     }
 
     /* Login layout */
 
     .facebook-button {
-      margin-left: 17%;
+      margin-left: 20%;
       padding-bottom: 15px;
       padding-top: 20px;
     }
@@ -57,43 +60,35 @@
     <div class="col-sm-6">
       <div class="logo-align hidden-xs">
         <a href="/">
-          <img src="img/koan.png" alt="KOAN"/>
+          <img src="img/koan_large.png" alt="KOAN"/>
         </a>
 
         <h1 class="logo-info">
-          This is the master slogan.
+          KOAN (Koa, Angular, Node): Full stack JavaScript Web development.
         </h1>
 
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="images/icons/conversation.png" alt="Conversation"/>
+            <img class="media-object" src="img/koa.png" alt="koa"/>
           </div>
           <div class="media-body">
-            <strong>Chat with anyone</strong> with on any device and platform. Stay connected with friends, in real-time.
+            Koa framework provides the RESTful backend API, utilizing the harmony generators.
           </div>
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="images/icons/envelope.png" alt="Envelope"/>
+            <img class="media-object" src="img/angularjs.png" alt="AngularJS"/>
           </div>
           <div class="media-body">
-            <strong>Send and receive messages</strong> with guaranteed delivery and utmost security.
+            AngularJS is our fully static client side app framework, and it is heroic!
           </div>
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="images/icons/star.png" alt="Star"/>
+            <img class="media-object" src="img/nodejs.png" alt="node.js"/>
           </div>
           <div class="media-body" style="padding-top: 10px;">
-            <strong>Share what matters</strong> on your wall.
-          </div>
-        </div>
-        <div class="media">
-          <div class="pull-left">
-            <img class="media-object" src="images/icons/beta.png" alt="Beta"/>
-          </div>
-          <div class="media-body" style="padding-top: 10px;">
-            <strong>Currently in beta testing!</strong> New features will be pouring in every day!
+            Node.js is super glue, runtime for the backend, built system for the front.
           </div>
         </div>
       </div>
@@ -109,7 +104,7 @@
       <form action="/login" method="post" style="width: 50%">
         <p class="facebook-button">
           <a href="/login/facebook" title="Login with Facebook">
-            <img src="images/buttons/login_facebook.png" alt="Login with Facebook"/>
+            <img src="img/login_facebook.png" alt="Login with Facebook"/>
           </a>
         </p>
 
@@ -148,5 +143,6 @@
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="//localhost:35729/livereload.js"></script>
 </body>
 </html>
