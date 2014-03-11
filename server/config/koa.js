@@ -30,9 +30,9 @@ module.exports = function (app) {
   }));
 
   // mount jwt authentication uri
-  app.use(route.post('/authenticate', function *authenticate() {
+  app.use(route.post('/login', function *authenticate() {
     var credentials = yield parse(this);
-    if (!(credentials.username === 'test' && credentials.password === 'test')) {
+    if (!(credentials.email === 'test@test.com' && credentials.password === 'test')) {
       this.throw(401, 'Wrong user or password');
     }
 
