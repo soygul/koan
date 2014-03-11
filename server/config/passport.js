@@ -1,8 +1,26 @@
 'use strict';
 
-var passport = module.exports = require('koa-passport');
+var passport = module.exports = require('koa-passport'),
+    route = require('koa-route');
 
-var user = { id: 1, username: 'test' };
+passport.routes = function (app) {
+  app.use(route.get('/login/facebook', function *() {
+    passport.authenticate('facebook');
+  }));
+
+  app.use(route.get('/login/facebook/callback', function *() {
+    passport.authenticate('facebook', {
+      successRedirect: '/',
+      failureRedirect: '/login'
+    });
+  }));
+};
+
+var user = {
+  id: 123,
+  email: 'john@doe.com',
+  name: 'John Doe'
+};
 
 passport.serializeUser(function (user, done) {
   done(null, user);

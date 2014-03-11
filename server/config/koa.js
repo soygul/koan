@@ -2,10 +2,8 @@
 
 var fs = require('fs'),
     logger = require('koa-logger'),
-    route = require('koa-route'),
-    parse = require('co-body'),
     serve = require('koa-static'),
-    jwt = require('koa-jwt'),
+    jwt = require('./jwt'),
     config = require('./config'),
     passport = require('./passport');
 
@@ -18,45 +16,16 @@ module.exports = function (app) {
   app.use(passport.session());
 
   // mount passport oauth routes
-  app.use(route.get('/login/facebook', function *() {
-    passport.authenticate('facebook');
-  }));
-
-  app.use(route.get('/login/facebook/callback', function *() {
-    passport.authenticate('facebook', {
-      successRedirect: '/',
-      failureRedirect: '/login'
-    });
-  }));
+  passport.routes(app);
 
   // mount jwt authentication uri
-  app.use(route.post('/login', function *authenticate() {
-    var credentials = yield parse(this);
-    if (!(credentials.email === 'test@test.com' && credentials.password === 'test')) {
-      this.throw(401, 'Wrong user or password');
-    }
-
-    var user = {
-      id: 123,
-      email: 'john@doe.com',
-      name: 'John Doe'
-    };
-
-    // we are sending the user data inside the token
-    var token = require('jsonwebtoken').sign(user, config.app.secret, {expiresInMinutes: 60 * 24 * 60});
-    this.body = {token: token, user: user};
-  }));
+  jwt.routes(app);
 
   // serve the angular static files from the /client directory, use caching (7 days) only in production
-  app.use(serve('/client', config.app.env === 'production' ? {maxage: 1000 * 60 * 60 * 24 * 7} : null));
+  app.use(serve('client', config.app.env === 'production' ? {maxage: 1000 * 60 * 60 * 24 * 7} : null));
 
   // middleware below this line is only reached if jwt token is valid
   app.use(jwt({secret: config.app.secret}));
-
-  app.use(route.get('/api/restricted', function *() {
-    console.log('user ' + this.user.email + ' is calling /api/restricted');
-    this.body = {name: 'foo'};
-  }));
 
   // mount all the routes defined in the api controllers
   fs.readdirSync('./server/controllers').forEach(function (file) {
