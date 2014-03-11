@@ -43,15 +43,15 @@ module.exports = function (app) {
     };
 
     // we are sending the user data inside the token
-    var token = require('jsonwebtoken').sign(user, 'shared-secret', {expiresInMinutes: 60 * 24 * 60});
+    var token = require('jsonwebtoken').sign(user, config.app.secret, {expiresInMinutes: 60 * 24 * 60});
     this.body = {token: token, user: user};
   }));
 
-  // mount the angular static resources route, use caching (7 days) only in production
-  app.use(serve('client', config.app.env === 'production' ? {maxage: 1000 * 60 * 60 * 24 * 7} : null));
+  // serve the angular static files from the /client directory, use caching (7 days) only in production
+  app.use(serve('/client', config.app.env === 'production' ? {maxage: 1000 * 60 * 60 * 24 * 7} : null));
 
   // middleware below this line is only reached if jwt token is valid
-  app.use(jwt({secret: 'shared-secret'}));
+  app.use(jwt({secret: config.app.secret}));
 
   app.use(route.get('/api/restricted', function *() {
     console.log('user ' + this.user.email + ' is calling /api/restricted');

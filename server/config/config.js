@@ -10,7 +10,8 @@ var base = {
   app: {
     root: path.normalize(__dirname + '/../..'),
     port: process.env.PORT || 3000,
-    env: process.env.NODE_ENV || 'development'
+    env: process.env.NODE_ENV || 'development',
+    secret: 'secret key'
   },
   mongo: {
     url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
