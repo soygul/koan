@@ -5,18 +5,3 @@ env:
   - NODE_ENV=test
 services:
   - mongodb
-  - redis-server
-before_script:
-  - 'npm install -g bower grunt-cli'
-  - 'bower install'
-
-  - export DISPLAY=:99.0 # following are angular-seed commands
-  - sh -e /etc/init.d/xvfb start
-  - npm install --quiet -g karma
-  - npm install --quiet -g protractor
-  - ./test/client/scripts/web-server.js > /dev/null &
-  - sleep 1 # give server time to start
-script:
-  - karma start test/client/config/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
-  - webdriver-manager update
-  # - protractor test/client/config/protractor-conf.js --browser=firefox
