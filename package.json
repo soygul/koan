@@ -49,6 +49,7 @@
 
     "phantomjs" : "latest",
     "karma" : "latest",
+    "karma-chrome-launcher": "latest",
     "karma-junit-reporter" : "latest",
     "karma-jasmine" : "latest",
     "protractor" : "latest",
