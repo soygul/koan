@@ -5,3 +5,8 @@ env:
   - NODE_ENV=test
 services:
   - mongodb
+  - redis-server
+before_script:
+  - export DISPLAY=:99.0 # set display port and start xvfb to run tests on firefox
+  - sh -e /etc/init.d/xvfb start
+  - sleep 1 # give x11 display server time to start
