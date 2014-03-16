@@ -16,11 +16,13 @@ module.exports = function (config) {
       'client/bower_components/angular-scenario/angular-scenario.js'
     ],
 
-    autoWatch: true,
+    autoWatch: false,
 
     frameworks: ['jasmine'],
 
     browsers: ['PhantomJS'],
+
+    reporters: ['dots'],
 
     junitReporter: {
       outputFile: 'test_out/unit.xml',
