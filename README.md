@@ -15,7 +15,7 @@ npm start
 Your application should run on the 3000 port so in your browser just go to [http://localhost:3000](http://localhost:3000)
 
 ## Configuration
-All configuration is specified in the [config](config/) folder, particularly the [config.js](config/config.js) file. Here you will need to specify your database name and hook up any social app keys if you want integration with Twitter, Facebook, or Google.
+All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
 ## Heroku Deployment
 Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed.
