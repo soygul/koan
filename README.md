@@ -32,7 +32,7 @@ heroku open
 ```
 
 ## Receiving updates from upstream
-When we upgrade KOAN's repo with updates or patches, you can just fetch the changes and merge them into your project with git.
+Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project with git.
 
 ## Live Example
 Browse the live KOAN example on [http://koanjs.com](http://koanjs.com).
