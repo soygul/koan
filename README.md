@@ -12,17 +12,14 @@ npm install
 npm start
 ```
 
-Your application should run on the 3000 port so in your browser just go to [http://localhost:3000](http://localhost:3000)
-
-## Configuration
-All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
-
-## Test
-To run all the tests, simply type
+Your application should run on the 3000 port so in your browser just go to [http://localhost:3000](http://localhost:3000). If you want to run tests, simply type:
 
 ```bash
 npm test
 ```
+
+## Configuration
+All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
 ## Heroku Deployment
 Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed.
