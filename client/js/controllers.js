@@ -21,15 +21,10 @@ angular.module('koan.controllers', [])
 
     })
     .controller('profile', function ($scope, $http, $window) {
-      $scope.user = {username: 'test', password: 'test'};
-      $scope.isAuthenticated = false;
-      $scope.welcome = '';
-      $scope.message = '';
-
       $scope.callRestricted = function () {
-        $http({url: '/api/restricted', method: 'GET'})
+        $http({url: '/api/users', method: 'GET'})
             .success(function (data, status, headers, config) {
-              $scope.message = $scope.message + ' ' + data.name; // Should log 'foo'
+              $scope.message = data;
             })
             .error(function (data, status, headers, config) {
               alert(data);

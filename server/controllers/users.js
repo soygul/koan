@@ -1,36 +1,35 @@
 'use strict';
 
 var route = require('koa-route'),
-    parse = require('co-body'),
-    jwt = require('koa-jwt');
+    parse = require('co-body');
 
 /**
  * Register koa routes.
  */
 exports.init = function (app) {
-  app.use(route.get('/api/', list));
-  app.use(route.get('/api/post/:id', show));
-  app.use(route.post('/api/post', create));
+  app.use(route.get('/api/users', list));
+  app.use(route.get('/api/users/post/:id', show));
+  app.use(route.post('/api/users/post', create));
 };
 
-var posts = [];
+var users = [{id: 1, name: 'John Doe'}];
 
 function *list() {
-  this.body = posts;
+  this.body = users;
 }
 
 function *show(id) {
-  var post = posts[id];
-  if (!post) {
-    this.throw(404, 'invalid post id');
+  var user = users[id];
+  if (!user) {
+    this.throw(404, 'invalid user id');
   }
-  this.body = post;
+  this.body = user;
 }
 
 function *create() {
-  var post = yield parse(this);
-  var id = posts.push(post) - 1;
-  post.created_at = new Date();
-  post.id = id;
+  var user = yield parse(this);
+  var id = users.push(user) - 1;
+  user.created_at = new Date();
+  user.id = id;
   this.redirect('/');
 }
