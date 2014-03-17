@@ -3,11 +3,11 @@
 /* Controllers */
 
 angular.module('koan.controllers', [])
-    .controller('layout', function ($rootScope, $window, $location) {
+    .controller('layout', function ($rootScope, $window) {
       // layout controller is always invoked once, regardless of the given route, to prepare the UI layout variables (like user profile image, display name, online status, etc.)
       var layout = $rootScope.layout = $rootScope.layout || {
         active: {},
-        user: $window.sessionStorage.user || $window.localStorage.user,
+        user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
         logout: function () {
           delete $window.sessionStorage.token;
           delete $window.sessionStorage.user;
