@@ -17,6 +17,13 @@ Your application should run on the 3000 port so in your browser just go to [http
 ## Configuration
 All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
+## Test
+To run all the tests, simply type
+
+```bash
+npm test
+```
+
 ## Heroku Deployment
 Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed.
 
