@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/soygul/koan.png?branch=master)](https://travis-ci.org/soygul/koan)
 
-KOAN Stack is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
+KOAN Stack is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications, for full stack JavaScript Web development. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured.
 
 ## Getting Started
 Make sure that you have Node.js and MongoDB (running on the default port 27017) installed on your computer. To get started with KOAN stack, clone the project repository and do following:
@@ -37,14 +37,8 @@ When we upgrade KOAN's repo with updates or patches, you can just fetch the chan
 ## Live Example
 Browse the live KOAN example on [http://koanjs.com](http://koanjs.com).
 
-## Third Party Framework Documentation
-Before you begin we recommend you read about the basic building blocks that assemble a KOAN application:
-* Koa - The best way to understand Koa is through its [Official Website](http://koajs.com/).
-* AngularJS - Angular's [Official Website](http://angularjs.org/) is a great starting point. You can also use [Thinkster Popular Guide](http://www.thinkster.io/), and the [Egghead Videos](https://egghead.io/).
-* MongoDB - Go through [MongoDB Official Website](http://mongodb.org/) and [Node.js Driver Manual](http://mongodb.github.io/node-mongodb-native/).
-
 ## Credits
-This project puts the best parts from following project together: [Angular Seed](https://github.com/angular/angular-seed), [MEAN](https://github.com/linnovate/mean), and [AngularJS Full Stack](https://github.com/DaftMonk/generator-angular-fullstack).
+Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa and Node.js best practices.
 
 ## The Name
 The project name is an acronym for Koa, Angular, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
