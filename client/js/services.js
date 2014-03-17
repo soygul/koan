@@ -11,7 +11,7 @@ angular.module('koan.services', []).
         request: function (config) {
           config.headers = config.headers || {};
           if ($window.sessionStorage.token || $window.localStorage.token) {
-            config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token || $window.localStorage.token;
+            config.headers.Authorization = 'Bearer ' + ($window.sessionStorage.token || $window.localStorage.token);
           }
           return config;
         },

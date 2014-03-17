@@ -17,9 +17,9 @@ angular.module('koan', [
             templateUrl: 'partials/home.html',
             controller: 'home'
           })
-          .when('/user', {
-            templateUrl: 'partials/user.html',
-            controller: 'user'
+          .when('/profile', {
+            templateUrl: 'partials/profile.html',
+            controller: 'profile'
           })
           .otherwise({
             redirectTo: '/'
