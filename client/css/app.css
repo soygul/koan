@@ -4,6 +4,10 @@
 
 /* Top Navigation */
 
+.navbar .navbar-header {
+  margin-right: 25px;
+}
+
 .navbar .brand-image {
   margin-top: -10px;
   margin-bottom: -10px;
