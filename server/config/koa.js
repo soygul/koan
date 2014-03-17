@@ -2,7 +2,7 @@
 
 var fs = require('fs'),
     logger = require('koa-logger'),
-    serve = require('koa-static'),
+    send = require('koa-send'),
     jwt = require('./jwt'),
     config = require('./config'),
     passport = require('./passport');
@@ -22,7 +22,18 @@ module.exports = function (app) {
   jwt.routes(app);
 
   // serve the angular static files from the /client directory, use caching (7 days) only in production
-  app.use(serve('client', config.app.env === 'production' ? {maxage: 1000 * 60 * 60 * 24 * 7} : null));
+  // if the file is not found and requested path is not /api, serve index.html page and let angular handle routing
+  var sendOpts = config.app.env === 'production' ? {root: 'client', maxage: 1000 * 60 * 60 * 24 * 7} : {root: 'client'};
+  app.use(function *(next) {
+    if (this.path.substr(0, 5).toLowerCase() === '/api/') {
+      yield next;
+    } else {
+      if (yield send(this, this.path, sendOpts)) {
+        return;
+      }
+      yield send(this, '/index.html', sendOpts);
+    }
+  });
 
   // middleware below this line is only reached if jwt token is valid
   app.use(jwt({secret: config.app.secret}));

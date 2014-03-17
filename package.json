@@ -20,7 +20,7 @@
     "koa": "latest",
     "koa-route": "latest",
     "koa-logger": "latest",
-    "koa-static": "latest",
+    "koa-send": "latest",
     "koa-jwt": "latest",
     "jsonwebtoken": "latest",
     "co": "latest",
