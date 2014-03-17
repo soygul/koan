@@ -5,11 +5,9 @@
   <title ng-bind="layout.title">KOAN Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    // authentication check before anything
     var token = window.sessionStorage.token || window.localStorage.token,
         user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
     if (!token || !user || user.exp < Math.round(new Date().getTime() / 1000)) {
-      // token is non-existent, invalid, or expired so redirect to login page
       window.location.replace('/login.html');
     }
   </script>
