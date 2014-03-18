@@ -1,7 +1,6 @@
 'use strict';
 
 var jwt = module.exports = require('koa-jwt'),
-    jsonwebtoken = require('jsonwebtoken'),
     route = require('koa-route'),
     parse = require('co-body'),
     config = require('./config');
@@ -20,7 +19,7 @@ jwt.routes = function (app) {
     };
 
     // we are sending the user data inside the token
-    var token = jsonwebtoken.sign(user, config.app.secret, {expiresInMinutes: 60 * 24 * 60});
+    var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 60 * 24 * 60});
     this.body = {token: token, user: user};
   }));
 };

@@ -22,7 +22,6 @@
     "koa-logger": "latest",
     "koa-send": "latest",
     "koa-jwt": "latest",
-    "jsonwebtoken": "latest",
     "co": "latest",
     "co-body": "latest",
     "co-mongodb": "latest",
