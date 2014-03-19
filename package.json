@@ -29,7 +29,6 @@
 
     "ws": "latest",
     "request": "latest",
-    "client-sessions": "latest",
     "express-validator": "latest",
     "koa-passport": "latest",
     "passport-facebook": "latest",
