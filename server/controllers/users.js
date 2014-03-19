@@ -2,13 +2,13 @@
 
 var route = require('koa-route'),
     parse = require('co-body'),
-    mongo = require('./server/config/mongo');
+    mongo = require('../config/mongo');
 
 /**
  * Register koa routes.
  */
 exports.init = function (app) {
-  app.get(route.get('/users/:id/picture', getPicture));
+  app.use(route.get('/users/:id/picture', getPicture));
   app.use(route.get('/api/users', list));
   app.use(route.get('/api/users/post/:id', show));
   app.use(route.post('/api/users/post', create));
