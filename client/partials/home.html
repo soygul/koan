@@ -5,7 +5,7 @@
     border-top: solid 1px #E9E9E9;
   }
 
-  .posts {
+  .post {
     margin-top: 0;
     padding-bottom: 18px;
     padding-top: 18px;
@@ -102,15 +102,15 @@
 
 <div class="message-box">
   <form ng-submit="createPost($event)">
-    <textarea jquery-autosize ng-model="posts.postMessage" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: none; height: 65px;" name="message" placeholder="Type your post here..." ng-disabled="posts.disabled"></textarea>
+    <textarea ng-model="posts.postMessage" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="posts.disabled"></textarea>
     <div class="message-box-tools">
-      <input id="msg_submit_btn" type="submit" class="btn btn-default btn-sm pull-right" value="Post"/>
+      <input type="submit" class="btn btn-default btn-sm pull-right" value="Post"/>
     </div>
   </form>
 </div>
 
 <ul class="media-list posts">
-  <li class="media posts" ng-repeat="post in posts" id="post_{{post.id}}">
+  <li class="media post" ng-repeat="post in posts" id="post_{{post.id}}">
     <a href="#" class="pull-left">
       <img class="media-object" ng-src="{{post.from.pictureUrl}}" alt="">
     </a>
