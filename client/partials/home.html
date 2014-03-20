@@ -102,7 +102,7 @@
 
 <div class="message-box">
   <form ng-submit="createPost($event)">
-    <textarea ng-model="posts.postMessage" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="posts.disabled"></textarea>
+    <textarea ng-model="postBox.message" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="postBox.disabled"></textarea>
     <div class="message-box-tools">
       <input type="submit" class="btn btn-default btn-sm pull-right" value="Post"/>
     </div>
@@ -121,17 +121,12 @@
       </h5>
       {{post.message}}
       <small class="post-tools">
-        <a href="" ng-click="likePost(post)">{{post.likes.likeText}}</a>
-        &middot; {{post.createdTime | date:'medium'}}
+        {{post.createdTime | date:'medium'}}
         &middot; <span class="glyphicon glyphicon-{{post.to ? 'envelope' : 'globe'}}"></span>
       </small>
       <ul class="media-list post-comments">
         <li class="media"><span class="arrow-up-small"></span></li>
-        <li ng-if="post.likes.count > 0" class="media post-comment">
-          <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-          <small><a href="#">{{post.likes.likeCountText}}</a> {{post.likes.likeCountLikeText}} this.</small>
-        </li>
-        <li class="media post-comment" ng-repeat="comment in post.comments.data">
+        <li class="media post-comment" ng-repeat="comment in post.comments">
           <a href="#" class="pull-left">
             <img class="media-object" ng-src="{{comment.from.pictureUrl}}" alt="">
           </a>
@@ -139,9 +134,6 @@
             <small><a href="#" class="bold">{{comment.from.name}}</a> {{comment.message}}</small>
             <small class="post-comment-tools">
               {{comment.createdTime | date:'short'}}
-              &middot; <a href="" ng-click="likeComment(post, comment)">{{comment.likes.likeText}}</a>
-              <span ng-if="comment.likes.count > 0">&middot; <a href="#"><i class="glyphicon glyphicon-thumbs-up"></i></a> <a
-                  href="#">{{comment.likes.count}}</a></span>
             </small>
           </div>
         </li>
