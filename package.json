@@ -26,7 +26,6 @@
     "co-body": "latest",
     "co-mongodb": "latest",
     "lodash": "latest",
-
     "ws": "latest",
     "request": "latest",
     "express-validator": "latest",
@@ -34,26 +33,19 @@
     "passport-facebook": "latest",
     "passport-twitter": "latest",
     "passport-google-oauth": "latest",
-
     "forever": "latest",
     "bower": "latest",
     "grunt-cli": "latest"
   },
   "devDependencies": {
+    "karma" : "latest",
+    "karma-jasmine" : "latest",
+    "karma-phantomjs-launcher": "latest",
+    "protractor" : "latest",
     "mocha": "latest",
     "should": "latest",
     "sinon": "latest",
     "supertest": "latest",
-
-    "phantomjs" : "latest",
-    "karma" : "latest",
-    "karma-chrome-launcher": "latest",
-    "karma-firefox-launcher": "latest",
-    "karma-phantomjs-launcher": "latest",
-    "karma-junit-reporter" : "latest",
-    "karma-jasmine" : "latest",
-    "protractor" : "latest",
-
     "grunt-env": "latest",
     "grunt-protractor-runner": "latest",
     "grunt-contrib-watch": "latest",

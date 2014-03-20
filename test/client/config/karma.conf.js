@@ -18,20 +18,12 @@ module.exports = function (config) {
 
     autoWatch: false,
 
+    singleRun: true,
+
     frameworks: ['jasmine'],
 
     browsers: ['PhantomJS'],
 
-    reporters: ['dots'],
-
-    junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    },
-
-    // Continuous Integration mode
-    // If true, it capture browsers, run tests and exit
-    singleRun: true
-
+    reporters: ['dots']
   });
 };
