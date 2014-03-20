@@ -38,9 +38,9 @@ function *create() {
 
 function *getPicture(id) {
   id = parseInt(id);
-  var user = yield mongo.findOne({_id: id}, {photo: 1});
+  var user = yield mongo.findOne({_id: id}, {picture: 1});
   if (user) {
-    var img = new Buffer(user.photo, 'base64');
+    var img = new Buffer(user.picture, 'base64');
     this.set('Content-Type', 'image/jpeg');
     this.body = img;
   }
