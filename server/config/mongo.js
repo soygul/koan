@@ -15,6 +15,7 @@ exports.connect = function *() {
   exports.counters = yield comongo.db.collection(db, 'counters');
   exports.users = yield comongo.db.collection(db, 'users');
 
+
   /**
    * Retrieves the next sequence number for the given counter (indicated by @counterName).
    */
