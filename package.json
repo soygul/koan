@@ -24,7 +24,7 @@
     "koa-jwt": "latest",
     "co": "latest",
     "co-body": "latest",
-    "co-mongodb": "latest",
+    "co-mongo": "latest",
     "lodash": "latest",
     "ws": "latest",
     "request": "latest",

@@ -2,13 +2,18 @@
 
 var config = require('./server/config/config'),
     mongo = require('./server/config/mongo'),
+    popdb = require('./test/server/popdb'),
     co = require('co'),
     koa = require('koa'),
     app = module.exports = koa();
 
+/**
+ * Entry point for KOAN app. Initiates database connection and starts listening for requests on configured port.
+ */
 co(function *() {
-  // initialize mongo
+  // initialize mongodb and populate the database with seed data if empty
   yield mongo.connect();
+  yield popdb();
 
   // koa config
   require('./server/config/koa')(app);
