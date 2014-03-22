@@ -53,13 +53,4 @@ angular.module('koan.controllers', [])
       /**
        * profile controller gives the user the means to view/edit their public profile info
        */
-      $scope.callRestricted = function () {
-        $http({url: '/api/users', method: 'GET'})
-            .success(function (data, status, headers, config) {
-              $scope.message = data;
-            })
-            .error(function (data, status, headers, config) {
-              alert(data);
-            });
-      };
     });

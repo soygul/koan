@@ -8,9 +8,8 @@ angular.module('koan', [
       'koan.directives',
       'koan.controllers'
     ]).
-    config(function ($routeProvider, $locationProvider, $httpProvider) {
+    config(function ($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true);
-      $httpProvider.interceptors.push('authInterceptor');
       $routeProvider
           .when('/', {
             title: 'KOAN Home',
