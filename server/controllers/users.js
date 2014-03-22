@@ -1,14 +1,15 @@
 'use strict';
 
+/**
+ * Users controller for users related functionality.
+ */
+
 var route = require('koa-route'),
     parse = require('co-body'),
     mongo = require('../config/mongo');
 
-/**
- * Register koa routes.
- */
+// register koa routes
 exports.init = function (app) {
-  app.use(route.get('/users/:id/picture', getPicture));
   app.use(route.get('/api/users', list));
   app.use(route.get('/api/users/post/:id', show));
   app.use(route.post('/api/users/post', create));
@@ -34,14 +35,4 @@ function *create() {
   user.created_at = new Date();
   user.id = id;
   this.redirect('/');
-}
-
-function *getPicture(id) {
-  id = parseInt(id);
-  var user = yield mongo.findOne({_id: id}, {picture: 1});
-  if (user) {
-    var img = new Buffer(user.picture, 'base64');
-    this.set('Content-Type', 'image/jpeg');
-    this.body = img;
-  }
 }

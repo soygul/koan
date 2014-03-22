@@ -30,27 +30,27 @@ angular.module('koan.controllers', [])
       $scope.posts = [
         {
           id: 1,
-          from: { id: 2, name: 'Chuck Norris' },
+          from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
           message: 'Hi there! Just wanted to say "Hello world!',
           createdTime: now.subtractHours(28)
         },
         {
           id: 2,
-          from: { id: 1, name: 'Teoman Soygul' },
+          from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
           message: '"Computers are useless. They can only give you answers." Pablo Picasso',
           createdTime: now.subtractHours(49),
           updatedTime: now.subtractHours(24)
         },
         {
           id: 3,
-          from: { id: 1, name: 'Teoman Soygul' },
+          from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
           message: 'Hi guys, I\'m traveling to Bolivia for the weekend!',
           createdTime: now.subtractHours(97),
           updatedTime: now.subtractHours(24),
           comments: [
             {
               id: 1,
-              from: { id: 2, name: 'Chuck Norris' },
+              from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
               createdTime: now.subtractHours(26),
               message: 'Ola! This is a nice idea!'
             },
@@ -62,7 +62,7 @@ angular.module('koan.controllers', [])
             },
             {
               id: 3,
-              from: { id: 1, name: 'Teoman Soygul' },
+              from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
               createdTime: now.subtractHours(24),
               message: 'Thanks guys, I\'ll see you when I get back.'
             }

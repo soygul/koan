@@ -15,7 +15,8 @@ jwt.routes = function (app) {
     var user = {
       id: 123,
       email: 'john@doe.com',
-      name: 'John Doe'
+      name: 'John Doe',
+      picture: 'api/users/1/picture'
     };
 
     // we are sending the user data inside the token

@@ -35,6 +35,9 @@ module.exports = function (app) {
     }
   });
 
+  // register publicly accessible api endpoint. this is useful for special cases
+  require('../controllers/public').init(app);
+
   // middleware below this line is only reached if jwt token is valid
   app.use(jwt({secret: config.app.secret}));
 
