@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Publicly accessible api endpoint.
+ * Publicly accessible api endpoint. This is handy at times for things that don't require authentication (like user profile picture, etc.).
  */
 
 var route = require('koa-route'),
