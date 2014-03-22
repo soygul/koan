@@ -25,50 +25,8 @@ angular.module('koan.controllers', [])
       /**
        * home controller simply lists all the posts from everyone on the front page
        */
-      var user = $scope.layout.user,
-          now = new Date();
-      $scope.posts = [
-        {
-          id: 1,
-          from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
-          message: 'Hi there! Just wanted to say "Hello world!',
-          createdTime: now.subtractHours(28)
-        },
-        {
-          id: 2,
-          from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
-          message: '"Computers are useless. They can only give you answers." Pablo Picasso',
-          createdTime: now.subtractHours(49),
-          updatedTime: now.subtractHours(24)
-        },
-        {
-          id: 3,
-          from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
-          message: 'Hi guys, I\'m traveling to Bolivia for the weekend!',
-          createdTime: now.subtractHours(97),
-          updatedTime: now.subtractHours(24),
-          comments: [
-            {
-              id: 1,
-              from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
-              createdTime: now.subtractHours(26),
-              message: 'Ola! This is a nice idea!'
-            },
-            {
-              id: 2,
-              from: { id: 3, name: 'Albert Einstein' },
-              createdTime: now.subtractHours(25),
-              message: 'Don\'t forget to bring back an iguana:)'
-            },
-            {
-              id: 3,
-              from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
-              createdTime: now.subtractHours(24),
-              message: 'Thanks guys, I\'ll see you when I get back.'
-            }
-          ]
-        }
-      ];
+      var user = $scope.layout.user;
+      $scope.posts = [];
       $scope.postBox = { message: null, disabled: false };
       $scope.createPost = function ($event) {
         // don't let the user type in blank lines or submit empty/whitespace only comment

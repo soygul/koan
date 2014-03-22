@@ -17,6 +17,7 @@ exports.connect = function *() {
   // export default collections
   exports.counters = yield db.collection('counters');
   exports.users = yield db.collection('users');
+  exports.posts = yield db.collection('posts');
 };
 
 /**

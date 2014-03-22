@@ -38,24 +38,3 @@ angular.module('koan', [
         }
       });
     });
-
-
-// some useful extensions
-Date.prototype.clone = function () {
-  // new Date(date) same as new Date(date.getTime()), because JS will try to call date.valueOf() when it need a number, and date.valueOf() is same as date.getTime()
-  return new Date(this);
-};
-
-Date.prototype.addHours = function (h) {
-  // make a clone of the date object not to modify the original one
-  var clone = this.clone();
-  clone.setHours(clone.getHours() + h);
-  return clone;
-};
-
-Date.prototype.subtractHours = function (h) {
-  // make a clone of the date object not to modify the original one
-  var clone = this.clone();
-  clone.setHours(clone.getHours() - h);
-  return clone;
-};
