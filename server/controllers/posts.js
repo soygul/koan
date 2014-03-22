@@ -10,7 +10,7 @@ var route = require('koa-route'),
 
 // register koa routes
 exports.init = function (app) {
-  app.use(route.get('/api/users', list));
+  app.use(route.get('/api/posts', list));
 };
 
 function *list() {
@@ -18,4 +18,5 @@ function *list() {
       {},
       {comments: {$slice: -15 /* only get last x many comments for each post */}},
       {limit: 15, sort: {_id: -1}} /* only get last 15 posts */).toArray();
+  console.log(this.body)
 }

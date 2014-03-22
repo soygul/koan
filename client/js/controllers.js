@@ -21,12 +21,14 @@ angular.module('koan.controllers', [])
       };
     })
 
-    .controller('home', function ($scope) {
+    .controller('home', function ($scope, $api) {
       /**
        * home controller simply lists all the posts from everyone on the front page
        */
       var user = $scope.layout.user;
-      $scope.posts = [];
+      $api.posts.list().success(function (posts) {
+        $scope.posts = posts;
+      });
       $scope.postBox = { message: null, disabled: false };
       $scope.createPost = function ($event) {
         // don't let the user type in blank lines or submit empty/whitespace only comment

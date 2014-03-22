@@ -2,10 +2,7 @@
 
 /* Services */
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('koan.services', []).
-    value('version', '1.0')
+angular.module('koan.services', [])
     .factory('authInterceptor', function ($rootScope, $q, $window) {
       return {
         request: function (config) {
@@ -20,6 +17,18 @@ angular.module('koan.services', []).
             // handle the case where the user is not authenticated
           }
           return $q.reject(rejection);
+        }
+      };
+    }).factory('$api', function ($rootScope, $http) {
+      /**
+       * HTTP service providing access the KOAN backend API.
+       */
+      var apiBase = 'api';
+      return {
+        posts: {
+          list: function () {
+            return $http({method: 'GET', url: apiBase + '/posts'});
+          }
         }
       };
     });
