@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/soygul/koan.png?branch=master)](https://travis-ci.org/soygul/koan)
 
-KOAN Stack is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications, for full stack JavaScript Web development. It is designed to give you quick and organized way to start development of KOAN based Web apps with additional useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/) and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured.
+KOAN Stack is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications, for full stack JavaScript Web development. It is designed to give you quick and organized way to start developing Web apps with useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/), and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured.
 
 ## Getting Started
 Make sure that you have Node.js (v0.11 or above) and MongoDB (running on the default port 27017) installed on your computer. To get started with KOAN stack, clone or [download](https://github.com/soygul/koan/archive/master.zip) the project repository and do following:
