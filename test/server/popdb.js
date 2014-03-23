@@ -31,26 +31,7 @@ module.exports = function *(overwrite) {
   }
 };
 
-// some useful extensions
-Date.prototype.clone = function () {
-  // new Date(date) same as new Date(date.getTime()), because JS will try to call date.valueOf() when it need a number, and date.valueOf() is same as date.getTime()
-  return new Date(this);
-};
-
-Date.prototype.addHours = function (h) {
-  // make a clone of the date object not to modify the original one
-  var clone = this.clone();
-  clone.setHours(clone.getHours() + h);
-  return clone;
-};
-
-Date.prototype.subtractHours = function (h) {
-  // make a clone of the date object not to modify the original one
-  var clone = this.clone();
-  clone.setHours(clone.getHours() - h);
-  return clone;
-};
-
+// declare seed data
 var users = [
   {
     _id: 1,
@@ -68,6 +49,10 @@ var users = [
   }
 ];
 
+
+Date.prototype.subtractHours = function (h) {
+  return new Date(this).setHours(this.getHours() - h);
+};
 var now = new Date();
 var posts = [
   {
@@ -79,13 +64,6 @@ var posts = [
   {
     id: 2,
     from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
-    message: '"Computers are useless. They can only give you answers." Pablo Picasso',
-    createdTime: now.subtractHours(49),
-    updatedTime: now.subtractHours(24)
-  },
-  {
-    id: 3,
-    from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
     message: 'Hi guys, I\'m traveling to Bolivia for the weekend!',
     createdTime: now.subtractHours(97),
     updatedTime: now.subtractHours(24),
@@ -94,19 +72,13 @@ var posts = [
         id: 1,
         from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
         createdTime: now.subtractHours(26),
-        message: 'Ola! This is a nice idea!'
-      },
-      {
-        id: 2,
-        from: { id: 3, name: 'Albert Einstein' },
-        createdTime: now.subtractHours(25),
         message: 'Don\'t forget to bring back an iguana:)'
       },
       {
-        id: 3,
+        id: 2,
         from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
         createdTime: now.subtractHours(24),
-        message: 'Thanks guys, I\'ll see you when I get back.'
+        message: 'I will!.'
       }
     ]
   }
