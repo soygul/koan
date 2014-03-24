@@ -6,7 +6,8 @@
 
 var route = require('koa-route'),
     parse = require('co-body'),
-    mongo = require('../config/mongo');
+    mongo = require('../config/mongo'),
+    config = require('../config/config');
 
 // register koa routes
 exports.init = function (app) {
@@ -19,6 +20,9 @@ function *getPicture(id) {
   if (user) {
     var img = new Buffer(user.picture, 'base64');
     this.set('Content-Type', 'image/jpeg');
+    if (config.app.env === 'production') {
+      this.set('Cache-Control', 'max-age=' + (60 * 60 * 24 * 7 /* 7 days */));
+    }
     this.body = img;
   }
 }
