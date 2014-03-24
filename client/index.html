@@ -2,8 +2,6 @@
 <html lang="en" ng-app="koan" ng-controller="layout">
 <head>
   <meta charset="utf-8">
-  <title ng-bind="layout.title">KOAN Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     var token = window.sessionStorage.token || window.localStorage.token,
         user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
@@ -11,6 +9,8 @@
       window.location.replace('/login.html');
     }
   </script>
+  <title ng-bind="layout.title">KOAN Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 </head>

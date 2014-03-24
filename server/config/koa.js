@@ -3,7 +3,7 @@
 var fs = require('fs'),
     logger = require('koa-logger'),
     send = require('koa-send'),
-    jwt = require('./jwt'),
+    jwt = require('koa-jwt'),
     config = require('./config'),
     passport = require('./passport');
 
@@ -18,8 +18,8 @@ module.exports = function (app) {
   // mount passport oauth routes
   passport.routes(app);
 
-  // mount jwt authentication uri
-  jwt.routes(app);
+  // register publicly accessible api endpoint. this is useful for special cases like login, user profile images, etc.
+  require('../controllers/public').init(app);
 
   // serve the angular static files from the /client directory, use caching (7 days) only in production
   // if the file is not found and requested path is not /api, serve index.html page and let angular handle routing
@@ -34,9 +34,6 @@ module.exports = function (app) {
       yield send(this, '/index.html', sendOpts);
     }
   });
-
-  // register publicly accessible api endpoint. this is useful for special cases
-  require('../controllers/public').init(app);
 
   // middleware below this line is only reached if jwt token is valid
   app.use(jwt({secret: config.app.secret}));
