@@ -1,6 +1,6 @@
 'use strict';
 
-var mongo = require('../../server/config/mongo');
+var mongo = require('./mongo');
 
 /**
  * Populates the database with seed data.

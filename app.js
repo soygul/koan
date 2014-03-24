@@ -2,7 +2,7 @@
 
 var config = require('./server/config/config'),
     mongo = require('./server/config/mongo'),
-    popdb = require('./test/server/popdb'),
+    popdb = require('./server/config/popdb'),
     co = require('co'),
     koa = require('koa'),
     app = module.exports = koa();
