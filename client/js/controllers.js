@@ -21,12 +21,12 @@ angular.module('koan.controllers', [])
       };
     })
 
-    .controller('home', function ($scope, $api) {
+    .controller('home', function ($scope, api) {
       /**
        * home controller simply lists all the posts from everyone on the front page
        */
       var user = $scope.layout.user;
-      $api.posts.list().success(function (posts) {
+      api.posts.list().success(function (posts) {
         $scope.posts = posts;
       });
       $scope.postBox = { message: null, disabled: false };
