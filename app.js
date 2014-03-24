@@ -13,7 +13,7 @@ var config = require('./server/config/config'),
 co(function *() {
   // initialize mongodb and populate the database with seed data if empty
   yield mongo.connect();
-  yield popdb();
+  yield popdb(true);
 
   // koa config
   require('./server/config/koa')(app);
