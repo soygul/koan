@@ -15,13 +15,13 @@ angular.module('koan.services', [])
           list: function () {
             return $http({method: 'GET', url: apiBase + '/posts', headers: headers});
           },
-          create: function (message) {
-            return $http({method: 'POST', url: apiBase + '/posts', data: {message: message}, headers: headers});
+          create: function (post) {
+            return $http({method: 'POST', url: apiBase + '/posts', data: post, headers: headers});
           }
         },
         comments: {
-          create: function (postId, message) {
-            return $http({method: 'POST', url: apiBase + '/posts/' + postId + '/comments', data: {message: message}, headers: headers});
+          create: function (postId, comment) {
+            return $http({method: 'POST', url: apiBase + '/posts/' + postId + '/comments', data: comment, headers: headers});
           }
         }
       };

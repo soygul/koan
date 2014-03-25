@@ -16,6 +16,9 @@ exports.init = function (app) {
   app.use(route.get('/api/users/:id/picture', getPicture));
 };
 
+/**
+ * Retrieves user credentials from an HTML form post (x-www-form-urlencoded) and returns a JSON Web Token along with user profile info in JSON format.
+ */
 function *login() {
   var credentials = yield parse(this);
   var user = yield mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
@@ -36,6 +39,10 @@ function *login() {
   this.body = {token: token, user: user};
 }
 
+/**
+ * Serves user profile picture in 50x50 jpeg format.
+ * @param id User ID.
+ */
 function *getPicture(id) {
   id = parseInt(id);
   var user = yield mongo.users.findOne({_id: id}, {picture: 1});

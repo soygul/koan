@@ -15,6 +15,9 @@ exports.init = function (app) {
   app.use(route.post('/posts/:id/comments', createComment));
 };
 
+/**
+ * Lists last 15 posts with latest 15 comments in them.
+ */
 function *listPosts() {
   this.body = yield mongo.posts.find(
       {},
@@ -22,6 +25,9 @@ function *listPosts() {
       {limit: 15, sort: {_id: -1}} /* only get last 15 posts */).toArray();
 }
 
+/**
+ * Saves a new post in the database after proper validations.
+ */
 function *createPost() {
   // todo: validate post body
   var post = yield parse(this);
@@ -32,6 +38,10 @@ function *createPost() {
   this.body = results[0]._id.toString();
 }
 
+/**
+ * Appends a new comment to a given post.
+ * @param id Post ID.
+ */
 function *createComment(id) {
   this.status = 501; // not implemented
 }
