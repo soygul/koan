@@ -41,14 +41,14 @@ angular.module('koan.controllers', [])
 
       // add post/comment creation functions to scope
       $scope.createPost = function ($event) {
-        // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when post is being created
-        if (!$scope.postBox.message.length || $scope.posts.disabled) {
+        // don't let the user type in blank lines or submit empty/whitespace only post, or type in something when post is being created
+        if (!$scope.postBox.message.length || $scope.postBox.disabled) {
           $event.preventDefault();
           return;
         }
 
         // disable the post box and push the new post to server
-        $scope.posts.disabled = true;
+        $scope.postBox.disabled = true;
         api.posts.create({message: $scope.postBox.message})
             .success(function (postId) {
               $scope.posts.unshift({
@@ -60,15 +60,47 @@ angular.module('koan.controllers', [])
 
               // clear the post box and enable it
               $scope.postBox.message = '';
-              $scope.postBox.message.disabled = false;
+              $scope.postBox.disabled = false;
             })
             .error(function (data, status) {
               // don't clear the post box but enable it so the user can re-try
-              $scope.postBox.message.disabled = false;
+              $scope.postBox.disabled = false;
             });
       };
 
-      $scope.createComment = function () {
+      $scope.createComment = function ($event, post) {
+        // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when post is being created
+        if (!post.commentBox.message.length || post.commentBox.disabled) {
+          $event.preventDefault();
+          return;
+        }
 
+        // submit the message in the comment box only if user hits 'Enter (keycode 13)'
+        if ($event.keyCode !== 13) {
+          return;
+        }
+
+        // disable the post box and push the new post to server
+        post.commentBox.disabled = true;
+        api.posts.comments.create(post.id, {message: post.commentBox.message})
+            .success(function (commentId) {
+              post.comments.data.push({
+                id: commentId,
+                from: user,
+                message: post.commentBox.message,
+                createdTime: new Date()
+              });
+
+              // clear the comment field and enable it
+              post.commentBox = '';
+              post.commentBox.disabled = false;
+            })
+            .error(function (data, status) {
+              // don't clear the post box but enable it so the user can re-try
+              post.commentBox.disabled = false;
+            });
+
+        // prevent default 'Enter' button behavior (create new line) as we want 'Enter' button to do submission
+        $event.preventDefault();
       };
     });

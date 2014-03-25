@@ -17,11 +17,11 @@ angular.module('koan.services', [])
           },
           create: function (post) {
             return $http({method: 'POST', url: apiBase + '/posts', data: post, headers: headers});
-          }
-        },
-        comments: {
-          create: function (postId, comment) {
-            return $http({method: 'POST', url: apiBase + '/posts/' + postId + '/comments', data: comment, headers: headers});
+          },
+          comments: {
+            create: function (postId, comment) {
+              return $http({method: 'POST', url: apiBase + '/posts/' + postId + '/comments', data: comment, headers: headers});
+            }
           }
         }
       };
