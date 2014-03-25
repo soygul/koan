@@ -21,15 +21,25 @@ angular.module('koan.controllers', [])
       };
     })
 
+    .controller('profile', function ($scope, $http, $window) {
+      /**
+       * profile controller gives the user the means to view/edit their public profile info
+       */
+    })
+
     .controller('home', function ($scope, api) {
       /**
        * home controller simply lists all the posts from everyone on the front page
        */
       var user = $scope.layout.user;
+      $scope.postBox = {message: null, disabled: false};
+
+      // retrieve posts from server
       api.posts.list().success(function (posts) {
         $scope.posts = posts;
       });
-      $scope.postBox = {message: null, disabled: false};
+
+      // add post/comment creation functions to scope
       $scope.createPost = function ($event) {
         // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when post is being created
         if (!$scope.postBox.message.length || $scope.posts.disabled) {
@@ -57,10 +67,8 @@ angular.module('koan.controllers', [])
               $scope.postBox.message.disabled = false;
             });
       };
-    })
 
-    .controller('profile', function ($scope, $http, $window) {
-      /**
-       * profile controller gives the user the means to view/edit their public profile info
-       */
+      $scope.createComment = function () {
+
+      };
     });
