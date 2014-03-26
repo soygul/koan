@@ -30,8 +30,8 @@ function *listPosts() {
  * Saves a new post in the database after proper validations.
  */
 function *createPost() {
-  // todo: validate post body
   var post = yield parse(this);
+  // todo: validate post body here..
   post.from = this.user;
   post.createdTime = new Date();
   var results = yield mongo.posts.insert(post);

@@ -4,6 +4,9 @@ var comongo = require('co-mongo'),
     connect = comongo.connect,
     config = require('./config');
 
+// extending top mongo namespace like this is not optimal but it saves the user from a lot of extra configuration & confusion
+module.exports = comongo;
+
 /**
  * Opens a new connection to the mongo database, closing the existing one if exists.
  */
@@ -32,5 +35,3 @@ comongo.getNextSequence = function *(counterName) {
       {new: true}
   );
 };
-
-module.exports = comongo;
