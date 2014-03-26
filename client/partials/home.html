@@ -142,7 +142,7 @@
             <img class="media-object" ng-src="{{layout.user.picture}}" alt="">
           </a>
           <div class="media-body post-comment-body">
-            <textarea jquery-autosize ng-model="post.commentMessage" ng-keypress="createComment($event, post)" ng-disabled="post.comments.disabled" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: none; height: 20px;" name="comment" placeholder="Write a comment..."></textarea>
+            <textarea ng-model="post.commentBox.message" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: none; height: 20px;" name="comment" placeholder="Write a comment..."></textarea>
           </div>
         </li>
       </ul>

@@ -6,13 +6,14 @@
 
 var route = require('koa-route'),
     parse = require('co-body'),
-    mongo = require('../config/mongo');
+    mongo = require('../config/mongo'),
+    ObjectID = mongo.ObjectID;
 
 // register koa routes
 exports.init = function (app) {
   app.use(route.get('/api/posts', listPosts));
   app.use(route.post('/api/posts', createPost));
-  app.use(route.post('/posts/:id/comments', createComment));
+  app.use(route.post('/api/posts/:postId/comments', createComment));
 };
 
 /**
@@ -42,6 +43,8 @@ function *createPost() {
  * Appends a new comment to a given post.
  * @param id Post ID.
  */
-function *createComment(id) {
+function *createComment(postId) {
+  postId = new ObjectID(postId);
+  var comment = yield parse(this);
   this.status = 501; // not implemented
 }
