@@ -44,7 +44,7 @@ Whenever we update KOAN's repo, you can just fetch the changes and merge them in
 Browse the live KOAN example on [http://koanjs.com](http://koanjs.com).
 
 ## Credits
-Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa and Node.js best practices.
+Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
 
 ## The Name
 The project name is an acronym for Koa, Angular, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
