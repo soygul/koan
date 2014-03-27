@@ -102,7 +102,7 @@
 
 <div class="message-box">
   <form ng-submit="createPost($event)">
-    <textarea ng-model="postBox.message" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="postBox.disabled"></textarea>
+    <textarea msd-elastic ng-model="postBox.message" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="postBox.disabled"></textarea>
     <div class="message-box-tools">
       <input type="submit" class="btn btn-default btn-sm pull-right" value="Post"/>
     </div>
@@ -142,7 +142,7 @@
             <img class="media-object" ng-src="{{layout.user.picture}}" alt="">
           </a>
           <div class="media-body post-comment-body">
-            <textarea ng-model="post.commentBox.message" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: none; height: 20px;" name="comment" placeholder="Write a comment..."></textarea>
+            <textarea msd-elastic ng-model="post.commentBox.message" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: none; height: 20px;" name="comment" placeholder="Write a comment..."></textarea>
           </div>
         </li>
       </ul>

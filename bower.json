@@ -2,10 +2,11 @@
   "name": "koan",
   "version": "1.0.0",
   "dependencies": {
-    "angular": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
+    "angular": "latest",
     "angular-route": "latest",
+    "angular-elastic": "latest",
     "lodash": "latest"
   },
   "devDependencies": {

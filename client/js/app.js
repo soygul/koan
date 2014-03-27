@@ -3,12 +3,13 @@
 // Declare app level module which depends on filters, and services
 angular.module('koan', [
       'ngRoute',
+      'monospaced.elastic',
       'koan.filters',
       'koan.services',
       'koan.directives',
       'koan.controllers'
-    ]).
-    config(function ($routeProvider, $locationProvider) {
+    ])
+    .config(function ($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true);
       $routeProvider
           .when('/', {
@@ -17,13 +18,15 @@ angular.module('koan', [
             controller: 'home'
           })
           .when('/profile', {
+            title: 'Profile',
             templateUrl: 'partials/profile.html',
             controller: 'profile'
           })
           .otherwise({
             redirectTo: '/'
           });
-    }).run(function ($location, $rootScope) {
+    })
+    .run(function ($location, $rootScope) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         // set title and description
         $rootScope.layout.title = current.$$route.title;

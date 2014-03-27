@@ -92,7 +92,7 @@ angular.module('koan.controllers', [])
               });
 
               // clear the comment field and enable it
-              post.commentBox = '';
+              post.commentBox.message = '';
               post.commentBox.disabled = false;
             })
             .error(function (data, status) {
