@@ -31,7 +31,7 @@ function *listPosts() {
  */
 function *createPost() {
   var post = yield parse(this);
-  // todo: validate post body here..
+  // todo: validate post body here w/ koa-validator
   post.from = this.user;
   post.createdTime = new Date();
   var results = yield mongo.posts.insert(post);

@@ -36,6 +36,9 @@ angular.module('koan.controllers', [])
 
       // retrieve posts from server
       api.posts.list().success(function (posts) {
+        posts.forEach(function (post) {
+          post.commentBox = {message: '', disabled: false};
+        });
         $scope.posts = posts;
       });
 
@@ -55,7 +58,8 @@ angular.module('koan.controllers', [])
                 id: postId,
                 from: user,
                 message: $scope.postBox.message,
-                createdTime: new Date()
+                createdTime: new Date(),
+                commentBox: {message: '', disabled: false}
               });
 
               // clear the post box and enable it
@@ -69,14 +73,14 @@ angular.module('koan.controllers', [])
       };
 
       $scope.createComment = function ($event, post) {
-        // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when post is being created
-        if (!post.commentBox.message.length || post.commentBox.disabled) {
-          $event.preventDefault();
+        // submit the message in the comment box only if user hits 'Enter (keycode 13)'
+        if ($event.keyCode !== 13) {
           return;
         }
 
-        // submit the message in the comment box only if user hits 'Enter (keycode 13)'
-        if ($event.keyCode !== 13) {
+        // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when post is being created
+        if (!post.commentBox.message.length || post.commentBox.disabled) {
+          $event.preventDefault();
           return;
         }
 
