@@ -52,32 +52,32 @@ var users = [
 
 
 Date.prototype.subtractHours = function (h) {
-  return new Date(this).setHours(this.getHours() - h);
+  return new Date(new Date(this).setHours(this.getHours() - h));
 };
 var now = new Date();
 var posts = [
   {
-    id: new ObjectID(),
-    from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
+    _id: new ObjectID(),
+    from: {_id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture'},
     message: 'Hello world! This is a sample post... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat neque dui, vel fermentum arcu egestas vitae. Curabitur tincidunt tristique tristique. Nunc velit sapien, laoreet non enim vel, vestibulum blandit magna. Vivamus pharetra tempus mi, id ullamcorper dolor adipiscing at. Aliquam sed malesuada sapien. Sed enim nisi, rhoncus nec sollicitudin quis, mattis sed eros. Etiam luctus aliquam tristique. Aenean condimentum justo arcu, sit amet vestibulum neque suscipit sit amet. Nunc mattis enim eget turpis semper bibendum. Quisque blandit diam tincidunt lacus malesuada, vel faucibus risus hendrerit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque viverra tellus bibendum, elementum urna ultricies, elementum enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam nunc turpis, commodo id ipsum ac, rhoncus auctor ligula. Proin in nulla in lorem commodo semper. Aenean sodales turpis vitae tempor sollicitudin.',
     createdTime: now.subtractHours(28)
   },
   {
-    id: new ObjectID(),
-    from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
+    _id: new ObjectID(),
+    from: {_id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture'},
     message: 'Hi guys, I\'m traveling to Bolivia for the weekend!',
     createdTime: now.subtractHours(97),
     updatedTime: now.subtractHours(24),
     comments: [
       {
-        id: 1,
-        from: { id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture' },
+        _id: new ObjectID(),
+        from: {_id: 2, name: 'Chuck Norris', picture: 'api/users/2/picture'},
         createdTime: now.subtractHours(26),
         message: 'Don\'t forget to bring back an iguana:)'
       },
       {
-        id: 2,
-        from: { id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture' },
+        _id: new ObjectID(),
+        from: {_id: 1, name: 'Teoman Soygul', picture: 'api/users/1/picture'},
         createdTime: now.subtractHours(24),
         message: 'I will!.'
       }

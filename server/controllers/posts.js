@@ -20,10 +20,15 @@ exports.init = function (app) {
  * Lists last 15 posts with latest 15 comments in them.
  */
 function *listPosts() {
-  this.body = yield mongo.posts.find(
+  var posts = yield mongo.posts.find(
       {},
       {comments: {$slice: -15 /* only get last x many comments for each post */}},
       {limit: 15, sort: {_id: -1}} /* only get last 15 posts */).toArray();
+  posts.forEach(function (post) {
+    post.id = post._id.toString();
+    delete post._id;
+  });
+  this.body = posts;
 }
 
 /**
@@ -44,7 +49,17 @@ function *createPost() {
  * @param id Post ID.
  */
 function *createComment(postId) {
+  console.log(postId)
   postId = new ObjectID(postId);
   var comment = yield parse(this);
-  this.status = 501; // not implemented
+  var commentId = new ObjectID();
+
+  // update post document with the new comment
+  var result = yield mongo.posts.update(
+      {_id: postId},
+      {$push: {comments: {_id: commentId, from: this.user, createdTime: new Date(), message: comment.message}}}
+  );
+console.log(result);
+  this.status = 201;
+  this.body = commentId.toString();
 }

@@ -38,6 +38,7 @@ angular.module('koan.controllers', [])
       api.posts.list().success(function (posts) {
         posts.forEach(function (post) {
           post.commentBox = {message: '', disabled: false};
+          post.comments = post.comments || [];
         });
         $scope.posts = posts;
       });
@@ -59,6 +60,7 @@ angular.module('koan.controllers', [])
                 from: user,
                 message: $scope.postBox.message,
                 createdTime: new Date(),
+                comments: [],
                 commentBox: {message: '', disabled: false}
               });
 
@@ -66,7 +68,7 @@ angular.module('koan.controllers', [])
               $scope.postBox.message = '';
               $scope.postBox.disabled = false;
             })
-            .error(function (data, status) {
+            .error(function () {
               // don't clear the post box but enable it so the user can re-try
               $scope.postBox.disabled = false;
             });
@@ -88,7 +90,7 @@ angular.module('koan.controllers', [])
         post.commentBox.disabled = true;
         api.posts.comments.create(post.id, {message: post.commentBox.message})
             .success(function (commentId) {
-              post.comments.data.push({
+              post.comments.push({
                 id: commentId,
                 from: user,
                 message: post.commentBox.message,
@@ -99,7 +101,7 @@ angular.module('koan.controllers', [])
               post.commentBox.message = '';
               post.commentBox.disabled = false;
             })
-            .error(function (data, status) {
+            .error(function () {
               // don't clear the post box but enable it so the user can re-try
               post.commentBox.disabled = false;
             });
