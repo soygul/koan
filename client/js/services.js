@@ -31,5 +31,15 @@ angular.module('koan.services', [])
         }
       };
 
+      // utilize jQuery's callbacks as an event system
+      function event() {
+        var callbacks = $.Callbacks();
+        return {
+          subscribe: callbacks.add,
+          unsubscribe: callbacks.remove,
+          publish: callbacks.fire
+        };
+      }
+
       return api;
     });
