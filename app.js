@@ -3,6 +3,8 @@
 var config = require('./server/config/config'),
     mongo = require('./server/config/mongo'),
     popdb = require('./server/config/popdb'),
+    koaConfig = require('./server/config/koa'),
+    ws = require('./server/config/ws'),
     co = require('co'),
     koa = require('koa'),
     app = module.exports = koa();
@@ -16,10 +18,11 @@ co(function *() {
   yield popdb(true) /* make this false once you don't want your database overwritten each time */;
 
   // koa config
-  require('./server/config/koa')(app);
+  koaConfig(app);
 
   if (!module.parent) {
-    app.listen(config.app.port);
+    exports.server = app.listen(config.app.port);
+    ws.create(exports.server);
     console.log('KOAN listening on port ' + config.app.port);
   }
 })();

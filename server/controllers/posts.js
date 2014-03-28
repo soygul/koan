@@ -59,7 +59,7 @@ function *createComment(postId) {
       {_id: postId},
       {$push: {comments: {_id: commentId, from: this.user, createdTime: new Date(), message: comment.message}}}
   );
-console.log(result);
+
   this.status = 201;
   this.body = commentId.toString();
 }

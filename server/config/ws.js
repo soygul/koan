@@ -67,7 +67,7 @@ exports.create = function (server) {
     });
   });
 
-  this.wss = wss;
+  exports.wss = wss;
   return wss;
 };
 
