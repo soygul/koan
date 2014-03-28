@@ -8,7 +8,7 @@
  * todo: use json-rpc notification schema (http://www.jsonrpc.org/specification#notification) with websockets to notify connected clients of server-side updates:
  * server --> client : {"jsonrpc": "2.0", "method": "postCreated", "params": [{"id": "123", "from": "John Doe", "message": "blah blah..."]}
  *
- * also the ws connection should be used in bidirectional manner with a casual http fallback
+ * also the ws connection should be used in bidirectional manner with a casual http fallback, with a framework like koa-ws
  */
 
 var WebSocketServer = require('ws').Server,
@@ -28,17 +28,16 @@ exports.create = function (server) {
     // validator function attaches user details to the request object if token is valid
     var query = url.parse(info.req.url, true).query,
         accessToken = query.access_token;
-    if (jwt.verify(accessToken, config.app.secret)) {
-      return true;
-    } else {
-      return false;
-    }
+
+    return (info.req.user = jwt.verify(accessToken, config.app.secret)(function (err, jwtPayload) {
+      return jwtPayload; // this bit is a bit of hack to make a sync function out of thunkified async function!
+    }));
   }});
 
   // WebSocket event that is fired when a new client is validated and connected
   wss.on('connection', function (ws) {
     var user = ws.upgradeReq.user;
-    //console.log('A new WebSocket client connected with ID: ' + user.id);
+    console.log('A new WebSocket client connected with ID: ' + user.id);
 
     // associate connecting user ID with WebSocket connection in the clients dictionary
     if (exports.clients[user.id]) {
@@ -49,10 +48,9 @@ exports.create = function (server) {
     }
 
     ws.on('close', function () {
-      //console.log('A WebSocket client with ID: ' + user.id + ' disconnected.');
+      console.log('A WebSocket client with ID: ' + user.id + ' disconnected.');
       if (exports.clients[user.id].length === 1) {
-        // exports.clients.splice(user.id, 1); // this is the correct way but this also shifts all elements indexes which spoils the design here..
-        exports.clients[user.id] = null;
+        exports.clients[user.id] = null; // exports.clients.splice(user.id, 1); // this is the correct way but this also shifts all elements indexes which spoils the design here..
       }
       else {
         var index = exports.clients[user.id].indexOf(ws);
@@ -120,9 +118,9 @@ function handleWsError(err) {
 }
 
 exports.postCreated = function (recipients, post) {
-  exports.send(recipients, {event: 'postCreated', data: post});
+  exports.send(recipients, {jsonrpc: '2.0', method: 'postCreated', params: post});
 };
 
 exports.commentCreated = function (recipients, comment) {
-  exports.send(recipients, {event: 'commentCreated', data: comment});
+  exports.send(recipients, {jsonrpc: '2.0', method: 'commentCreated', params: comment});
 };
