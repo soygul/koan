@@ -46,7 +46,9 @@ function *createPost() {
   this.body = results[0]._id.toString();
 
   // now notify everyone about this new post
-  ws.postCreated(ws.clients, post);
+  post.id = post._id;
+  delete post._id;
+  ws.postCreated(post);
 }
 
 /**
@@ -69,5 +71,7 @@ function *createComment(postId) {
   this.body = commentId.toString();
 
   // now notify everyone about this new comment
-  ws.commentCreated(ws.clients, comment);
+  comment.id = comment._id;
+  delete comment._id;
+  ws.commentCreated(comment);
 }

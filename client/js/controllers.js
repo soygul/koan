@@ -64,14 +64,19 @@ angular.module('koan.controllers', [])
         $scope.postBox.disabled = true;
         api.posts.create({message: $scope.postBox.message})
             .success(function (postId) {
-              $scope.posts.unshift({
-                id: postId,
-                from: user,
-                message: $scope.postBox.message,
-                createdTime: new Date(),
-                comments: [],
-                commentBox: {message: '', disabled: false}
-              });
+              // only add the post if we don't have it already in the posts list to avoid dupes
+              if (!_.some($scope.posts, function (p) {
+                return p.id === postId;
+              })) {
+                $scope.posts.unshift({
+                  id: postId,
+                  from: user,
+                  message: $scope.postBox.message,
+                  createdTime: new Date(),
+                  comments: [],
+                  commentBox: {message: '', disabled: false}
+                });
+              }
 
               // clear the post box and enable it
               $scope.postBox.message = '';
@@ -118,4 +123,29 @@ angular.module('koan.controllers', [])
         // prevent default 'Enter' button behavior (create new line) as we want 'Enter' button to do submission
         $event.preventDefault();
       };
+
+      // subscribe to websocket events to receive new posts, comments, etc.
+      api.posts.created.subscribe(function (post) {
+        // only add the post if we don't have it already in the posts list to avoid dupes
+        if (!_.some($scope.posts, function (p) {
+          return p.id === post.id;
+        })) {
+          post.comments = [];
+          post.commentBox = {message: '', disabled: false};
+          $scope.posts.unshift(post);
+        }
+      });
+
+      api.posts.comments.created.subscribe(function (comment) {
+        var post = _.find($scope.posts, function (post) {
+          return post.id === comment.postId;
+        });
+
+        // add the comment to the view only if we have the post in the view but not the comment itself (i.e. comment was not created via this browser)
+        if (post && !_.some(post.comments.data, function (c) {
+          return c.id === comment.id;
+        })) {
+          post.comments.data.push(comment);
+        }
+      });
     });

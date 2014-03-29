@@ -57,14 +57,16 @@ angular.module('koan.services', [])
         }
       };
 
+      function index(obj, i) { return obj[i]; } // convert dot notation string into an actual object index
       ws.addEventListener('message', function (event /* websocket event object */) {
         var data = JSON.parse(event.data /* rpc event object (data) */);
         if (!data.method) {
+          console.log(data)
           throw 'Malformed event data received through WebSocket. Received event data object was: ' + data;
-        } else if (!api[data.method]) {
+        } else if (!data.method.split('.').reduce(index, api)) {
           throw 'Undefined event type received through WebSocket. Received event data object was: ' + data;
         }
-        api[data.method].publish(data.params);
+        data.method.split('.').reduce(index, api).publish(data.params);
         $rootScope.$apply();
       });
 

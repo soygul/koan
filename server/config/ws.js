@@ -7,6 +7,7 @@
 var WebSocketServer = require('ws').Server,
     url = require('url'),
     jwt = require('koa-jwt'),
+    _ = require('lodash'),
     config = require('../config/config');
 
 /**
@@ -75,13 +76,14 @@ exports.clients = [];
 
 /**
  *
- * @param recipients - Array of user IDs to send the data to. Only the online clients receive the data out of the entire given recipient list.
+ * @param recipients - Array of user IDs to send the data to. Only the online clients receive the data out of the entire given recipient list. If omitted, all users will receive the message.
  * @param data - JS object (which will be serialized to JSON before being sent to the clients).
  * @param callback - Optional callback to be called when
  */
 exports.send = function (recipients, data, callback) {
   if (!Array.isArray(recipients)) {
-    recipients = [recipients];
+    data = recipients;
+    recipients = _.keys(exports.clients);
   }
   data = JSON.stringify(data);
 
@@ -113,10 +115,10 @@ function handleWsError(err) {
   }
 }
 
-exports.postCreated = function (recipients, post) {
-  exports.send(recipients, {jsonrpc: '2.0', method: 'posts.created', params: post});
+exports.postCreated = function (post) {
+  exports.send({jsonrpc: '2.0', method: 'posts.created', params: post});
 };
 
-exports.commentCreated = function (recipients, comment) {
-  exports.send(recipients, {jsonrpc: '2.0', method: 'comments.created', params: comment});
+exports.commentCreated = function (comment) {
+  exports.send({jsonrpc: '2.0', method: 'posts.comments.created', params: comment});
 };
