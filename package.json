@@ -38,6 +38,7 @@
     "grunt-cli": "latest"
   },
   "devDependencies": {
+    "stream-injecter": "latest",
     "karma" : "latest",
     "karma-jasmine" : "latest",
     "karma-phantomjs-launcher": "latest",
