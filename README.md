@@ -32,6 +32,7 @@ git add .
 git commit -m "initial version"
 heroku apps:create
 heroku addons:add mongohq
+heroku labs:enable websockets
 heroku config:add NODE_ENV=production
 git push heroku master
 heroku open
