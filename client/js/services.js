@@ -3,6 +3,7 @@
 /* Services */
 
 angular.module('koan.services', [])
+    .value('version', '1.0')
     .factory('api', function ($rootScope, $http, $window) {
       /**
        * HTTP service providing access the KOAN backend API.
