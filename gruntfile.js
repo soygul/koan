@@ -1,5 +1,7 @@
 'use strict';
 
+var fs = require('fs');
+
 module.exports = function (grunt) {
   // Project Configuration
   grunt.initConfig({
@@ -17,7 +19,7 @@ module.exports = function (grunt) {
         }
       },
       server: {
-        files: ['gruntfile.js', 'app.js', 'server/**'],
+        files: ['.nodemon'],
         options: {
           livereload: true
         }
@@ -27,7 +29,17 @@ module.exports = function (grunt) {
       dev: {
         script: 'app.js',
         options: {
-          nodeArgs: ['--debug', '--harmony']
+          nodeArgs: ['--debug', '--harmony'],
+          ignore: ['node_modules/**', 'client/**'],
+          callback: function (nodemon) {
+            fs.writeFileSync('.nodemon', 'started');
+            nodemon.on('log', function (event) {
+              console.log(event.colour);
+            });
+            nodemon.on('restart', function () {
+              fs.writeFileSync('.nodemon', 'restarted');
+            });
+          }
         }
       }
     },
