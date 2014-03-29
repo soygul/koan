@@ -20,7 +20,7 @@ angular.module('koan.controllers', [])
         }
       };
 
-      // declare websocket event listeners
+      // declare websocket event listeners for backend api
       api.connected.subscribe(function () {
         layout.onlineIndicatorStyle = {'background-color': 'green'};
       });
