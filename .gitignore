@@ -20,6 +20,7 @@ node_modules/
 
 dist
 .tmp
+.nodemon
 bower_components/
 .DS_Store
 .nodemonignore

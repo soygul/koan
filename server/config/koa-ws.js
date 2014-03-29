@@ -5,4 +5,3 @@
  */
 
 var ws = require('./ws');
-

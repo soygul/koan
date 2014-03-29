@@ -37,7 +37,9 @@ module.exports = function (grunt) {
               console.log(event.colour);
             });
             nodemon.on('restart', function () {
-              fs.writeFileSync('.nodemon', 'restarted');
+              setTimeout(function () {
+                fs.writeFileSync('.nodemon', 'restarted');
+              }, 250);
             });
           }
         }
