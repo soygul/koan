@@ -4,7 +4,7 @@
 
 angular.module('koan.controllers', [])
 
-    .controller('layout', function ($rootScope, $window) {
+    .controller('layout', function ($rootScope, $window, api) {
       /**
        * layout controller is always invoked once, regardless of the given route, to prepare the UI layout variables (like user profile image, display name, online status, etc.)
        */
@@ -19,6 +19,15 @@ angular.module('koan.controllers', [])
           $window.location.replace('/login.html');
         }
       };
+
+      // declare websocket event listeners
+      api.connected.subscribe(function () {
+        layout.onlineIndicatorStyle = {'background-color': 'green'};
+      });
+
+      api.disconnected.subscribe(function () {
+        layout.onlineIndicatorStyle = {'background-color': 'lightgrey'};
+      });
     })
 
     .controller('profile', function ($scope, $http, $window) {

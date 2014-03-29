@@ -14,8 +14,7 @@ angular.module('koan.services', [])
           api = {events: {}};
 
       // initiate the websocket connection to the host
-      var ws = api.ws = new WebSocket(wsHost + '?access_token=' + token),
-          wsEvents = api.events.ws = {};
+      var ws = api.ws = new WebSocket(wsHost + '?access_token=' + token);
 
       // utilize jQuery's callbacks as an event system
       function event() {
@@ -27,35 +26,20 @@ angular.module('koan.services', [])
         };
       }
 
-      // create event objects for controllers to subscribe
-      wsEvents.connected = event();
-      wsEvents.disconnected = event();
-      wsEvents.postCreated = event();
-      wsEvents.commentCreated = event();
-
-      // add event listeners to the websocket event and publish them to subscribers
+      // websocket connected disconnected events
+      api.connected = event();
       ws.addEventListener('open', function () {
-        wsEvents.connected.publish.apply(this, arguments);
+        api.connected.publish.apply(this, arguments);
         $rootScope.$apply();
       });
 
+      api.disconnected = event();
       ws.addEventListener('close', function () {
-        wsEvents.disconnected.publish.apply(this, arguments);
+        api.disconnected.publish.apply(this, arguments);
         $rootScope.$apply();
       });
 
-      ws.addEventListener('message', function (event /* websocket event object */) {
-        var data = JSON.parse(event.data /* rpc event object (data) */);
-        if (!data.method) {
-          throw 'Malformed event data received through WebSocket. Received event data object was: ' + data;
-        } else if (!wsEvents[data.method]) {
-          throw 'Undefined event type received through WebSocket. Received event data object was: ' + data;
-        }
-        wsEvents[data.method].publish(data.params);
-        $rootScope.$apply();
-      });
-
-      // api endpoints
+      // api http endpoints and websocket events
       api.posts = {
         list: function () {
           return $http({method: 'GET', url: apiBase + '/posts', headers: headers});
@@ -63,12 +47,25 @@ angular.module('koan.services', [])
         create: function (post) {
           return $http({method: 'POST', url: apiBase + '/posts', data: post, headers: headers});
         },
+        created: event(),
         comments: {
           create: function (postId, comment) {
             return $http({method: 'POST', url: apiBase + '/posts/' + postId + '/comments', data: comment, headers: headers});
-          }
+          },
+          created: event()
         }
       };
+
+      ws.addEventListener('message', function (event /* websocket event object */) {
+        var data = JSON.parse(event.data /* rpc event object (data) */);
+        if (!data.method) {
+          throw 'Malformed event data received through WebSocket. Received event data object was: ' + data;
+        } else if (!api[data.method]) {
+          throw 'Undefined event type received through WebSocket. Received event data object was: ' + data;
+        }
+        api[data.method].publish(data.params);
+        $rootScope.$apply();
+      });
 
       return api;
     });

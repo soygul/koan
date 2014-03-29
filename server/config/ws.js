@@ -22,9 +22,12 @@ exports.create = function (server) {
     var query = url.parse(info.req.url, true).query,
         accessToken = query.access_token;
 
-    return (info.req.user = jwt.verify(accessToken, config.app.secret)(function (err, jwtPayload) {
-      return jwtPayload; // this bit is a bit of hack to make a sync function out of thunkified async function!
-    }));
+    // this bit is a bit of hack to make a sync function out of thunkified async function! might better use 'jws' (npm) package here
+    jwt.verify(accessToken, config.app.secret)(function (err, jwtPayload) {
+      info.req.user = jwtPayload;
+    });
+
+    return info.req.user;
   }});
 
   // WebSocket event that is fired when a new client is validated and connected
@@ -111,9 +114,9 @@ function handleWsError(err) {
 }
 
 exports.postCreated = function (recipients, post) {
-  exports.send(recipients, {jsonrpc: '2.0', method: 'postCreated', params: post});
+  exports.send(recipients, {jsonrpc: '2.0', method: 'posts.created', params: post});
 };
 
 exports.commentCreated = function (recipients, comment) {
-  exports.send(recipients, {jsonrpc: '2.0', method: 'commentCreated', params: comment});
+  exports.send(recipients, {jsonrpc: '2.0', method: 'comments.created', params: comment});
 };
