@@ -7,6 +7,7 @@
 var route = require('koa-route'),
     parse = require('co-body'),
     mongo = require('../config/mongo'),
+    ws = require('../config/ws'),
     ObjectID = mongo.ObjectID;
 
 // register koa routes
@@ -40,8 +41,12 @@ function *createPost() {
   post.from = this.user;
   post.createdTime = new Date();
   var results = yield mongo.posts.insert(post);
+
   this.status = 201;
   this.body = results[0]._id.toString();
+
+  // now notify everyone about this new post
+  ws.postCreated(ws.clients, post);
 }
 
 /**
@@ -49,17 +54,20 @@ function *createPost() {
  * @param id Post ID.
  */
 function *createComment(postId) {
-  console.log(postId)
   postId = new ObjectID(postId);
   var comment = yield parse(this);
   var commentId = new ObjectID();
 
   // update post document with the new comment
+  comment = {_id: commentId, from: this.user, createdTime: new Date(), message: comment.message};
   var result = yield mongo.posts.update(
       {_id: postId},
-      {$push: {comments: {_id: commentId, from: this.user, createdTime: new Date(), message: comment.message}}}
+      {$push: {comments: comment}}
   );
 
   this.status = 201;
   this.body = commentId.toString();
+
+  // now notify everyone about this new comment
+  ws.commentCreated(ws.clients, comment);
 }

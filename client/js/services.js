@@ -6,7 +6,7 @@ angular.module('koan.services', [])
     .value('version', '1.0')
     .factory('api', function ($rootScope, $http, $window) {
       /**
-       * HTTP service providing access the KOAN backend API.
+       * HTTP and WebSocket service providing access the KOAN backend API.
        */
       var apiBase = 'api' /* base api uri */,
           token = ($window.sessionStorage.token || $window.localStorage.token),
