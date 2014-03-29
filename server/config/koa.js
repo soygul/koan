@@ -4,7 +4,6 @@ var fs = require('fs'),
     logger = require('koa-logger'),
     send = require('koa-send'),
     jwt = require('koa-jwt'),
-    livereload = require('./koa-livereload'),
     config = require('./config'),
     passport = require('./passport');
 
@@ -14,7 +13,7 @@ module.exports = function (app) {
     app.use(logger());
   }
   if (config.app.env === 'development') {
-    app.use(livereload());
+    app.use(require('./koa-livereload')());
   }
   app.use(passport.initialize());
   app.use(passport.session());
