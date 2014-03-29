@@ -4,13 +4,6 @@
  * WebSocket server for real-time client-server communication.
  */
 
-/*
- * todo: use json-rpc notification schema (http://www.jsonrpc.org/specification#notification) with websockets to notify connected clients of server-side updates:
- * server --> client : {"jsonrpc": "2.0", "method": "postCreated", "params": [{"id": "123", "from": "John Doe", "message": "blah blah..."]}
- *
- * also the ws connection should be used in bidirectional manner with a casual http fallback, with a framework like koa-ws
- */
-
 var WebSocketServer = require('ws').Server,
     url = require('url'),
     jwt = require('koa-jwt'),

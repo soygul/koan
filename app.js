@@ -21,6 +21,7 @@ co(function *() {
   koaConfig(app);
 
   if (!module.parent) {
+    // create http and websocket servers and start listening for requests
     exports.server = app.listen(config.app.port);
     ws.create(exports.server);
     console.log('KOAN listening on port ' + config.app.port);
