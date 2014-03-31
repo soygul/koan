@@ -115,6 +115,7 @@ function handleWsError(err) {
   }
 }
 
+// shorthand functions for
 exports.postCreated = function (post) {
   exports.send({jsonrpc: '2.0', method: 'posts.created', params: post});
 };
@@ -122,3 +123,26 @@ exports.postCreated = function (post) {
 exports.commentCreated = function (comment) {
   exports.send({jsonrpc: '2.0', method: 'posts.comments.created', params: comment});
 };
+
+// ######## Experimental bi-directional WebSocket support [KOA-WS BEGIN] ########
+
+exports.middleware = function () {
+
+  return function *wsMiddleware(next) {
+    // 1. check if this response is for a json-rpc request (with a proper id) through websocket, or a normal http request
+    // 2. check if we need to broadcast anything to anyone even if it's not a direct response for a ws request
+
+    // we need to be the last in the stack to handle the request so yield down
+    yield next;
+
+    // block koa from sending the response over http only if this was a request streaming from websockets
+    if (!this.websocket) {
+      return;
+    }
+
+    this.respond = false;
+    console.log(exports.wss._server._events.request);
+  };
+};
+
+// ######## Experimental bi-directional WebSocket support [KOA-WS END] ########
