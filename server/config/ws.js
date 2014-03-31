@@ -15,8 +15,8 @@ var WebSocketServer = require('ws').Server,
  * @param server Node.js HTTP server instance.
  * @returns {WebSocketServer}
  */
-exports.create = function (server) {
-  // create a new WebSocket server
+exports.listen = function (server) {
+  // create a new WebSocket server and start listening on the same port as the given http server but with ws:// protocol
   var wss = new WebSocketServer({server: server, verifyClient: function (info) {
     // validate the connecting client's access token
     // validator function attaches user details to the request object if token is valid
@@ -75,17 +75,19 @@ exports.create = function (server) {
 exports.clients = [];
 
 /**
- *
+ * A JSON-RPC 2.0 implementation over WebSockets. Sends a one way notifications to all designated recipients with given data and method.
  * @param recipients - Array of user IDs to send the data to. Only the online clients receive the data out of the entire given recipient list. If omitted, all users will receive the message.
- * @param data - JS object (which will be serialized to JSON before being sent to the clients).
+ * @param method - Remote method to execute in the connected client.
+ * @param params - Array or object containing method parameters as defined in JSON-RPC 2.0 specs.
  * @param callback - Optional callback to be called when
  */
-exports.send = function (recipients, data, callback) {
+exports.notify = function (recipients, method, params, callback) {
   if (!Array.isArray(recipients)) {
-    data = recipients;
+    params = method;
+    method = recipients;
     recipients = _.keys(exports.clients);
   }
-  data = JSON.stringify(data);
+  var data = JSON.stringify({jsonrpc: '2.0', method: method, params: params});
 
   if (!callback) {
     // send the data to only the online recipients
@@ -114,12 +116,3 @@ function handleWsError(err) {
     console.log('A WebSocket error occurred: %s', err);
   }
 }
-
-// shorthand functions for sending notifications back to the browser
-exports.postCreated = function (post) {
-  exports.send({jsonrpc: '2.0', method: 'posts.created', params: post});
-};
-
-exports.commentCreated = function (comment) {
-  exports.send({jsonrpc: '2.0', method: 'posts.comments.created', params: comment});
-};

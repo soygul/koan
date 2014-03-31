@@ -48,7 +48,7 @@ function *createPost() {
   // now notify everyone about this new post
   post.id = post._id;
   delete post._id;
-  ws.postCreated(post);
+  ws.notify('posts.created', post);
 }
 
 /**
@@ -73,5 +73,5 @@ function *createComment(postId) {
   // now notify everyone about this new comment
   comment.id = comment._id;
   delete comment._id;
-  ws.commentCreated(comment);
+  ws.notify('posts.comments.created', comment);
 }
