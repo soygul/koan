@@ -1,6 +1,7 @@
 
 /**
  * This is a temporary file till a bug (https://github.com/yosuke-furukawa/koa-livereload/issues/4) in the actual 'koa-livereload' package is fixed.
+ * Or we can actually switch to a general purpose script injector which might also be useful for other things..
  */
 
 var Transform = require('stream').Transform;

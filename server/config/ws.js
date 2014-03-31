@@ -115,7 +115,7 @@ function handleWsError(err) {
   }
 }
 
-// shorthand functions for
+// shorthand functions for sending notifications back to the browser
 exports.postCreated = function (post) {
   exports.send({jsonrpc: '2.0', method: 'posts.created', params: post});
 };
