@@ -18,7 +18,6 @@ co(function *() {
   yield popdb(true) /* make this false once you don't want your database overwritten each time */;
 
   // koa config
-  app.use(ws.middleware()); // experimental bi-directional websocket middleware. remove during production as it is only beta..
   koaConfig(app);
 
   if (!module.parent) {
