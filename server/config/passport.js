@@ -16,7 +16,7 @@ passport.routes = function (app) {
   }));
 };
 
-// todo: passport auth need more work..
+// todo: passport auth needs more work.. should be ready for next week.
 
 var user = {
   id: 123,
