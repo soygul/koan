@@ -9,6 +9,10 @@ KOAN Stack is a boilerplate that provides a nice starting point for full stack J
 * WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
 * Grunt tasks are used to facilitate development and testing tasks.
 
+
+## Live Example
+Browse the live KOAN example on [http://koanjs.com](http://koanjs.com) which is a Facebook like real-time sharing app.
+
 ## Getting Started
 Make sure that you have Node.js (v0.11 or above) and MongoDB (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
 
@@ -45,9 +49,6 @@ heroku open
 
 ## Receiving updates from upstream
 Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project with git.
-
-## Live Example
-Browse the live KOAN example on [http://koanjs.com](http://koanjs.com).
 
 ## Credits
 Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
