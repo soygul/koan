@@ -81,7 +81,7 @@ exports.clients = [];
  * @param params - Array or object containing method parameters as defined in JSON-RPC 2.0 specs.
  * @param callback - Optional callback to be called when
  */
-exports.notify = function (recipients, method, params, callback) {
+exports.notify = function (recipients, method, params) {
   if (!Array.isArray(recipients)) {
     params = method;
     method = recipients;
@@ -89,30 +89,21 @@ exports.notify = function (recipients, method, params, callback) {
   }
   var data = JSON.stringify({jsonrpc: '2.0', method: method, params: params});
 
-  if (!callback) {
-    // send the data to only the online recipients
-    var send = function (client) {
-      client.send(data, handleWsError);
-    };
-
-    for (var i = 0; i < recipients.length; i++) {
-      var recipient = recipients[i],
-          onlineClients = exports.clients[recipient];
-      if (onlineClients) {
-        onlineClients.forEach(send);
+  // send the data to only the online recipients
+  var send = function (client) {
+    client.send(data, function (err) {
+      // if error is null, the send has been completed
+      if (err) {
+        console.log('A WebSocket error occurred: %s', err);
       }
+    });
+  };
+
+  for (var i = 0; i < recipients.length; i++) {
+    var recipient = recipients[i],
+        onlineClients = exports.clients[recipient];
+    if (onlineClients) {
+      onlineClients.forEach(send);
     }
-  } else {
-    // this part requires recursive async callback series while passing on the err array to the callback function in the end..
   }
 };
-
-function handleWsError(err) {
-  /* ignore errors */
-  // The callback is also the only way of being notified that data has actually been sent.
-  // if error is null, the send has been completed,
-  // otherwise the error object will indicate what failed.
-  if (err) {
-    console.log('A WebSocket error occurred: %s', err);
-  }
-}
