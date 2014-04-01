@@ -72,6 +72,7 @@ function *createComment(postId) {
 
   // now notify everyone about this new comment
   comment.id = comment._id;
+  comment.postId = postId.toString();
   delete comment._id;
   ws.notify('posts.comments.created', comment);
 }

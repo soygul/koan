@@ -104,12 +104,17 @@ angular.module('koan.controllers', [])
         post.commentBox.disabled = true;
         api.posts.comments.create(post.id, {message: post.commentBox.message})
             .success(function (commentId) {
-              post.comments.push({
-                id: commentId,
-                from: user,
-                message: post.commentBox.message,
-                createdTime: new Date()
-              });
+              // only add the comment if we don't have it already in the post's comments list to avoid dupes
+              if (!_.some(post.comments, function (c) {
+                return c.id === commentId;
+              })) {
+                post.comments.push({
+                  id: commentId,
+                  from: user,
+                  message: post.commentBox.message,
+                  createdTime: new Date()
+                });
+              }
 
               // clear the comment field and enable it
               post.commentBox.message = '';
@@ -141,11 +146,11 @@ angular.module('koan.controllers', [])
           return post.id === comment.postId;
         });
 
-        // add the comment to the view only if we have the post in the view but not the comment itself (i.e. comment was not created via this browser)
-        if (post && !_.some(post.comments.data, function (c) {
+        // only add the comment if we don't have it already in the post's comments list to avoid dupes
+        if (post && !_.some(post.comments, function (c) {
           return c.id === comment.id;
         })) {
-          post.comments.data.push(comment);
+          post.comments.push(comment);
         }
       });
     });
