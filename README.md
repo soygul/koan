@@ -51,7 +51,7 @@ heroku open
 Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project with git.
 
 ## Who Uses It
-We're currently using KOAN at Cryptzone for the frontend development of our next-generation enterprise cloud platform. It is also used by NBusy, a small startup aiming to create an innovative social sharing platform.
+We're currently using KOAN at Cryptzone for the frontend development of our next-generation enterprise cloud platform. It is also used by NBusy, a small startup aiming to create an innovative social sharing platform. For this reason, KOAN will be developed and maintained for years to come.
 
 ## Credits
 Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
