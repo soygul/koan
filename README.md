@@ -5,7 +5,7 @@
 KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/). A summary of tech stack:
 * Client: AngularJS with pure html partials (no server side rendering so it's full static and CDN ready). Bower packages are located at `client\bower_packages`.
 * Server: Koa for RESTful API on top of Node.js v0.11+ with the use of `--harmony` and generators.
-* Passport.js is used for social auth. Instead of auth cookies, we use JWT along with browser's *local storage*.
+* Passport.js is used for social auth. Instead of auth cookies, we use JWT along with HTML5 *local storage*.
 * WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
 * Grunt tasks are used to facilitate development and testing tasks.
 
