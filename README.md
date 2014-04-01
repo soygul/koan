@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/soygul/koan.png?branch=master)](https://travis-ci.org/soygul/koan)
 
-KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) along with MongoDB and WebSockets. A summary of tech stack:
+KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) along with [MongoDB](https://www.mongodb.org/) and [WebSockets](https://developer.mozilla.org/en/docs/WebSockets). A summary of tech stack:
 * **Client**: AngularJS with pure html partials (no server side rendering so it's full static and CDN ready). Bower packages are located at `client\bower_packages`.
 * **Server**: Koa for RESTful API on top of Node.js v0.11+ with the use of `--harmony` and generators.
 * WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
