@@ -16,6 +16,8 @@ passport.routes = function (app) {
   }));
 };
 
+// todo: passport auth need more work..
+
 var user = {
   id: 123,
   email: 'john@doe.com',
