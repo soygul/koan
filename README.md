@@ -2,7 +2,12 @@
 
 [![Build Status](https://travis-ci.org/soygul/koan.png?branch=master)](https://travis-ci.org/soygul/koan)
 
-KOAN Stack is a boilerplate that provides a nice starting point for [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) based applications, for full stack JavaScript Web development. It is designed to give you quick and organized way to start developing Web apps with useful modules like [MongoDB](http://www.mongodb.org/), [Passport](http://passportjs.org/), and [Grunt](http://gruntjs.com/) tasks, pre-bundled and configured.
+KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/). A summary of tech stack:
+* Client: AngularJS with pure html partials (no server side rendering so it's full static and CDN ready). Bower packages are located at `client\bower_packages`.
+* Server: Koa for RESTful API on top of Node.js v0.11+ with the use of `--harmony` and generators.
+* Passport.js is used for social auth. Instead of auth cookies, we use JWT along with browser's *local storage*.
+* WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
+* Grunt tasks are used to facilitate development and testing tasks.
 
 ## Getting Started
 Make sure that you have Node.js (v0.11 or above) and MongoDB (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
