@@ -18,6 +18,7 @@ angular.module('koan.services', [])
 
       // initiate the websocket connection to the host
       var ws = api.ws = new WebSocket(wsHost + '?access_token=' + token);
+      $window.setInterval(function () { ws.send('ping'); }, 1000 * 25); // keep-alive signal every 25 secs (needed for heroku)
 
       // utilize jQuery's callbacks as an event system
       function event() {
