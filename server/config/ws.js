@@ -60,7 +60,7 @@ exports.listen = function (server) {
     });
 
     ws.on('message', function (data) {
-      console.log('A WebSocket message received: %s', JSON.parse(data));
+      console.log('An unexpected WebSocket message received from client with data: %s', JSON.parse(data));
     });
   });
 
