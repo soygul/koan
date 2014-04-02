@@ -59,8 +59,5 @@ Client side is entirely based on: [Angular Seed](https://github.com/angular/angu
 ## The Name
 The project name is an acronym for Koa, Angular, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
 
-## Screenshot of live example
-[![KOAN Live Example](https://raw.github.com/soygul/koan/master/client/img/scrshot.png)](https://raw.github.com/soygul/koan/master/client/img/scrshot.png)
-
 ## License
 MIT
