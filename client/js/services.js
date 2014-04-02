@@ -21,7 +21,15 @@ angular.module('koan.services', [])
       function event() {
         var callbacks = $.Callbacks();
         return {
-          subscribe: callbacks.add,
+          subscribe: function ($scope, fn) {
+            if (fn) {
+              // unsubscribe from event on controller destruction to prevent memory leaks
+              $scope.$on('$destroy', callbacks.remove(fn));
+            } else {
+              fn = $scope;
+            }
+            callbacks.add(fn);
+          },
           unsubscribe: callbacks.remove,
           publish: callbacks.fire
         };
