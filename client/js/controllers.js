@@ -4,7 +4,7 @@
 
 angular.module('koan.controllers', [])
 
-    .controller('layout', function ($rootScope, $window, api) {
+    .controller('layout', function ($rootScope, $window, $route, api) {
       /**
        * layout controller is always invoked once, regardless of the given route, to prepare the UI layout variables (like user profile image, display name, online status, etc.)
        */
@@ -17,6 +17,11 @@ angular.module('koan.controllers', [])
           delete $window.localStorage.token;
           delete $window.localStorage.user;
           $window.location.replace('/login.html');
+        },
+        flushDatabase: function () {
+          api.debug.flushDatabase().success(function () {
+            $route.reload();
+          });
         }
       };
 

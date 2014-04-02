@@ -23,7 +23,7 @@ angular.module('koan.services', [])
         return {
           subscribe: callbacks.add,
           unsubscribe: callbacks.remove,
-          publish: callbacks.fire /* todo: mod this to be publish($scope, fn) to support auto unsubscribe on ctrl destruction w/ $scope.$on('$destroy', fn); */
+          publish: callbacks.fire
         };
       }
 
@@ -57,11 +57,17 @@ angular.module('koan.services', [])
         }
       };
 
+      api.debug = {
+        flushDatabase: function () {
+          return $http({method: 'POST', url: apiBase + '/debug/flushDatabase', headers: headers});
+        }
+      };
+
+      // websocket data event (which transmits json-rpc payloads)
       function index(obj, i) { return obj[i]; } // convert dot notation string into an actual object index
       ws.addEventListener('message', function (event /* websocket event object */) {
         var data = JSON.parse(event.data /* rpc event object (data) */);
         if (!data.method) {
-          console.log(data)
           throw 'Malformed event data received through WebSocket. Received event data object was: ' + data;
         } else if (!data.method.split('.').reduce(index, api)) {
           throw 'Undefined event type received through WebSocket. Received event data object was: ' + data;
