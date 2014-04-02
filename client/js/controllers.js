@@ -135,7 +135,7 @@ angular.module('koan.controllers', [])
       };
 
       // subscribe to websocket events to receive new posts, comments, etc.
-      api.posts.created.subscribe(function (post) {
+      api.posts.created.subscribe($scope, function (post) {
         // only add the post if we don't have it already in the posts list to avoid dupes
         if (!_.some($scope.posts, function (p) {
           return p.id === post.id;
@@ -146,7 +146,7 @@ angular.module('koan.controllers', [])
         }
       });
 
-      api.posts.comments.created.subscribe(function (comment) {
+      api.posts.comments.created.subscribe($scope, function (comment) {
         var post = _.find($scope.posts, function (post) {
           return post.id === comment.postId;
         });

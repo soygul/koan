@@ -24,7 +24,7 @@ angular.module('koan.services', [])
           subscribe: function ($scope, fn) {
             if (fn) {
               // unsubscribe from event on controller destruction to prevent memory leaks
-              $scope.$on('$destroy', callbacks.remove(fn));
+              $scope.$on('$destroy', function () { callbacks.remove(fn); });
             } else {
               fn = $scope;
             }
