@@ -50,7 +50,7 @@ heroku open
 ## Receiving updates from upstream
 Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project with git.
 
-## Who Uses It
+## Who uses it
 We're currently using KOAN at Cryptzone for the frontend development of our next-generation enterprise cloud platform. It is also used by NBusy, a small startup aiming to create an innovative social sharing platform. For this reason, KOAN will be developed and maintained for years to come.
 
 ## Credits

@@ -38,10 +38,10 @@
     "grunt-cli": "latest"
   },
   "devDependencies": {
-    "karma" : "latest",
-    "karma-jasmine" : "latest",
+    "karma": "latest",
+    "karma-jasmine": "latest",
     "karma-phantomjs-launcher": "latest",
-    "protractor" : "latest",
+    "protractor": "latest",
     "mocha": "latest",
     "should": "latest",
     "sinon": "latest",
