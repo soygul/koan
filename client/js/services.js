@@ -13,7 +13,7 @@ angular.module('koan.services', [])
       var apiBase = 'api' /* base api uri */,
           token = ($window.sessionStorage.token || $window.localStorage.token),
           headers = {Authorization: 'Bearer ' + token},
-          wsHost = $window.document.location.origin.replace(/^http/, 'ws'),
+          wsHost = ($window.document.location.origin || ($window.location.protocol+'//'+$window.location.host)).replace(/^http/, 'ws'),
           api = {events: {}};
 
       // initiate the websocket connection to the host
