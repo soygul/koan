@@ -26,6 +26,7 @@ comongo.connect = function *() {
 
 /**
  * Retrieves the next sequence number for the given counter (indicated by @counterName).
+ * Useful for generating sequential integer IDs for certain collections (i.e. user collection).
  */
 comongo.getNextSequence = function *(counterName) {
   return yield comongo.counters.findAndModify(
