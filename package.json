@@ -41,7 +41,6 @@
     "karma": "latest",
     "karma-jasmine": "latest",
     "karma-phantomjs-launcher": "0.1.2",
-    "protractor": "latest",
     "mocha": "latest",
     "should": "latest",
     "sinon": "latest",

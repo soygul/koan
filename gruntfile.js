@@ -59,12 +59,13 @@ module.exports = function (grunt) {
     },
     karma: {
       unit: {
-        configFile: 'test/client/config/karma.conf.js'
+        configFile: 'test/client/karma.conf.js'
       }
     },
     protractor: {
-      options: {
-        configFile: "test/client/config/protractor-conf.js"
+      e2e: {
+        configFile: "test/client/protractor.conf.js",
+        keepAlive: false
       }
     }
   });
@@ -85,5 +86,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['concurrent']);
 
   //Test task.
-  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'protractor']);
+  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'protractor:e2e']);
 };
