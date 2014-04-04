@@ -18,7 +18,7 @@ angular.module('koan', [
             controller: 'home'
           })
           .when('/profile', {
-            title: 'Profile',
+            title: 'User Profile',
             templateUrl: 'partials/profile.html',
             controller: 'profile'
           })
