@@ -4,16 +4,12 @@
 
 /* Top Navigation */
 
-.navbar .navbar-header {
-  margin-right: 25px;
-}
-
 .navbar .brand-image {
   margin-top: -10px;
   margin-bottom: -10px;
 }
 
-.dropdown-toggle img {
+.navbar .dropdown-toggle img {
   width: 23px;
   height: 23px;
   margin-top: -3px;
