@@ -86,5 +86,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['concurrent']);
 
   //Test task.
-  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'protractor:e2e']);
+  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 };
