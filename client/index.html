@@ -6,9 +6,8 @@
   <script>
     var token = window.sessionStorage.token || window.localStorage.token,
         user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
-    if (!user || user.exp < Math.round(new Date().getTime() / 1000)) {
+    if (!user || user.exp < Math.round(new Date().getTime() / 1000))
       window.location.replace('/login.html');
-    }
   </script>
   <title ng-bind="layout.title">KOAN Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,20 +39,30 @@
           </a>
           <ul class="dropdown-menu">
             <li ng-repeat="notification in layout.user.notifications">
-              <div style="min-width: 300px; padding-left: 15px">
-                <span class="glyphicon glyphicon-user"></span>
-                <a ng-href="/notifications/{{notification.id}}">{{notification.title}}</a> {{notification.message}}
-              </div>
+              <a ng-href="/notifications/{{notification.id}}">{{notification.title}}</a> {{notification.message}}
             </li>
             <li ng-if="!layout.user.notifications" class="dropdown-header">No new notifications</li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-envelope"></span>
+            Messages
+            <span class="badge">{{layout.user.messages.length}}</span>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="message in layout.user.messages">
+              <a ng-href="/messages/{{message.id}}">{{message.title}}</a> {{message.message}}
+            </li>
+            <li ng-if="!layout.user.messages" class="dropdown-header">No unread messages</li>
+            <li class="divider"></li>
+            <li>
+              <a href="#"><span class="glyphicon glyphicon-envelope"></span> Message Archive</a>
+            </li>
+          </ul>
+        </li>
       </ul>
-      <form ng-submit="layout.search()" class="navbar-form navbar-left">
-        <div class="form-group">
-          <input name="q" type="text" ng-model="layout.searchQuery" class="form-control" placeholder="Search for posts...">
-        </div>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
