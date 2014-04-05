@@ -1,9 +1,10 @@
 'use strict';
 
-var app = require('../../app');
+var config = require('../../server/config/config'),
+    app = require('../../app');
 
 // initiate KOAN server before each test is run
-console.log('Mocha starting to run server tests');
+console.log('Mocha starting to run server tests on port ' + config.app.port);
 beforeEach(function(done){
   app.init(done);
 });
