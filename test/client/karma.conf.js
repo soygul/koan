@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Remote debugging tools controller for the API. Remove this controller in production if you don't want random people dropping your database!
- */
-
 module.exports = function (config) {
   config.set({
     basePath: '../../',

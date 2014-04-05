@@ -52,10 +52,7 @@ module.exports = function (grunt) {
       }
     },
     mochaTest: {
-      src: ['test/server/**/*.js'],
-      options: {
-        reporter: 'spec'
-      }
+      src: ['test/server/**/*.js']
     },
     karma: {
       unit: {
