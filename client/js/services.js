@@ -18,7 +18,7 @@ angular.module('koan.services', [])
 
       // initiate the websocket connection to the host
       var ws = api.ws = new WebSocket(wsHost + '?access_token=' + token);
-      $window.setInterval(function () { ws.send('ping'); }, 1000 * 25); // keep-alive signal every 25 secs (needed for heroku)
+      $window.setInterval(function () { ws.send('ping'); }, 1000 * 25); // keep-alive signal (needed for heroku)
 
       // utilize jQuery's callbacks as an event system
       function event() {
@@ -40,16 +40,16 @@ angular.module('koan.services', [])
 
       // websocket connected disconnected events
       api.connected = event();
-      ws.addEventListener('open', function () {
+      ws.onopen = function () {
         api.connected.publish.apply(this, arguments);
         $rootScope.$apply();
-      });
+      };
 
       api.disconnected = event();
-      ws.addEventListener('close', function () {
+      ws.onclose = function () {
         api.disconnected.publish.apply(this, arguments);
         $rootScope.$apply();
-      });
+      };
 
       // api http endpoints and websocket events
       api.posts = {
@@ -76,7 +76,7 @@ angular.module('koan.services', [])
 
       // websocket data event (which transmits json-rpc payloads)
       function index(obj, i) { return obj[i]; } // convert dot notation string into an actual object index
-      ws.addEventListener('message', function (event /* websocket event object */) {
+      ws.onmessage = function (event /* websocket event object */) {
         var data = JSON.parse(event.data /* rpc event object (data) */);
         if (!data.method) {
           throw 'Malformed event data received through WebSocket. Received event data object was: ' + data;
@@ -85,7 +85,7 @@ angular.module('koan.services', [])
         }
         data.method.split('.').reduce(index, api).publish(data.params);
         $rootScope.$apply();
-      });
+      };
 
       return api;
     });
