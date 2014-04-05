@@ -40,7 +40,7 @@
   "devDependencies": {
     "karma": "latest",
     "karma-jasmine": "latest",
-    "karma-phantomjs-launcher": "0.1.2",
+    "karma-phantomjs-launcher": "latest",
     "mocha": "latest",
     "should": "latest",
     "sinon": "latest",
