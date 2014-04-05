@@ -55,7 +55,7 @@ module.exports = function (grunt) {
       options: {
         reporter: 'spec'
       },
-      src: ['test/server/mocha/**/*.js']
+      src: ['test/server/**/*.js']
     },
     karma: {
       unit: {

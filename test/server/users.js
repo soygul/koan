@@ -1,3 +1,4 @@
 'user strict';
 
-// add some tests w/ mocha here..
+/* mocha specs for users controller go here */
+

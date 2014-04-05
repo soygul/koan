@@ -1,8 +1,7 @@
 {
   "name": "koan",
   "version": "1.0.0",
-  "description": "KOAN - A Modern Web Development Stack: Koa, AngularJS, and Node.js.",
-  "author": "Teoman Soygul",
+  "description": "KOAN Stack (Koa, Angular, Node, Mongo, WebSockets) for real-time full-stack JavaScript web development.",
   "repository": {
     "type": "git",
     "url": "git://github.com/soygul/koan.git"
@@ -10,9 +9,13 @@
   "engines": {
     "node": ">=0.11.11"
   },
+  "author": {
+    "name": "Teoman Soygul",
+    "url": "http://www.soygul.com/"
+  },
   "scripts": {
     "start": "grunt",
-    "test": "grunt test",
+    "test": "node --debug --harmony node_modules/grunt-cli/bin/grunt test",
     "postinstall": "bower install",
     "postupdate": "bower update"
   },
@@ -27,8 +30,6 @@
     "co-mongo": "latest",
     "lodash": "latest",
     "ws": "latest",
-    "request": "latest",
-    "express-validator": "latest",
     "koa-passport": "latest",
     "passport-facebook": "latest",
     "passport-twitter": "latest",
@@ -43,7 +44,6 @@
     "karma-phantomjs-launcher": "latest",
     "mocha": "latest",
     "should": "latest",
-    "sinon": "latest",
     "supertest": "latest",
     "grunt-env": "latest",
     "grunt-protractor-runner": "latest",
