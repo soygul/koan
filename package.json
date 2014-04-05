@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "grunt",
-    "test": "node --debug --harmony node_modules/grunt-cli/bin/grunt test",
+    "test": "grunt test",
     "postinstall": "bower install",
     "postupdate": "bower update"
   },
