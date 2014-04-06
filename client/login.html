@@ -134,6 +134,7 @@
             <input type="checkbox" id="rememberme" checked> Remember me
           </label>
         </div>
+        <p class="help-block" style="color: darkred; font-weight: bold;"></p>
         <button type="submit" class="btn btn-default">Login</button>
         <div style="font-weight: bold; font-size: 13px; font-style:italic; color: green; padding-top: 15px;">*Just click login to login with test account.</div>
       </form>
@@ -171,6 +172,9 @@
         storage.token = data.token;
         storage.user = JSON.stringify(data.user);
         window.location.replace('/');
+      },
+      error: function (res) {
+        $('form p.help-block').text(res.responseText);
       }
     });
   });
