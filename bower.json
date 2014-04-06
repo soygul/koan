@@ -2,15 +2,15 @@
   "name": "koan",
   "version": "1.0.0",
   "dependencies": {
-    "jquery": "latest",
-    "bootstrap": "latest",
-    "angular": "latest",
-    "angular-route": "latest",
-    "angular-elastic": "latest",
-    "lodash": "latest"
+    "jquery": "~2.1",
+    "bootstrap": "~3.1",
+    "angular": "~1.2",
+    "angular-route": "~1.2",
+    "angular-elastic": "~2.3",
+    "lodash": "~2.4"
   },
   "devDependencies": {
-    "angular-mocks": "latest",
-    "angular-scenario": "latest"
+    "angular-mocks": "~1.2",
+    "angular-scenario": "~1.2"
   }
 }
