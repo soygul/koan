@@ -36,8 +36,8 @@ function *listPosts() {
  * Saves a new post in the database after proper validations.
  */
 function *createPost() {
+  // it is best to validate post body with something like node-validator here, before saving it in the database..
   var post = yield parse(this);
-  // todo: validate post body here w/ koa-validator
   post.from = this.user;
   post.createdTime = new Date();
   var results = yield mongo.posts.insert(post);

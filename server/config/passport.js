@@ -16,7 +16,7 @@ passport.routes = function (app) {
   }));
 };
 
-// todo: passport auth needs more work.. should be ready for next week.
+// todo: passport auth needs more work here.. currently it is just a stub.
 
 var user = {
   id: 123,

@@ -17,6 +17,7 @@ exports.init = function (app) {
  * Creates a new user.
  */
 function *createUser() {
+  // we need to validate user body with node-validator here not to save junk data in the database..
   var user = yield parse(this);
 
   // get the latest userId+1 as the new user id
