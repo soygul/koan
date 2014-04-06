@@ -38,6 +38,7 @@ StreamInjecter.prototype._flush = function(cb) {
 
 module.exports = livereload;
 
+
 function livereload(opts) {
   opts = opts || {};
   var port = opts.port || 35729;
@@ -46,9 +47,14 @@ function livereload(opts) {
   return function *livereload(next) {
     yield* next;
 
-    if (this.path.substr(0, 10).toLowerCase() === '/partials/') return;
-
     if (this.response.type && this.response.type.indexOf('html') < 0) return;
+
+    if (opts.excludes) {
+      var path = this.path;
+      if (opts.excludes.some(function (exlude) {
+        return path.substr(0, exlude.length) === exlude;
+      })) return;
+    }
 
     // Buffer
     if (Buffer.isBuffer(this.body)) {
