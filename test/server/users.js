@@ -2,15 +2,16 @@
 
 /* mocha specs for users controller go here */
 
-var baseUrl = 'http://localhost:3001/api',
-    supertest = require('supertest'),
-    request = supertest(baseUrl);
+var mochaConf = require('./mocha.conf'),
+    request = mochaConf.request,
+    token = mochaConf.token;
 
 describe('Users controller', function () {
-  it('/users/:id/picture route should return user image', function (done) {
+  it('POST /users should create a new user', function (done) {
     request
-        .get('/users/1/picture')
-        .expect('Content-Type', 'image/jpeg')
-        .expect(200, done);
+        .post('/users')
+        .set('Authorization', token)
+        .send({name: 'Test User', email: 'test@koanjs.com'})
+        .expect(201, done);
   });
 });

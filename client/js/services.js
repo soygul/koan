@@ -10,7 +10,7 @@ angular.module('koan.services', [])
       /**
        * HTTP and WebSocket service providing access the KOAN backend API.
        */
-      var apiBase = 'api' /* base api uri */,
+      var apiBase = 'api' /* base /api uri */,
           token = ($window.sessionStorage.token || $window.localStorage.token),
           headers = {Authorization: 'Bearer ' + token},
           wsHost = ($window.document.location.origin || ($window.location.protocol+'//'+$window.location.host)).replace(/^http/, 'ws'),

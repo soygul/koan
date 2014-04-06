@@ -29,10 +29,11 @@ comongo.connect = function *() {
  * Useful for generating sequential integer IDs for certain collections (i.e. user collection).
  */
 comongo.getNextSequence = function *(counterName) {
-  return yield comongo.counters.findAndModify(
+  var results = yield comongo.counters.findAndModify(
       {_id: counterName},
       [],
       {$inc: {seq: 1}},
       {new: true}
   );
+  return results[0].seq;
 };
