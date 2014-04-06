@@ -71,7 +71,7 @@ exports.listen = function (server) {
 
 /**
  * Dictionary (array of arrays) to math connected user IDs with connected clients (i.e. one user might be connected from multiple devices).
- * Array index is the client ID and the stored is also an array with socket client objects. i.e. clients[33452234]: [ws1, ws2, ws3...]
+ * Array index is the client ID and the stored value is also an array with socket client objects. i.e. clients[33452234]: [ws1, ws2, ws3...]
  */
 exports.clients = [];
 
@@ -80,7 +80,6 @@ exports.clients = [];
  * @param recipients - Array of user IDs to send the data to. Only the online clients receive the data out of the entire given recipient list. If omitted, all users will receive the message.
  * @param method - Remote method to execute in the connected client.
  * @param params - Array or object containing method parameters as defined in JSON-RPC 2.0 specs.
- * @param callback - Optional callback to be called when
  */
 exports.notify = function (recipients, method, params) {
   if (!Array.isArray(recipients)) {

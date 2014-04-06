@@ -1,5 +1,7 @@
 'use strict';
 
+// todo: passport auth needs more work here.. currently it is just a stub.
+
 var passport = module.exports = require('koa-passport'),
     route = require('koa-route');
 
@@ -15,8 +17,6 @@ passport.routes = function (app) {
     });
   }));
 };
-
-// todo: passport auth needs more work here.. currently it is just a stub.
 
 var user = {
   id: 123,
