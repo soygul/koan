@@ -31,11 +31,11 @@ function *login() {
     user.id = user._id;
     delete user._id;
     delete user.password;
+    user.picture = 'api/users/' + user.id + '/picture';
   }
 
   // sign and send the token along with the user info
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 60 * 24 * 60});
-  user.picture = 'api/users/' + user.id + '/picture'; // add user pic to user info
   this.body = {token: token, user: user};
 }
 
