@@ -52,7 +52,9 @@ module.exports = function (grunt) {
       }
     },
     mochaTest: {
-      src: ['test/server/**/*.js']
+      server: {
+        src: ['test/server/**/*.js']
+      }
     },
     karma: {
       unit: {
@@ -83,5 +85,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['concurrent']);
 
   //Test task.
-  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+  grunt.registerTask('test', ['env:test', 'mochaTest:server', 'karma:unit']);
 };
