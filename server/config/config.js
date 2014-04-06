@@ -6,7 +6,7 @@ var path = require('path'),
 /**
  * Environment variables and application configuration.
  */
-var base = {
+var baseConfig = {
   app: {
     root: path.normalize(__dirname + '/../..'),
     port: process.env.PORT || 3000,
@@ -18,7 +18,7 @@ var base = {
   }
 };
 
-var platforms = {
+var platformConfig = {
   development: {
     mongo: {
       url: 'mongodb://localhost:27017/koan-dev'
@@ -56,5 +56,5 @@ var platforms = {
 };
 
 // override the base configuration with the platform specific values
-_.merge(base, platforms[base.app.env]);
-module.exports = base;
+_.merge(baseConfig, platformConfig[baseConfig.app.env]);
+module.exports = baseConfig;
