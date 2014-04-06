@@ -13,6 +13,8 @@ var config = require('./server/config/config'),
     koa = require('koa'),
     app = koa();
 
+module.exports = app;
+
 app.init = co(function *() {
   // initialize mongodb and populate the database with seed data if empty
   yield mongo.connect();
@@ -33,5 +35,3 @@ app.init = co(function *() {
 if (!module.parent) {
   app.init();
 }
-
-module.exports = app;
