@@ -52,9 +52,9 @@ Whenever we update KOAN's repo, you can just fetch the changes and merge them in
 
 ## Testing
 You can run all the tests with `npm test`. Tests are run with:
-* Client (unit): Jasmine + Karma (angular default)
-* Client(e2e): Jasmine + Protractor (angular default)
-* Server: Mocha/SuperTest/Should + Karma (koa default)
+* Client (unit): Jasmine + Karma (Angular default)
+* Client(e2e): Jasmine + Protractor (Angular default)
+* Server: Mocha/SuperTest/Should + Karma (Koa default)
 
 ## Credits
 Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
