@@ -1,6 +1,9 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
+/**
+ * Profile module for user profile and related content.
+ */
+
 angular
     .module('koan.profile', [])
     .config(function ($routeProvider) {

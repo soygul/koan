@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- *  Jasmine specs for koan module unit tests.
+ *  Jasmine specs for unit testing the app module.
  */
 
 describe('controllers', function () {

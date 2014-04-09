@@ -1,6 +1,9 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
+/**
+ * Home module for displaying home page content.
+ */
+
 angular
     .module('koan.home', [])
     .config(function ($routeProvider) {

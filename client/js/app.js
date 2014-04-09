@@ -1,6 +1,9 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
+/**
+ * KOAN app level module. This is the root module for all others.
+ */
+
 angular
     .module('koan', [
       'ngRoute',

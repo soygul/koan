@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * HTTP and WebSocket service providing access the KOAN backend API.
+ * Service providing access the KOAN backend API via HTTP and WebSockets.
  */
 
 angular.module('koan').factory('api', function ($rootScope, $http, $window) {
