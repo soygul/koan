@@ -12,8 +12,7 @@ module.exports = function (config) {
       'client/js/**/!(*-*).js',
       'client/js/**/*.js',
       'client/modules/**/!(*-*).js',
-      'client/modules/**/*.js',
-      'test/client/unit/**/*.js'
+      'client/modules/**/*.js'
     ],
 
     autoWatch: false,
