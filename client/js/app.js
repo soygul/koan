@@ -1,27 +1,16 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('koan', [
+angular
+    .module('koan', [
       'ngRoute',
       'monospaced.elastic',
-      'koan.filters',
-      'koan.services',
-      'koan.directives',
-      'koan.controllers'
+      'koan.home',
+      'koan.profile'
     ])
     .config(function ($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true);
       $routeProvider
-          .when('/', {
-            title: 'KOAN Home',
-            templateUrl: 'partials/home.html',
-            controller: 'home'
-          })
-          .when('/profile', {
-            title: 'User Profile',
-            templateUrl: 'partials/profile.html',
-            controller: 'profile'
-          })
           .otherwise({
             redirectTo: '/'
           });

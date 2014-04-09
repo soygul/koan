@@ -17,7 +17,7 @@ Browse the live KOAN example on [http://koanjs.com](http://koanjs.com) which is 
 Make sure that you have Node.js (v0.11 or above) and MongoDB (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
 
 ```bash
-git clone https://github.com/soygul/koan.git
+git clone --depth 1 https://github.com/soygul/koan.git
 cd koan
 npm install
 npm start
