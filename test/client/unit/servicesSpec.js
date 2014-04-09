@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 describe('service', function() {
-  beforeEach(module('koan.services'));
+  beforeEach(module('koan'));
 
 
   describe('version', function() {

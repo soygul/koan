@@ -3,7 +3,7 @@
 /* jasmine specs for filters go here */
 
 describe('filter', function() {
-  beforeEach(module('koan.filters'));
+  beforeEach(module('koan'));
 
 
   describe('interpolate', function() {

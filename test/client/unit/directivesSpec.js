@@ -3,7 +3,7 @@
 /* jasmine specs for directives go here */
 
 describe('directives', function() {
-  beforeEach(module('koan.directives'));
+  beforeEach(module('koan'));
 
   describe('app-version', function() {
     it('should print current version', function() {

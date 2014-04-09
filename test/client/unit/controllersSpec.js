@@ -4,19 +4,21 @@
 
 describe('controllers', function () {
 
-  beforeEach(module('koan.controllers'));
+  beforeEach(module('koan'));
+  beforeEach(module('koan.home'));
+  beforeEach(module('koan.profile'));
 
   /**
    * Layout controller tests.
    */
-  describe('layout controller', function () {
+  describe('AppCtrl controller', function () {
     var ctrl, scope, $window, api;
 
     beforeEach(inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
       $window = {sessionStorage: {user: '{"id":5}'}};
       api = {connected: {subscribe: function (fn) {this.cb = fn;}}, disconnected: {subscribe: function (fn) {this.cb = fn;}}};
-      ctrl = $controller('layout', {$scope: scope, $window: $window, $route: {}, api: api});
+      ctrl = $controller('AppCtrl', {$scope: scope, $window: $window, $route: {}, api: api});
     }));
 
     it('should be defined', function () {
@@ -40,13 +42,13 @@ describe('controllers', function () {
   /**
    * Profile controller tests.
    */
-  describe('profile controller', function () {
+  describe('ProfileCtrl controller', function () {
     var ctrl, scope, $window, api;
 
     beforeEach(inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
       scope.layout = {user: {id: 7}};
-      ctrl = $controller('profile', {$scope: scope});
+      ctrl = $controller('ProfileCtrl', {$scope: scope});
     }));
 
     it('should have "user" object defined in scope', function () {
