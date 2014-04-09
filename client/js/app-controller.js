@@ -4,7 +4,7 @@
  * layout controller is always invoked once, regardless of the given route, to prepare the UI layout variables (like user profile info, active route name, etc.)
  */
 
-angular.module('koan').controller('layout', function ($rootScope, $window, $route, api) {
+angular.module('koan').controller('AppCtrl', function ($rootScope, $window, $route, api) {
 
   var layout = $rootScope.layout = $rootScope.layout || {
     active: {},

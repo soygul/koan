@@ -20,11 +20,11 @@ angular
         // set title and description
         $rootScope.layout.title = current.$$route.title;
 
-        // set active menu item
-        var currentCtrl = current.controller;
+        // set active menu
+        var currentCtrl = current.controller.substring(0, current.controller.indexOf('Ctrl')).toLowerCase();
         $rootScope.layout.active[currentCtrl] = 'active';
         if (previous) {
-          var previousCtrl = previous.controller;
+          var previousCtrl = previous.controller.substring(0, previous.controller.indexOf('Ctrl')).toLowerCase();
           delete $rootScope.layout.active[previousCtrl];
         }
       });

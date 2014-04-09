@@ -8,6 +8,6 @@ angular
           .when('/profile', {
             title: 'User Profile',
             templateUrl: 'modules/profile/profile.html',
-            controller: 'profile'
+            controller: 'ProfileCtrl'
           });
     });

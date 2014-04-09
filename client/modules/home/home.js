@@ -8,6 +8,6 @@ angular
           .when('/', {
             title: 'KOAN Home',
             templateUrl: 'modules/home/home.html',
-            controller: 'home'
+            controller: 'HomeCtrl'
           });
     });
