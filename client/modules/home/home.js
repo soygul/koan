@@ -7,7 +7,7 @@ angular
       $routeProvider
           .when('/', {
             title: 'KOAN Home',
-            templateUrl: 'partials/home.html',
+            templateUrl: 'modules/home/home.html',
             controller: 'home'
           });
     });

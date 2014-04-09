@@ -7,7 +7,7 @@ angular
       $routeProvider
           .when('/profile', {
             title: 'User Profile',
-            templateUrl: 'partials/profile.html',
+            templateUrl: 'modules/profile/profile.html',
             controller: 'profile'
           });
     });
