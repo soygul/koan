@@ -86,9 +86,3 @@ body {
 
 /* Chat box */
 
-.chatbox-header {
-  height: 25px;
-  color: white;
-  background-color: #4a66a7;
-  border-radius: 5px 5px 0 0;
-}
