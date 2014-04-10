@@ -67,7 +67,11 @@ body {
   display: block;
 }
 
-/* Widgets */
+/*----------------------------------------------------------------------
+ * KOAN sample app widgets
+ *---------------------------------------------------------------------*/
+
+/* User online indicator */
 
 .self-online-indicator {
   background-color: lightgrey;
@@ -79,3 +83,6 @@ body {
   margin-left: 1px;
   margin-bottom: 1px;
 }
+
+/* Chat box */
+
