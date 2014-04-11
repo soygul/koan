@@ -90,3 +90,20 @@ body {
   margin-top: 10px;
   margin-left: 7%
 }
+
+.chat-box .panel-heading {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.chat-box .panel-footer {
+  padding: 3px;
+}
+
+.chat-box .panel-footer textarea {
+  resize: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 22px;
+  max-height: 100px;
+}

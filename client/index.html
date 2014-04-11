@@ -98,12 +98,14 @@
     <div class="col-md-3">
       <div class="panel panel-primary hidden-xs hidden-sm chat-box">
         <div class="panel-heading">
-          <h3 class="panel-title"><span class="glyphicon glyphicon-envelope"></span> Chat box</h3>
+          <span class="glyphicon glyphicon-envelope"></span> Chat box
         </div>
         <div class="panel-body">
           Chatter chatter..
         </div>
-        <div class="panel-footer">Type your message here..</div>
+        <div class="panel-footer">
+          <textarea msd-elastic ng-model="chatBox.message" class="form-control"></textarea>
+        </div>
       </div>
     </div>
   </div>
