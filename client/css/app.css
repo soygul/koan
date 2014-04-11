@@ -86,3 +86,6 @@ body {
 
 /* Chat box */
 
+.chat-box {
+  margin-top: 10px;
+}
