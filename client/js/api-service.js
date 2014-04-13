@@ -69,8 +69,8 @@ angular.module('koan').factory('api', function ($rootScope, $http, $window) {
   };
 
   api.messages = {
-    create: function (threadId, message) {
-      return $http({method: 'POST', url: apiBase + '/threads/' + threadId + '/messages', data: message, headers: headers});
+    create: function (message) {
+      return $http({method: 'POST', url: apiBase + '/messages', data: message, headers: headers});
     },
     created: event()
   };

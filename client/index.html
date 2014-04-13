@@ -101,10 +101,10 @@
           <span class="glyphicon glyphicon-envelope"></span> Chat box
         </div>
         <div class="panel-body">
-          Chatter chatter..
+          <div ng-repeat="message in messages" ng-bind="message.message"></div>
         </div>
         <div class="panel-footer">
-          <textarea msd-elastic ng-model="chatBox.message" class="form-control"></textarea>
+          <textarea msd-elastic ng-model="chatBox.message" ng-keypress="createMessage($event)" ng-disabled="chatBox.disabled" class="form-control"></textarea>
         </div>
       </div>
     </div>
