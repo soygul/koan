@@ -5,4 +5,8 @@
  */
 
 angular.module('koan').controller('ChatBoxCtrl', function ($scope, api) {
+  // subscribe to websocket events to receive new messages
+  api.messages.created.subscribe($scope, function (message) {
+    $scope.messages.push(message);
+  });
 });
