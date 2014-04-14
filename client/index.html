@@ -2,7 +2,7 @@
 <html lang="en" ng-app="koan">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="KOAN Stack (Koa, Angular, Node.js) - A real-time full-stack JavaScript Web development framework."/>
+  <meta name="description" content="KOAN Stack (Koa, Angular, Node.js) - A real-time full-stack JavaScript Web development framework.">
   <script>
     var token = window.sessionStorage.token || window.localStorage.token,
         user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
@@ -11,8 +11,8 @@
   </script>
   <title ng-bind="common.title">KOAN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <img class="brand-image" style="padding-right: 25px;" src="img/koan.png" alt="KOAN"/>
+        <img class="brand-image" style="padding-right: 25px;" src="images/koan.png" alt="KOAN">
       </a>
     </div>
     <div class="navbar-collapse collapse">
@@ -73,7 +73,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img ng-src="{{common.user.picture}}" alt=""/>
+            <img ng-src="{{common.user.picture}}" alt="">
             <i class="online-indicator" ng-style="common.onlineIndicatorStyle"></i>
             <span ng-bind="common.user.name"></span>
             <b class="caret"></b>
@@ -117,7 +117,7 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-elastic/elastic.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="js/app.js"></script>
+<script src="app.js"></script>
 <script src="modules/common/common.js"></script>
 <script src="modules/common/api-service.js"></script>
 <script src="modules/home/home.js"></script>
