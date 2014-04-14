@@ -6,7 +6,7 @@
 
 describe('controllers', function () {
 
-  beforeEach(module('koan'));
+  beforeEach(module('koan.profile'));
 
   describe('ProfileCtrl controller', function () {
 

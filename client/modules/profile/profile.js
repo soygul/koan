@@ -5,7 +5,10 @@
  */
 
 angular
-    .module('koan.profile', [])
+    .module('koan.profile', [
+      'ngRoute',
+      'koan.common'
+    ])
     .config(function ($routeProvider) {
       $routeProvider
           .when('/profile', {

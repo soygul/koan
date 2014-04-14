@@ -5,7 +5,11 @@
  */
 
 angular
-    .module('koan.home', [])
+    .module('koan.home', [
+      'ngRoute',
+      'monospaced.elastic',
+      'koan.common'
+    ])
     .config(function ($routeProvider) {
       $routeProvider
           .when('/', {

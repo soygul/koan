@@ -4,7 +4,7 @@
  *  Jasmine specs for unit testing the app module.
  */
 
-describe('controllers', function () {
+/*describe('controllers', function () {
 
   beforeEach(module('koan'));
 
@@ -37,4 +37,4 @@ describe('controllers', function () {
 
   });
 
-});
+});*/

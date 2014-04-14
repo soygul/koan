@@ -4,7 +4,7 @@
  * Service providing access the KOAN backend API via HTTP and WebSockets.
  */
 
-angular.module('koan').factory('api', function ($rootScope, $http, $window) {
+angular.module('koan.common').factory('api', function ($rootScope, $http, $window) {
 
   var apiBase = 'api' /* base /api uri */,
       token = ($window.sessionStorage.token || $window.localStorage.token),

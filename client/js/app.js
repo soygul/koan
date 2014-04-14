@@ -7,7 +7,7 @@
 angular
     .module('koan', [
       'ngRoute',
-      'monospaced.elastic',
+      'koan.common',
       'koan.home',
       'koan.profile'
     ])
