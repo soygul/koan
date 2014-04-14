@@ -1,14 +1,14 @@
 'use strict';
 
 /**
- *  Jasmine specs for unit testing the app module.
+ *  Jasmine specs for unit testing the common module.
  */
 
 /*describe('controllers', function () {
 
   beforeEach(module('koan'));
 
-  describe('AppCtrl controller', function () {
+  describe('CommonCtrl controller', function () {
 
     var ctrl, scope, $window, api;
 
@@ -16,7 +16,7 @@
       scope = $rootScope.$new();
       $window = {sessionStorage: {user: '{"id":5}'}};
       api = {connected: {subscribe: function (fn) {this.cb = fn;}}, disconnected: {subscribe: function (fn) {this.cb = fn;}}};
-      ctrl = $controller('AppCtrl', {$scope: scope, $window: $window, $route: {}, api: api});
+      ctrl = $controller('CommonCtrl', {$scope: scope, $window: $window, $route: {}, api: api});
     }));
 
     it('should be defined', function () {
