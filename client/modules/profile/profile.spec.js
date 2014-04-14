@@ -14,7 +14,7 @@ describe('controllers', function () {
 
     beforeEach(inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
-      scope.layout = {user: {id: 7}};
+      scope.common = {user: {id: 7}};
       ctrl = $controller('ProfileCtrl', {$scope: scope});
     }));
 
