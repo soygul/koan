@@ -60,13 +60,13 @@ angular.module('koan.home').controller('HomeCtrl', function ($scope, api) {
           return;
         }
 
-        // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when post is being created
+        // don't let the user type in blank lines or submit empty/whitespace only comment, or type in something when comment is being created
         if (!post.commentBox.message.length || post.commentBox.disabled) {
           $event.preventDefault();
           return;
         }
 
-        // disable the post box and push the new post to server
+        // disable the comment box and push the new comment to server
         post.commentBox.disabled = true;
         api.posts.comments.create(post.id, {message: post.commentBox.message})
             .success(function (commentId) {
@@ -87,7 +87,7 @@ angular.module('koan.home').controller('HomeCtrl', function ($scope, api) {
               post.commentBox.disabled = false;
             })
             .error(function () {
-              // don't clear the post box but enable it so the user can re-try
+              // don't clear the comment box but enable it so the user can re-try
               post.commentBox.disabled = false;
             });
 

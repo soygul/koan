@@ -67,7 +67,11 @@ body {
   display: block;
 }
 
-/* Widgets */
+/*----------------------------------------------------------------------
+ * KOAN sample app widgets
+ *---------------------------------------------------------------------*/
+
+/* User online indicator */
 
 .self-online-indicator {
   background-color: lightgrey;
@@ -78,4 +82,28 @@ body {
   margin-right: -1px;
   margin-left: 1px;
   margin-bottom: 1px;
+}
+
+/* Chat box */
+
+.chat-box {
+  margin-top: 10px;
+  margin-left: 7%
+}
+
+.chat-box .panel-heading {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.chat-box .panel-footer {
+  padding: 3px;
+}
+
+.chat-box .panel-footer textarea {
+  resize: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 22px;
+  max-height: 100px;
 }

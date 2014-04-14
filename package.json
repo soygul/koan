@@ -25,6 +25,7 @@
     "koa-logger": "~1.2",
     "koa-send": "~1.2",
     "koa-jwt": "~0.0.3",
+    "koa-livereload": "~0.1",
     "koa-passport": "~0.2",
     "passport-facebook": "~1.0",
     "passport-twitter": "~1.0",
