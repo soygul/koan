@@ -1,8 +1,7 @@
 'use strict';
 
 /**
- * AppCtrl controller is always invoked once, regardless of the given route,
- * to prepare the UI layout variables (like user profile info, active route name, etc.).
+ * AppCtrl controller is invoked once during app initialization to prepare the UI layout variables (like user profile info, active route name, etc.).
  */
 
 angular.module('koan').controller('AppCtrl', function ($rootScope, $window, $route, api) {

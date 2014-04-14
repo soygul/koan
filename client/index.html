@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
+
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -73,7 +74,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img ng-src="{{layout.user.picture}}" alt=""/>
-            <i class="self-online-indicator" ng-style="layout.onlineIndicatorStyle"></i>
+            <i class="online-indicator" ng-style="layout.onlineIndicatorStyle"></i>
             <span ng-bind="layout.user.name"></span>
             <b class="caret"></b>
           </a>
@@ -94,20 +95,10 @@
         <li ng-class="layout.active.profile"><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
       </ul>
     </div>
+
     <div class="col-md-7" ng-view></div>
-    <div class="col-md-3">
-      <div class="panel panel-primary hidden-xs hidden-sm chat-box" ng-controller="ChatBoxCtrl">
-        <div class="panel-heading">
-          <span class="glyphicon glyphicon-envelope"></span> Chat box
-        </div>
-        <div class="panel-body">
-          <div ng-repeat="message in messages" ng-bind="message.message"></div>
-        </div>
-        <div class="panel-footer">
-          <textarea msd-elastic ng-model="chatBox.message" ng-keypress="createMessage($event)" ng-disabled="chatBox.disabled" class="form-control"></textarea>
-        </div>
-      </div>
-    </div>
+
+    <div class="col-md-3"></div>
   </div>
   <hr>
   <footer>
@@ -128,7 +119,6 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="js/app.js"></script>
 <script src="js/app-controller.js"></script>
-<script src="js/chatbox-controller.js"></script>
 <script src="js/api-service.js"></script>
 <script src="modules/home/home.js"></script>
 <script src="modules/home/home-controller.js"></script>

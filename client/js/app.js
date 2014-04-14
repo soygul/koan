@@ -20,10 +20,10 @@ angular
     })
     .run(function ($location, $rootScope) {
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        // set title and description
+        // set page title
         $rootScope.layout.title = current.$$route.title;
 
-        // set active menu
+        // set active menu class for the left navigation (.sidenav)
         var currentCtrl = current.controller.substring(0, current.controller.indexOf('Ctrl')).toLowerCase();
         $rootScope.layout.active[currentCtrl] = 'active';
         if (previous) {
