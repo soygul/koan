@@ -1,4 +1,4 @@
-[![KOAN](https://raw.github.com/soygul/koan/master/client/img/koan_large.png)](http://koanjs.com/)
+[![KOAN](https://raw.github.com/soygul/koan/master/client/images/koan_large.png)](http://koanjs.com/)
 
 [![Build Status](https://travis-ci.org/soygul/koan.svg?branch=master)](https://travis-ci.org/soygul/koan)
 
