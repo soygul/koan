@@ -9,8 +9,7 @@ module.exports = function (config) {
       'client/bower_components/angular-route/angular-route.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       'client/bower_components/angular-elastic/elastic.js',
-      'client/js/**/!(*-*).js',
-      'client/js/**/*.js',
+      'client/app.js',
       'client/modules/**/!(*-*).js',
       'client/modules/**/*.js'
     ],
