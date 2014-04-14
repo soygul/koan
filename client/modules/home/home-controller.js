@@ -6,7 +6,7 @@
 
 angular.module('koan.home').controller('HomeCtrl', function ($scope, api) {
 
-      var user = $scope.layout.user;
+      var user = $scope.common.user;
       $scope.postBox = {message: null, disabled: false};
 
       // retrieve posts from server
