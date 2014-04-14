@@ -73,7 +73,7 @@ body {
 
 /* User online indicator */
 
-.self-online-indicator {
+.online-indicator {
   background-color: lightgrey;
   height: 7px;
   width: 7px;
