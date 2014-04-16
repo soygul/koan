@@ -68,13 +68,6 @@ angular.module('koan.common').factory('api', function ($rootScope, $http, $windo
     }
   };
 
-  api.messages = {
-    create: function (message) {
-      return $http({method: 'POST', url: apiBase + '/messages', data: message, headers: headers});
-    },
-    created: event()
-  };
-
   api.debug = {
     flushDatabase: function () {
       return $http({method: 'POST', url: apiBase + '/debug/flushDatabase', headers: headers});
