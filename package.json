@@ -25,7 +25,6 @@
     "koa-logger": "~1",
     "koa-send": "~1",
     "koa-jwt": "~0",
-    "koa-livereload": "~0",
     "koa-passport": "~0",
     "passport-facebook": "~1",
     "passport-twitter": "~1",
@@ -50,6 +49,7 @@
     "karma-jasmine": "~0",
     "karma-phantomjs-launcher": "~0",
     "supertest": "~0",
-    "should": "~3"
+    "should": "~3",
+    "koa-livereload": "~0"
   }
 }
