@@ -11,7 +11,7 @@ var baseConfig = {
     root: path.normalize(__dirname + '/../..'),
     port: process.env.PORT || 3000,
     env: process.env.NODE_ENV || 'development',
-    secret: 'secret key'
+    secret: 'secret key' /* used in signing the jwt tokens */
   },
   mongo: {
     url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
@@ -35,6 +35,9 @@ var platformConfig = {
   },
 
   production: {
+    app: {
+      cacheTime: 7 * 24 * 60 * 60 * 1000 /* default caching time (7 days) for static files, calculated in milliseconds */
+    },
     passport: {
       facebook: {
         clientID: 'APP_ID',

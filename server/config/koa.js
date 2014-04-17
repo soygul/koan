@@ -24,18 +24,20 @@ module.exports = function (app) {
   // register publicly accessible api endpoint. this is useful for special cases like login, user profile images, etc.
   require('../controllers/public').init(app);
 
-  // serve the angular static files from the /client directory, use caching (7 days) only in production
-  // if the file is not found and requested path is not /api, serve index.html page and let angular handle routing
-  var sendOpts = config.app.env === 'production' ? {root: 'client', maxage: 1000 * 60 * 60 * 24 * 7} : {root: 'client'};
+  // serve the angular static files from the /client directory
+  var sendOpts = {root: 'client', maxage: config.app.cacheTime};
   app.use(function *(next) {
+    // skip any route that starts with /api as it doesn't have any static files
     if (this.path.substr(0, 5).toLowerCase() === '/api/') {
       yield next;
-    } else {
-      if (yield send(this, this.path, sendOpts)) {
-        return;
-      }
-      yield send(this, '/index.html', sendOpts);
+      return;
     }
+    // if the requested path matched a file and it is served successfully, exit the middleware
+    if (yield send(this, this.path, sendOpts)) {
+      return;
+    }
+    // if given path didn't match any file, just let angular handle the routing
+    yield send(this, '/index.html', sendOpts);
   });
 
   // middleware below this line is only reached if jwt token is valid

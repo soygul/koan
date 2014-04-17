@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Publicly accessible api endpoints. This is useful for special cases like login, user profile images, etc.
+ * Publicly accessible API endpoints. This is useful for special cases like login, user profile images, etc.
  */
 
 var route = require('koa-route'),
@@ -35,7 +35,7 @@ function *login() {
   }
 
   // sign and send the token along with the user info
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 60 * 24 * 60});
+  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.body = {token: token, user: user};
 }
 
@@ -49,8 +49,8 @@ function *getPicture(id) {
   if (user) {
     var img = new Buffer(user.picture, 'base64');
     this.set('Content-Type', 'image/jpeg');
-    if (config.app.env === 'production') {
-      this.set('Cache-Control', 'max-age=' + (60 * 60 * 24 * 7 /* 7 days */));
+    if (config.app.cacheTime) {
+      this.set('Cache-Control', 'max-age=' + (config.app.cacheTime / 1000));
     }
     this.body = img;
   }
