@@ -17,6 +17,7 @@ exports.init = function (app) {
  * Creates a new user.
  */
 function *createUser() {
+  // todo: check user role === 'admin' when role system is ready
   // we need to validate user body with node-validator here not to save junk data in the database..
   var user = yield parse(this);
 
