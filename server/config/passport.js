@@ -5,6 +5,10 @@
 var passport = module.exports = require('koa-passport'),
     route = require('koa-route');
 
+if (!config.passport) {
+  return;
+}
+
 passport.routes = function (app) {
   app.use(route.get('/login/facebook', function *() {
     passport.authenticate('facebook');
