@@ -11,6 +11,10 @@ var passport = module.exports = require('koa-passport'),
     GoogleStrategy = require('passport-google-oauth').Strategy,
     config = require('./config');
 
+if (!config.passport) {
+  return;
+}
+
 passport.routes = function (app) {
   app.use(route.get('/login/facebook', function *() {
     passport.authenticate('facebook');
