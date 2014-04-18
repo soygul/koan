@@ -1,9 +1,15 @@
 'use strict';
 
-// todo: passport auth needs more work here.. currently it is just a stub.
+/**
+ * Passport.js implementation suitable for use with Koa.
+ */
 
 var passport = module.exports = require('koa-passport'),
-    route = require('koa-route');
+    route = require('koa-route'),
+    FacebookStrategy = require('passport-facebook').Strategy,
+    TwitterStrategy = require('passport-twitter').Strategy,
+    GoogleStrategy = require('passport-google-oauth').Strategy,
+    config = require('./config');
 
 passport.routes = function (app) {
   app.use(route.get('/login/facebook', function *() {
@@ -32,19 +38,19 @@ passport.deserializeUser(function (id, done) {
   done(null, user);
 });
 
-var FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
-      clientID: 'your-client-id',
-      clientSecret: 'your-secret',
-      callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/facebook/callback'
+      clientID: config.passport.facebook.clientID,
+      clientSecret: FACEBOOK_APP_SECRET,
+      callbackURL: "http://localhost:3000/auth/facebook/callback",
+      enableProof: false
     },
-    function (token, tokenSecret, profile, done) {
-      // retrieve user ...
-      done(null, user);
+    function (accessToken, refreshToken, profile, done) {
+      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+        return done(err, user);
+      });
     }
 ));
 
-var TwitterStrategy = require('passport-twitter').Strategy;
 passport.use(new TwitterStrategy({
       consumerKey: 'your-consumer-key',
       consumerSecret: 'your-secret',
@@ -56,7 +62,6 @@ passport.use(new TwitterStrategy({
     }
 ));
 
-/*var GoogleStrategy = require('passport-google-oauth').Strategy;
 passport.use(new GoogleStrategy({
       returnURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/google/callback',
       realm: 'http://localhost:' + (process.env.PORT || 3000)
@@ -65,4 +70,4 @@ passport.use(new GoogleStrategy({
       // retrieve user ...
       done(null, user);
     }
-));*/
+));
