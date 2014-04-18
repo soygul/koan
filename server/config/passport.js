@@ -9,7 +9,8 @@ var passport = module.exports = require('koa-passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
     GoogleStrategy = require('passport-google-oauth').Strategy,
-    config = require('./config');
+    config = require('./config'),
+    mongo = require('./mongo');
 
 passport.routes = function (app) {
   if (!config.passport) {
@@ -18,7 +19,7 @@ passport.routes = function (app) {
 
   if (config.passport.facebook) {
     app.use(route.get('/login/facebook', function *() {
-      passport.authenticate('facebook');
+      passport.authenticate('facebook', {scope: ['email']});
     }));
 
     app.use(route.get('/login/facebook/callback', function *() {
@@ -34,25 +35,22 @@ if (!config.passport) {
   return;
 }
 
-var user = {
-  id: 123,
-  email: 'john@doe.com',
-  name: 'John Doe'
-};
-
+// todo: these two are redundant
 passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function (id, done) {
+passport.deserializeUser(function (user, done) {
   done(null, user);
 });
+// todo: these two are redundant
 
 if (config.passport.facebook) {
   passport.use(new FacebookStrategy({
         clientID: config.passport.facebook.clientID,
         clientSecret: config.passport.facebook.clientSecret,
         callbackURL: config.passport.facebook.callbackURL,
+        profileFields: ['id', 'displayName', 'name', 'emails', 'photos'],
         enableProof: false
       },
       function (accessToken, refreshToken, profile, done) {
