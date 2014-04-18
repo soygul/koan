@@ -11,22 +11,28 @@ var passport = module.exports = require('koa-passport'),
     GoogleStrategy = require('passport-google-oauth').Strategy,
     config = require('./config');
 
+passport.routes = function (app) {
+  if (!config.passport) {
+    return;
+  }
+
+  if (config.passport.facebook) {
+    app.use(route.get('/login/facebook', function *() {
+      passport.authenticate('facebook');
+    }));
+
+    app.use(route.get('/login/facebook/callback', function *() {
+      passport.authenticate('facebook', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+      });
+    }));
+  }
+};
+
 if (!config.passport) {
   return;
 }
-
-passport.routes = function (app) {
-  app.use(route.get('/login/facebook', function *() {
-    passport.authenticate('facebook');
-  }));
-
-  app.use(route.get('/login/facebook/callback', function *() {
-    passport.authenticate('facebook', {
-      successRedirect: '/',
-      failureRedirect: '/login'
-    });
-  }));
-};
 
 var user = {
   id: 123,
@@ -42,36 +48,42 @@ passport.deserializeUser(function (id, done) {
   done(null, user);
 });
 
-passport.use(new FacebookStrategy({
-      clientID: config.passport.facebook.clientID,
-      clientSecret: config.passport.facebook.clientSecret,
-      callbackURL: config.passport.facebook.callbackURL,
-      enableProof: false
-    },
-    function (accessToken, refreshToken, profile, done) {
-      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-        return done(err, user);
-      });
-    }
-));
+if (config.passport.facebook) {
+  passport.use(new FacebookStrategy({
+        clientID: config.passport.facebook.clientID,
+        clientSecret: config.passport.facebook.clientSecret,
+        callbackURL: config.passport.facebook.callbackURL,
+        enableProof: false
+      },
+      function (accessToken, refreshToken, profile, done) {
+        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      }
+  ));
+}
 
-passport.use(new TwitterStrategy({
-      consumerKey: 'your-consumer-key',
-      consumerSecret: 'your-secret',
-      callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/twitter/callback'
-    },
-    function (token, tokenSecret, profile, done) {
-      // retrieve user ...
-      done(null, user);
-    }
-));
+if (config.passport.twitter) {
+  passport.use(new TwitterStrategy({
+        consumerKey: 'your-consumer-key',
+        consumerSecret: 'your-secret',
+        callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/twitter/callback'
+      },
+      function (token, tokenSecret, profile, done) {
+        // retrieve user ...
+        done(null, user);
+      }
+  ));
+}
 
-passport.use(new GoogleStrategy({
-      returnURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/google/callback',
-      realm: 'http://localhost:' + (process.env.PORT || 3000)
-    },
-    function (identifier, profile, done) {
-      // retrieve user ...
-      done(null, user);
-    }
-));
+if (config.passport.google) {
+  passport.use(new GoogleStrategy({
+        returnURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/google/callback',
+        realm: 'http://localhost:' + (process.env.PORT || 3000)
+      },
+      function (identifier, profile, done) {
+        // retrieve user ...
+        done(null, user);
+      }
+  ));
+}
