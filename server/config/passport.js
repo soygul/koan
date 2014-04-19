@@ -1,68 +1,97 @@
 'use strict';
 
-// todo: passport auth needs more work here.. currently it is just a stub.
+/**
+ * Passport.js implementation suitable for use with Koa.
+ */
 
 var passport = module.exports = require('koa-passport'),
-    route = require('koa-route');
+    route = require('koa-route'),
+    co = require('co'),
+    FacebookStrategy = require('passport-facebook').Strategy,
+    TwitterStrategy = require('passport-twitter').Strategy,
+    GoogleStrategy = require('passport-google-oauth').Strategy,
+    config = require('./config'),
+    mongo = require('./mongo');
 
 passport.routes = function (app) {
-  app.use(route.get('/login/facebook', function *() {
-    passport.authenticate('facebook');
-  }));
+  if (!config.passport) {
+    return;
+  }
 
-  app.use(route.get('/login/facebook/callback', function *() {
-    passport.authenticate('facebook', {
-      successRedirect: '/',
-      failureRedirect: '/login'
-    });
-  }));
+  if (config.passport.facebook) {
+    app.use(route.get('/login/facebook', function *() {
+      yield passport.authenticate('facebook', {scope: ['email']});
+    }));
+
+    app.use(route.get('/login/facebook/callback', function *() {
+      yield passport.authenticate('facebook', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+      });
+    }));
+  }
 };
 
-var user = {
-  id: 123,
-  email: 'john@doe.com',
-  name: 'John Doe'
-};
+if (!config.passport) {
+  return;
+}
 
+// todo: these two are redundant
 passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function (id, done) {
+passport.deserializeUser(function (user, done) {
   done(null, user);
 });
+// todo: these two are redundant
 
-var FacebookStrategy = require('passport-facebook').Strategy;
-passport.use(new FacebookStrategy({
-      clientID: 'your-client-id',
-      clientSecret: 'your-secret',
-      callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/facebook/callback'
-    },
-    function (token, tokenSecret, profile, done) {
-      // retrieve user ...
-      done(null, user);
-    }
-));
+if (config.passport.facebook) {
+  passport.use(new FacebookStrategy({
+        clientID: config.passport.facebook.clientID,
+        clientSecret: config.passport.facebook.clientSecret,
+        callbackURL: config.passport.facebook.callbackURL,
+        profileFields: ['id', 'displayName', 'name', 'emails', 'photos'],
+        enableProof: false
+      },
+      function (accessToken, refreshToken, profile, done) {
+        co(function *() {
+          var user = yield mongo.users.findOne({email: profile.emails[0].value});
+          if (!user) {
+            user = {
+              _id: (yield mongo.getNextSequence('userId')),
+              email: profile.emails[0].value,
+              name: profile.displayName,
+              image: null
+            };
+          }
+          return user;
+        })(done);
+      }
+  ));
+}
 
-var TwitterStrategy = require('passport-twitter').Strategy;
-passport.use(new TwitterStrategy({
-      consumerKey: 'your-consumer-key',
-      consumerSecret: 'your-secret',
-      callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/twitter/callback'
-    },
-    function (token, tokenSecret, profile, done) {
-      // retrieve user ...
-      done(null, user);
-    }
-));
+/*if (config.passport.twitter) {
+  passport.use(new TwitterStrategy({
+        consumerKey: 'your-consumer-key',
+        consumerSecret: 'your-secret',
+        callbackURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/twitter/callback'
+      },
+      function (token, tokenSecret, profile, done) {
+        // retrieve user ...
+        done(null, user);
+      }
+  ));
+}
 
-/*var GoogleStrategy = require('passport-google-oauth').Strategy;
-passport.use(new GoogleStrategy({
-      returnURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/google/callback',
-      realm: 'http://localhost:' + (process.env.PORT || 3000)
-    },
-    function (identifier, profile, done) {
-      // retrieve user ...
-      done(null, user);
-    }
-));*/
+if (config.passport.google) {
+  passport.use(new GoogleStrategy({
+        returnURL: 'http://localhost:' + (process.env.PORT || 3000) + '/auth/google/callback',
+        realm: 'http://localhost:' + (process.env.PORT || 3000)
+      },
+      function (identifier, profile, done) {
+        // retrieve user ...
+        done(null, user);
+      }
+  ));
+}*/
