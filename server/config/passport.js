@@ -6,6 +6,7 @@
 
 var passport = module.exports = require('koa-passport'),
     route = require('koa-route'),
+    co = require('co'),
     FacebookStrategy = require('passport-facebook').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
     GoogleStrategy = require('passport-google-oauth').Strategy,
@@ -19,11 +20,11 @@ passport.routes = function (app) {
 
   if (config.passport.facebook) {
     app.use(route.get('/login/facebook', function *() {
-      passport.authenticate('facebook', {scope: ['email']});
+      yield passport.authenticate('facebook', {scope: ['email']});
     }));
 
     app.use(route.get('/login/facebook/callback', function *() {
-      passport.authenticate('facebook', {
+      yield passport.authenticate('facebook', {
         successRedirect: '/',
         failureRedirect: '/login'
       });
@@ -54,14 +55,23 @@ if (config.passport.facebook) {
         enableProof: false
       },
       function (accessToken, refreshToken, profile, done) {
-        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-          return done(err, user);
-        });
+        co(function *() {
+          var user = yield mongo.users.findOne({email: profile.emails[0].value});
+          if (!user) {
+            user = {
+              _id: (yield mongo.getNextSequence('userId')),
+              email: profile.emails[0].value,
+              name: profile.displayName,
+              image: null
+            };
+          }
+          return user;
+        })(done);
       }
   ));
 }
 
-if (config.passport.twitter) {
+/*if (config.passport.twitter) {
   passport.use(new TwitterStrategy({
         consumerKey: 'your-consumer-key',
         consumerSecret: 'your-secret',
@@ -84,4 +94,4 @@ if (config.passport.google) {
         done(null, user);
       }
   ));
-}
+}*/

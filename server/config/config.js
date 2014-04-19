@@ -22,6 +22,23 @@ var platformConfig = {
   development: {
     mongo: {
       url: 'mongodb://localhost:27017/koan-dev'
+    },
+    passport: {
+      facebook: {
+        clientID: '231235687068678',
+        clientSecret: '4a90381c6bfa738bb18fb7d6046c14b8',
+        callbackURL: 'http://localhost:3000/login/facebook/callback'
+      },
+      twitter: {
+        clientID: 'CONSUMER_KEY',
+        clientSecret: 'CONSUMER_SECRET',
+        callbackURL: 'http://localhost:3000/login/twitter/callback'
+      },
+      google: {
+        clientID: 'APP_ID',
+        clientSecret: 'APP_SECRET',
+        callbackURL: 'http://localhost:3000/login/google/callback'
+      }
     }
   },
 
@@ -42,17 +59,17 @@ var platformConfig = {
       facebook: {
         clientID: '231235687068678',
         clientSecret: '4a90381c6bfa738bb18fb7d6046c14b8',
-        callbackURL: 'http://localhost:3000/login/facebook/callback'
+        callbackURL: 'http://koanjs.com/login/facebook/callback'
       },
       twitter: {
         clientID: 'CONSUMER_KEY',
         clientSecret: 'CONSUMER_SECRET',
-        callbackURL: 'http://localhost:3000/login/twitter/callback'
+        callbackURL: 'http://koanjs.com/login/twitter/callback'
       },
       google: {
         clientID: 'APP_ID',
         clientSecret: 'APP_SECRET',
-        callbackURL: 'http://localhost:3000/login/google/callback'
+        callbackURL: 'http://koanjs.com/login/google/callback'
       }
     }
   }
