@@ -5,8 +5,7 @@ var fs = require('fs'),
     send = require('koa-send'),
     jwt = require('koa-jwt'),
     livereload = require('koa-livereload'),
-    config = require('./config'),
-    passport = require('./passport');
+    config = require('./config');
 
 module.exports = function (app) {
   // middleware configuration
@@ -16,11 +15,6 @@ module.exports = function (app) {
   if (config.app.env === 'development') {
     app.use(livereload({excludes: ['/modules']}));
   }
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  // mount passport oauth routes
-  passport.routes(app);
 
   // register publicly accessible api endpoint. this is useful for special cases like login, user profile images, etc.
   require('../controllers/public').init(app);
