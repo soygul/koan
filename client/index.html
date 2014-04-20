@@ -4,10 +4,18 @@
   <meta charset="utf-8">
   <meta name="description" content="KOAN Stack (Koa, Angular, Node.js) - A real-time full-stack JavaScript Web development framework.">
   <script>
-    var token = window.sessionStorage.token || window.localStorage.token,
-        user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
-    if (!user || user.exp < Math.round(new Date().getTime() / 1000))
-      window.location.replace('/login.html');
+    // if user logs in with oauth, user token will be in query string so look for it. otherwise, check browser storage for token
+    var tokenParamMatch = RegExp('[?&]user=([^&]*)').exec(window.location.search),
+        tokenParam = tokenParamMatch && decodeURIComponent(tokenParamMatch[1].replace(/\+/g, ' '));
+    if (tokenParam) {
+      var data = JSON.parse(tokenParam);
+      window.sessionStorage.token = data.token;
+      window.sessionStorage.user = JSON.stringify(data.user);
+    } else {
+      var token = window.sessionStorage.token || window.localStorage.token,
+          user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
+      if (!user || user.exp < Math.round(new Date().getTime() / 1000)) window.location.replace('/login.html');
+    }
   </script>
   <title ng-bind="common.title">KOAN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,7 +100,8 @@
     <div class="col-md-2">
       <ul class="nav nav-pills nav-stacked sidenav">
         <li ng-class="common.active.home"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li ng-class="common.active.profile"><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+        <li ng-class="common.active.profile"><a href="/profile"><span class="glyphicon glyphicon-user"></span>
+          Profile</a></li>
       </ul>
     </div>
 
@@ -106,7 +115,8 @@
       KOAN &copy; Teoman Soygul (MIT License) &middot;
       <a type="button" href="https://github.com/soygul/koan" class="btn btn-success"><strong>View on GitHub</strong></a>
       <a type="button" href="https://github.com/soygul/koan/archive/master.zip" class="btn btn-primary"><strong>Download</strong></a>
-      <button type="button" ng-click="common.flushDatabase()" class="btn btn-xs btn-warning pull-right"><strong>Flush Database</strong></button>
+      <button type="button" ng-click="common.flushDatabase()" class="btn btn-xs btn-warning pull-right"><strong>Flush
+        Database</strong></button>
     </p>
   </footer>
 </div>

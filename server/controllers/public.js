@@ -107,7 +107,7 @@ function *facebookCallback() {
 
   // redirect the user to password selection box (for the first timers) or the index page along with user profile object as query string
   user.id = user._id;
-  delete user.id;
+  delete user._id;
   user.picture = 'api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
