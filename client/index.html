@@ -9,8 +9,8 @@
         tokenParam = tokenParamMatch && decodeURIComponent(tokenParamMatch[1].replace(/\+/g, ' '));
     if (tokenParam) {
       var data = JSON.parse(tokenParam);
-      window.sessionStorage.token = data.token;
-      window.sessionStorage.user = JSON.stringify(data.user);
+      window.localStorage.token = data.token;
+      window.localStorage.user = JSON.stringify(data.user);
     } else {
       var token = window.sessionStorage.token || window.localStorage.token,
           user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
