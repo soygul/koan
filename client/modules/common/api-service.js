@@ -69,8 +69,8 @@ angular.module('koan.common').factory('api', function ($rootScope, $http, $windo
   };
 
   api.debug = {
-    flushDatabase: function () {
-      return $http({method: 'POST', url: apiBase + '/debug/flushDatabase', headers: headers});
+    clearDatabase: function () {
+      return $http({method: 'POST', url: apiBase + '/debug/clearDatabase', headers: headers});
     }
   };
 

@@ -16,8 +16,9 @@ module.exports = function (app) {
     app.use(livereload({excludes: ['/modules']}));
   }
 
-  // register publicly accessible api endpoint. this is useful for special cases like login, user profile images, etc.
+  // register special controllers which should come before any jwt token check and be publicly accessible
   require('../controllers/public').init(app);
+  require('../controllers/login').init(app);
 
   // serve the angular static files from the /client directory
   var sendOpts = {root: 'client', maxage: config.app.cacheTime};

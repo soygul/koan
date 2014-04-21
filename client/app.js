@@ -32,9 +32,10 @@ angular
           delete $window.localStorage.user;
           $window.location.replace('/login.html');
         },
-        flushDatabase: function () {
-          api.debug.flushDatabase().success(function () {
-            $route.reload();
+        clearDatabase: function () {
+          var self = this;
+          api.debug.clearDatabase().success(function () {
+            self.logout();
           });
         }
       };

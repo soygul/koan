@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Common components used by all other app modules.
+ * Module definition for common components used by all other app modules.
  */
 
 angular.module('koan.common', []);
