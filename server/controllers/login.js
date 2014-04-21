@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Password based login and OAth login functions.
+ * Password based login and OAuth login functions.
  */
 
 var querystring = require('querystring'),
@@ -93,4 +93,8 @@ function *facebookCallback() {
   user.picture = 'api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
+}
+
+function handleOAuthCallback() {
+
 }
