@@ -116,7 +116,7 @@
 
       <form action="/login" method="post" style="width: 50%">
         <p class="facebook-button">
-          <a href="#" title="Login with Facebook">
+          <a href="/login/facebook" title="Login with Facebook">
             <img src="images/login_facebook.png" alt="Login with Facebook">
           </a>
         </p>
@@ -136,7 +136,6 @@
         </div>
         <p class="help-block" style="color: darkred; font-weight: bold;"></p>
         <button type="submit" class="btn btn-default">Login</button>
-        <div style="font-weight: bold; font-size: 13px; font-style:italic; color: green; padding-top: 15px;">*Just click login to login with test account.</div>
       </form>
       <br>
 
@@ -159,6 +158,7 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script>
+  // send form data with AJAX and store the incoming access token before redirecting user to index page
   $('form').submit(function (event) {
     event.preventDefault();
     $.ajax({

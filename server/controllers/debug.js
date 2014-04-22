@@ -10,10 +10,10 @@ var route = require('koa-route'),
 
 // register koa routes
 exports.init = function (app) {
-  app.use(route.post('/api/debug/flushDatabase', flushDatabase));
+  app.use(route.post('/api/debug/clearDatabase', clearDatabase));
 };
 
-function *flushDatabase() {
+function *clearDatabase() {
   // todo: check user role === 'admin' when role system is ready
   yield mongoSeed(true);
   this.status = 200;

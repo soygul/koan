@@ -22,6 +22,18 @@ var platformConfig = {
   development: {
     mongo: {
       url: 'mongodb://localhost:27017/koan-dev'
+    },
+    oauth: {
+      facebook: {
+        clientId: '231235687068678',
+        clientSecret: '4a90381c6bfa738bb18fb7d6046c14b8',
+        callbackUrl: 'http://localhost:3000/login/facebook/callback'
+      },
+      google: {
+        clientId: '147832090796-ckhu1ehvsc8vv9nso7iefvu5fi7jrsou.apps.googleusercontent.com',
+        clientSecret: 'MGOwKgcLPEfCsLjcJJSPeFYu',
+        callbackUrl: 'http://localhost:3000/login/google/callback'
+      }
     }
   },
 
@@ -38,21 +50,16 @@ var platformConfig = {
     app: {
       cacheTime: 7 * 24 * 60 * 60 * 1000 /* default caching time (7 days) for static files, calculated in milliseconds */
     },
-    passport: {
+    oauth: {
       facebook: {
-        clientID: '231235687068678',
+        clientId: '231235687068678',
         clientSecret: '4a90381c6bfa738bb18fb7d6046c14b8',
-        callbackURL: 'http://localhost:3000/login/facebook/callback'
-      },
-      twitter: {
-        clientID: 'CONSUMER_KEY',
-        clientSecret: 'CONSUMER_SECRET',
-        callbackURL: 'http://localhost:3000/login/twitter/callback'
+        callbackUrl: 'http://koanjs.com/login/facebook/callback'
       },
       google: {
-        clientID: 'APP_ID',
-        clientSecret: 'APP_SECRET',
-        callbackURL: 'http://localhost:3000/login/google/callback'
+        clientId: '147832090796-ckhu1ehvsc8vv9nso7iefvu5fi7jrsou.apps.googleusercontent.com',
+        clientSecret: 'MGOwKgcLPEfCsLjcJJSPeFYu',
+        callbackUrl: 'http://koanjs.com/login/google/callback'
       }
     }
   }

@@ -1,47 +1,22 @@
 'use strict';
 
 /**
- * Publicly accessible API endpoints. This is useful for special cases like login, user profile images, etc.
+ * Publicly accessible API endpoints. This is useful for special cases like user profile images, etc.
  */
 
 var route = require('koa-route'),
-    jwt = require('koa-jwt'),
     parse = require('co-body'),
-    mongo = require('../config/mongo'),
-    config = require('../config/config');
+    config = require('../config/config'),
+    mongo = require('../config/mongo');
 
 // register koa routes
 exports.init = function (app) {
-  app.use(route.post('/login', login));
   app.use(route.get('/api/users/:id/picture', getPicture));
 };
 
 /**
- * Retrieves user credentials from an HTML form post (x-www-form-urlencoded) and returns a JSON Web Token along with user profile info in JSON format.
- */
-function *login() {
-  var credentials = yield parse(this);
-  var user = yield mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
-
-  if (!user) {
-    this.throw(401, 'Incorrect e-mail address.');
-  } else if (user.password !== credentials.password) {
-    this.throw(401, 'Incorrect password.');
-  } else {
-    user.id = user._id;
-    delete user._id;
-    delete user.password;
-    user.picture = 'api/users/' + user.id + '/picture';
-  }
-
-  // sign and send the token along with the user info
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
-  this.body = {token: token, user: user};
-}
-
-/**
  * Serves user profile picture in 50x50 jpeg format.
- * @param id User ID.
+ * @param id - User ID.
  */
 function *getPicture(id) {
   id = parseInt(id);
