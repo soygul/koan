@@ -119,4 +119,5 @@ angular.module('koan.home').controller('HomeCtrl', function ($scope, api) {
       post.comments.push(comment);
     }
   });
+
 });
