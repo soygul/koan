@@ -17,6 +17,8 @@ exports.init = function (app) {
   app.use(route.post('/login', login));
   app.use(route.get('/login/facebook', facebookLogin));
   app.use(route.get('/login/facebook/callback', facebookCallback));
+  app.use(route.get('/login/google', googleLogin));
+  app.use(route.get('/login/google/callback', googleCallback));
 };
 
 /**
@@ -46,17 +48,16 @@ function *login() {
  * Facebook OAuth 2.0 login endpoint.
  */
 function *facebookLogin() {
-  // todo: implement a stateless nonce algorithm form &state=nonce query param
   this.redirect(
           'https://www.facebook.com/dialog/oauth?client_id=' + config.oauth.facebook.clientId +
-          '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email&state=nonce');
+          '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
 }
 
 /**
  * Facebook OAuth 2.0 callback endpoint.
  */
 function *facebookCallback() {
-  if (this.query.error || this.query.state !== 'nonce') {
+  if (this.query.error) {
     this.redirect('/login');
     return;
   }
@@ -93,6 +94,19 @@ function *facebookCallback() {
   user.picture = 'api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
+}
+
+/**
+ * Google OAuth 2.0 login endpoint.
+ */
+function *googleLogin() {
+  this.redirect(
+          'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.facebook.clientId +
+          '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
+}
+
+function *googleCallback() {
+
 }
 
 function handleOAuthCallback() {
