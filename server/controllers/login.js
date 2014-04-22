@@ -106,7 +106,7 @@ function *googleLogin() {
 }
 
 function *googleCallback() {
-
+  console.log(this.query);
 }
 
 function handleOAuthCallback() {

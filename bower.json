@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "dependencies": {
     "jquery": "~2",
+    "font-awesome": "~4",
     "bootstrap": "~3",
+    "bootstrap-social": "~4",
     "angular": "~1",
     "angular-route": "~1",
     "angular-elastic": "~2",
