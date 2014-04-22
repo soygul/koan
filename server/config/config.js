@@ -1,25 +1,25 @@
 'use strict';
 
-var path = require('path'),
-    _ = require('lodash');
-
 /**
  * Environment variables and application configuration.
  */
+
+var path = require('path'),
+    _ = require('lodash');
+
 var baseConfig = {
   app: {
     root: path.normalize(__dirname + '/../..'),
-    port: process.env.PORT || 3000,
-    env: process.env.NODE_ENV || 'development',
+    env: process.env.NODE_ENV,
     secret: 'secret key' /* used in signing the jwt tokens */
-  },
-  mongo: {
-    url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
   }
 };
 
 var platformConfig = {
   development: {
+    app: {
+      port: 3000
+    },
     mongo: {
       url: 'mongodb://localhost:27017/koan-dev'
     },
@@ -48,7 +48,11 @@ var platformConfig = {
 
   production: {
     app: {
+      port: process.env.PORT || 3000,
       cacheTime: 7 * 24 * 60 * 60 * 1000 /* default caching time (7 days) for static files, calculated in milliseconds */
+    },
+    mongo: {
+      url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/koan'
     },
     oauth: {
       facebook: {
@@ -66,5 +70,4 @@ var platformConfig = {
 };
 
 // override the base configuration with the platform specific values
-_.merge(baseConfig, platformConfig[baseConfig.app.env]);
-module.exports = baseConfig;
+module.exports = _.merge(baseConfig, platformConfig[baseConfig.app.env || 'development']);
