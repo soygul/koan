@@ -27,7 +27,7 @@ function *listPosts() {
       {limit: 15, sort: {_id: -1}} /* only get last 15 posts */).toArray();
 
   posts.forEach(function (post) {
-    post.id = post._id.toString();
+    post.id = post._id;
     delete post._id;
   });
 
@@ -45,7 +45,7 @@ function *createPost() {
   var results = yield mongo.posts.insert(post);
 
   this.status = 201;
-  this.body = results[0]._id.toString();
+  this.body = results[0]._id.toString(); // we need .toString() here to return text/plain response
 
   // now notify everyone about this new post
   post.id = post._id;
@@ -55,7 +55,7 @@ function *createPost() {
 
 /**
  * Appends a new comment to a given post.
- * @param id Post ID.
+ * @param postId - Post ID.
  */
 function *createComment(postId) {
   postId = new ObjectID(postId);
@@ -70,11 +70,11 @@ function *createComment(postId) {
   );
 
   this.status = 201;
-  this.body = commentId.toString();
+  this.body = commentId.toString(); // we need .toString() here to return text/plain response
 
   // now notify everyone about this new comment
   comment.id = comment._id;
-  comment.postId = postId.toString();
+  comment.postId = postId;
   delete comment._id;
   ws.notify('posts.comments.created', comment);
 }

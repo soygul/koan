@@ -27,5 +27,5 @@ function *createUser() {
   var results = yield mongo.users.insert(user);
 
   this.status = 201;
-  this.body = results[0]._id.toString();
+  this.body = results[0]._id.toString(); // we need .toString() here to return text/plain response
 }
