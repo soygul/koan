@@ -15,7 +15,7 @@ exports.init = function (app) {
 };
 
 /**
- * Serves user profile picture in 50x50 jpeg format.
+ * Serves user profile picture in jpeg format.
  * @param id - User ID.
  */
 function *getPicture(id) {
