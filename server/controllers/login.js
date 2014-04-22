@@ -101,8 +101,8 @@ function *facebookCallback() {
  */
 function *googleLogin() {
   this.redirect(
-          'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.facebook.clientId +
-          '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
+          'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.google.clientId +
+          '&redirect_uri=' + config.oauth.google.callbackUrl + '&response_type=code&scope=profile%20email');
 }
 
 function *googleCallback() {
