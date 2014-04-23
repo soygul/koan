@@ -5,6 +5,8 @@
   <title>Welcome to KOAN - Log In, Sign Up or Learn More</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css">
   <style type="text/css">
     body {
       background-color: #f8f8f8;
@@ -37,10 +39,14 @@
 
     /* Login layout */
 
-    .facebook-button {
+    .social-login {
       margin-left: 20%;
       padding-bottom: 15px;
-      padding-top: 20px;
+
+    }
+
+    .social-login a {
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -107,17 +113,21 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <h2>Login</h2>
+      <h2>Log In</h2>
 
       <p>
         Welcome to <strong>KOAN sample app</strong>. Please enter your account info. <br>
-        You can also login with Facebook if you don't have an account.
+        You can also login with your Facebook or Google account.
       </p>
 
       <form action="/login" method="post" style="width: 50%">
-        <p class="facebook-button">
-          <a href="/login/facebook" title="Login with Facebook">
-            <img src="images/login_facebook.png" alt="Login with Facebook">
+        <p class="social-login">
+          <a class="btn btn-sm btn-social btn-facebook" href="/login/facebook">
+            <i class="fa fa-facebook"></i> <strong>Log in with Facebook</strong>
+          </a>
+
+          <a class="btn btn-sm btn-social btn-google-plus" href="/login/google">
+            <i class="fa fa-google-plus"></i> <strong>Log in with Google</strong>
           </a>
         </p>
 
@@ -135,14 +145,14 @@
           </label>
         </div>
         <p class="help-block" style="color: darkred; font-weight: bold;"></p>
-        <button type="submit" class="btn btn-default">Login</button>
+        <button type="submit" class="btn btn-default">Log In</button>
       </form>
       <br>
 
       <h2>Sign Up</h2>
 
       <p>
-        You can easily sign up using your Facebook account with the 'Login with Facebook' button above.
+        You can easily sign up using your Facebook or Google account using the log in buttons above.
       </p>
     </div>
   </div>
