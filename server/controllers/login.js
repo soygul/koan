@@ -4,7 +4,7 @@
  * Password based login and OAuth login functions.
  */
 
-var querystring = require('querystring'),
+var qs = require('querystring'),
     route = require('koa-route'),
     parse = require('co-body'),
     jwt = require('koa-jwt'),
@@ -68,7 +68,7 @@ function *facebookCallback() {
           '&redirect_uri=' + config.oauth.facebook.callbackUrl +
           '&client_secret=' + config.oauth.facebook.clientSecret +
           '&code=' + this.query.code);
-  var token = querystring.parse(tokenResponse.body);
+  var token = qs.parse(tokenResponse.body);
   if (!token.access_token) {
     this.redirect('/login');
     return;
@@ -106,7 +106,29 @@ function *googleLogin() {
 }
 
 function *googleCallback() {
-  console.log(this.query);
+  if (this.query.error) {
+    this.redirect('/login');
+    return;
+  }
+
+  // get an access token from google in exchange for oauth code
+  var tokenResponse = yield request.post('https://accounts.google.com/o/oauth2/token', {form: {
+    code: this.query.code,
+    client_id: config.oauth.google.clientId,
+    client_secret: config.oauth.google.clientSecret,
+    redirect_uri: config.oauth.google.callbackUrl,
+    grant_type: 'authorization_code'
+  }});
+  var token = JSON.parse(tokenResponse.body);
+  if (!token.access_token) {
+    this.redirect('/login');
+    return;
+  }
+
+  // get user profile (including email address) from facebook and save user data in our database if necessary
+  var profileResponse = yield request.get('https://www.googleapis.com/plus/v1/people/me?access_token=' + token.access_token);
+  var profile = JSON.parse(profileResponse.body);
+
 }
 
 function handleOAuthCallback() {
