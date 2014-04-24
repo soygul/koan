@@ -146,11 +146,3 @@ function *googleCallback() {
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
-
-function handleOAuthCallback() {
-}
-
-function getOAuthUserImage() {
-  // todo: remove ?sz=50 for google image url
-}
-
