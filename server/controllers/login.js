@@ -75,7 +75,7 @@ function *facebookCallback() {
   }
 
   // get user profile (including email address) from facebook and save user data in our database if necessary
-  var profileResponse = yield request.get('https://graph.facebook.com/me?fields=name,email,picture.type(large)&access_token=' + token.access_token);
+  var profileResponse = yield request.get('https://graph.facebook.com/me?fields=name,email,picture&access_token=' + token.access_token);
   var profile = JSON.parse(profileResponse.body);
   var user = yield mongo.users.findOne({email: profile.email}, {email: 1, name: 1});
   if (!user) {
