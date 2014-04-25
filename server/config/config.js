@@ -27,12 +27,12 @@ var platformConfig = {
       facebook: {
         clientId: '231235687068678',
         clientSecret: '4a90381c6bfa738bb18fb7d6046c14b8',
-        callbackUrl: 'http://localhost:3000/login/facebook/callback'
+        callbackUrl: 'http://localhost:3000/signin/facebook/callback'
       },
       google: {
         clientId: '147832090796-ckhu1ehvsc8vv9nso7iefvu5fi7jrsou.apps.googleusercontent.com',
         clientSecret: 'MGOwKgcLPEfCsLjcJJSPeFYu',
-        callbackUrl: 'http://localhost:3000/login/google/callback'
+        callbackUrl: 'http://localhost:3000/signin/google/callback'
       }
     }
   },
@@ -58,12 +58,12 @@ var platformConfig = {
       facebook: {
         clientId: '231235687068678',
         clientSecret: '4a90381c6bfa738bb18fb7d6046c14b8',
-        callbackUrl: 'http://koanjs.com/login/facebook/callback'
+        callbackUrl: 'http://koanjs.com/signin/facebook/callback'
       },
       google: {
         clientId: '147832090796-ckhu1ehvsc8vv9nso7iefvu5fi7jrsou.apps.googleusercontent.com',
         clientSecret: 'MGOwKgcLPEfCsLjcJJSPeFYu',
-        callbackUrl: 'http://koanjs.com/login/google/callback'
+        callbackUrl: 'http://koanjs.com/signin/google/callback'
       }
     }
   }

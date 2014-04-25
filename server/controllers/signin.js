@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Password based login and OAuth login functions.
+ * Password based signin and OAuth signin functions.
  */
 
 var qs = require('querystring'),
@@ -14,17 +14,17 @@ var qs = require('querystring'),
 
 // register koa routes
 exports.init = function (app) {
-  app.use(route.post('/login', login));
-  app.use(route.get('/login/facebook', facebookLogin));
-  app.use(route.get('/login/facebook/callback', facebookCallback));
-  app.use(route.get('/login/google', googleLogin));
-  app.use(route.get('/login/google/callback', googleCallback));
+  app.use(route.post('/signin', signin));
+  app.use(route.get('/signin/facebook', facebooksignin));
+  app.use(route.get('/signin/facebook/callback', facebookCallback));
+  app.use(route.get('/signin/google', googlesignin));
+  app.use(route.get('/signin/google/callback', googleCallback));
 };
 
 /**
  * Retrieves user credentials from an HTML form post (x-www-form-urlencoded) and returns a JSON Web Token along with user profile info in JSON format.
  */
-function *login() {
+function *signin() {
   var credentials = yield parse(this);
   var user = yield mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
 
@@ -45,9 +45,9 @@ function *login() {
 }
 
 /**
- * Facebook OAuth 2.0 login endpoint.
+ * Facebook OAuth 2.0 signin endpoint.
  */
-function *facebookLogin() {
+function *facebooksignin() {
   this.redirect(
           'https://www.facebook.com/dialog/oauth?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
@@ -58,7 +58,7 @@ function *facebookLogin() {
  */
 function *facebookCallback() {
   if (this.query.error) {
-    this.redirect('/login');
+    this.redirect('/signin');
     return;
   }
 
@@ -70,7 +70,7 @@ function *facebookCallback() {
           '&code=' + this.query.code);
   var token = qs.parse(tokenResponse.body);
   if (!token.access_token) {
-    this.redirect('/login');
+    this.redirect('/signin');
     return;
   }
 
@@ -97,9 +97,9 @@ function *facebookCallback() {
 }
 
 /**
- * Google OAuth 2.0 login endpoint.
+ * Google OAuth 2.0 signin endpoint.
  */
-function *googleLogin() {
+function *googlesignin() {
   this.redirect(
           'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.google.clientId +
           '&redirect_uri=' + config.oauth.google.callbackUrl + '&response_type=code&scope=profile%20email');
@@ -107,7 +107,7 @@ function *googleLogin() {
 
 function *googleCallback() {
   if (this.query.error) {
-    this.redirect('/login');
+    this.redirect('/signin');
     return;
   }
 
@@ -121,7 +121,7 @@ function *googleCallback() {
   }});
   var token = JSON.parse(tokenResponse.body);
   if (!token.access_token) {
-    this.redirect('/login');
+    this.redirect('/signin');
     return;
   }
 

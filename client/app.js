@@ -30,7 +30,7 @@ angular
           delete $window.sessionStorage.user;
           delete $window.localStorage.token;
           delete $window.localStorage.user;
-          $window.location.replace('/login.html');
+          $window.location.replace('/signin.html');
         },
         clearDatabase: function () {
           var self = this;

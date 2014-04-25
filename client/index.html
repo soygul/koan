@@ -14,7 +14,7 @@
     } else {
       var token = window.sessionStorage.token || window.localStorage.token,
           user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
-      if (!user || user.exp < Math.round(new Date().getTime() / 1000)) window.location.replace('/login.html');
+      if (!user || user.exp < Math.round(new Date().getTime() / 1000)) window.location.replace('/signin.html');
     }
   </script>
   <title ng-bind="common.title">KOAN</title>
