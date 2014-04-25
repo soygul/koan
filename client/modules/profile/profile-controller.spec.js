@@ -1,12 +1,12 @@
 'use strict';
 
 /**
- *  Jasmine specs for profile controller unit testing.
+ * Jasmine specs (unit tests) for profile controller.
  */
 
-describe('ProfileCtrl controller', function () {
+describe('Profile controller', function () {
 
-  var ctrl, scope, $window, api;
+  var ctrl, scope;
 
   beforeEach(module('koan.profile'));
 
