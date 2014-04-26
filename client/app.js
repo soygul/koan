@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * KOAN app level module. This is the root module for all others.
+ * Top level module. Lists all the other modules as dependencies.
  */
 
 angular
