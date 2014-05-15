@@ -24,7 +24,7 @@ function *listPosts() {
   var posts = yield mongo.posts.find(
       {},
       {comments: {$slice: -15 /* only get last x many comments for each post */}},
-      {limit: 15, sort: {_id: -1}} /* only get last 15 posts */).toArray();
+      {limit: 15, sort: {_id: -1}} /* only get last 15 posts by last updated */).toArray();
 
   posts.forEach(function (post) {
     post.id = post._id;
