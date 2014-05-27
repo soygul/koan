@@ -5,7 +5,6 @@
  */
 
 var route = require('koa-route'),
-    parse = require('co-body'),
     config = require('../config/config'),
     mongo = require('../config/mongo');
 

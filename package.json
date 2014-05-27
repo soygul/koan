@@ -47,6 +47,7 @@
     "karma-jasmine": "~0",
     "karma-phantomjs-launcher": "~0",
     "supertest": "~0",
-    "should": "~3"
+    "should": "~3",
+    "grunt-contrib-jshint": "^0.10.0"
   }
 }

@@ -10,7 +10,19 @@ module.exports = function (grunt) {
         NODE_ENV: 'test'
       }
     },
+    jshint: {
+        all: {
+            src: ['gruntfile.js', 'app.js', 'client/**/*.js', '!client/bower_components/**', 'server/**/*.js'],
+            options: {
+                jshintrc: true
+            }
+        }
+    },
     watch: {
+      js: {
+          files: ['gruntfile.js', 'app.js', 'client/**/*.js', '!client/bower_components/**', 'server/**/*.js'],
+          tasks: ['jshint']
+      },
       client: {
         files: ['client/**', '!client/bower_components/**'],
         options: {
@@ -62,7 +74,7 @@ module.exports = function (grunt) {
     },
     protractor: {
       e2e: {
-        configFile: "test/client/protractor.conf.js",
+        configFile: 'test/client/protractor.conf.js',
         keepAlive: false
       }
     }
@@ -75,8 +87,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('default', ['concurrent']);
+  grunt.registerTask('default', ['jshint', 'concurrent']);
 
   grunt.registerTask('test', ['env:test', 'mochaTest:server', 'karma:unit']);
 };
