@@ -5,7 +5,6 @@
  */
 
 var route = require('koa-route'),
-    config = require('../config/config'),
     mongoSeed = require('../config/mongo-seed');
 
 // register koa routes

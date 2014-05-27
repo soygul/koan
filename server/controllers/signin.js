@@ -85,14 +85,14 @@ function *facebookCallback() {
       name: profile.name,
       picture: (yield request.get(profile.picture.data.url, {encoding: 'base64'})).body
     };
-    var results = yield mongo.users.insert(user);
+    yield mongo.users.insert(user);
   }
 
   // redirect the user to index page along with user profile object as query string
   user.id = user._id;
   delete user._id;
   user.picture = 'api/users/' + user.id + '/picture';
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
+  jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
 
@@ -136,13 +136,13 @@ function *googleCallback() {
       name: profile.displayName,
       picture: (yield request.get(profile.image.url, {encoding: 'base64'})).body
     };
-    var results = yield mongo.users.insert(user);
+    yield mongo.users.insert(user);
   }
 
   // redirect the user to index page along with user profile object as query string
   user.id = user._id;
   delete user._id;
   user.picture = 'api/users/' + user.id + '/picture';
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
+  jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }

@@ -64,7 +64,7 @@ function *createComment(postId) {
 
   // update post document with the new comment
   comment = {_id: commentId, from: this.user, createdTime: new Date(), message: comment.message};
-  var result = yield mongo.posts.update(
+  yield mongo.posts.update(
       {_id: postId},
       {$push: {comments: comment}}
   );
