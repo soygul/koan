@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "grunt-env": "~0",
-    "grunt-protractor-runner": "~0",
+    "grunt-protractor-runner": "~1",
     "grunt-contrib-watch": "~0",
     "grunt-nodemon": "~0",
     "grunt-concurrent": "~0",
@@ -47,6 +47,6 @@
     "karma-jasmine": "~0",
     "karma-phantomjs-launcher": "~0",
     "supertest": "~0",
-    "should": "~3"
+    "should": "~4"
   }
 }
