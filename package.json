@@ -26,7 +26,6 @@
     "koa-send": "~1",
     "koa-jwt": "~0",
     "koa-livereload": "~0",
-    "koa-validator": "~0",
     "co": "~3",
     "co-body": "~1",
     "co-mongo": "~0",
