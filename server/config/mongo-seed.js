@@ -7,7 +7,7 @@ var mongo = require('./mongo'),
  * Populates the database with seed data.
  * @param overwrite Overwrite existing database even if it is not empty.
  */
-module.exports = function *(overwrite) {
+function *seed(overwrite) {
   var count = yield mongo.users.count({}, {limit: 1});
   if (overwrite || count === 0) {
 
@@ -30,7 +30,7 @@ module.exports = function *(overwrite) {
     yield mongo.users.insert(users);
     yield mongo.posts.insert(posts);
   }
-};
+}
 
 // declare seed data
 var users = [
@@ -79,3 +79,8 @@ var posts = [
     ]
   }
 ];
+
+// export seed data and seed function
+seed.users = users;
+seed.posts = posts;
+module.exports = seed;
