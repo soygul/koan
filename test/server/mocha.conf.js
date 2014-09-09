@@ -1,7 +1,6 @@
 'use strict';
 
 var config = require('../../server/config/config'),
-    mongoSeed = require('../../server/config/mongo-seed'),
     app = require('../../app'),
     jwt = require('koa-jwt'),
     baseUrl = 'http://localhost:' + config.app.port + '/api',
@@ -20,8 +19,7 @@ exports.token = token;
 // also drop and re-seed the test database before each run
 console.log('Mocha starting to run server tests on port ' + config.app.port);
 beforeEach(function (done) {
-  mongoSeed(true);
-  app.init(done);
+  app.init(true, done);
 });
 
 // close the server after each test is done

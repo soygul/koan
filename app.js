@@ -15,10 +15,14 @@ var config = require('./server/config/config'),
 
 module.exports = app;
 
-app.init = co(function *() {
+/**
+ * Initiates a new KOAN server.
+ * @param overwriteDB Overwrite existing database with the seed data. Useful for testing environment.
+ */
+app.init = co(function *(overwriteDB) {
   // initialize mongodb and populate the database with seed data if empty
   yield mongo.connect();
-  yield mongoSeed();
+  yield mongoSeed(overwriteDB);
 
   // koa config
   koaConfig(app);
