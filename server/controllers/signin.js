@@ -15,9 +15,9 @@ var qs = require('querystring'),
 // register koa routes
 exports.init = function (app) {
   app.use(route.post('/signin', signin));
-  app.use(route.get('/signin/facebook', facebooksignin));
+  app.use(route.get('/signin/facebook', facebookSignin));
   app.use(route.get('/signin/facebook/callback', facebookCallback));
-  app.use(route.get('/signin/google', googlesignin));
+  app.use(route.get('/signin/google', googleSignin));
   app.use(route.get('/signin/google/callback', googleCallback));
 };
 
@@ -36,7 +36,7 @@ function *signin() {
     user.id = user._id;
     delete user._id;
     delete user.password;
-    user.picture = 'api/users/' + user.id + '/picture';
+    user.picture = '/api/users/' + user.id + '/picture';
   }
 
   // sign and send the token along with the user info
@@ -47,7 +47,7 @@ function *signin() {
 /**
  * Facebook OAuth 2.0 signin endpoint.
  */
-function *facebooksignin() {
+function *facebookSignin() {
   this.redirect(
           'https://www.facebook.com/dialog/oauth?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
@@ -99,7 +99,7 @@ function *facebookCallback() {
 /**
  * Google OAuth 2.0 signin endpoint.
  */
-function *googlesignin() {
+function *googleSignin() {
   this.redirect(
           'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.google.clientId +
           '&redirect_uri=' + config.oauth.google.callbackUrl + '&response_type=code&scope=profile%20email');
