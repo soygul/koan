@@ -91,7 +91,7 @@ function *facebookCallback() {
   // redirect the user to index page along with user profile object as query string
   user.id = user._id;
   delete user._id;
-  user.picture = 'api/users/' + user.id + '/picture';
+  user.picture = '/api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
@@ -142,7 +142,7 @@ function *googleCallback() {
   // redirect the user to index page along with user profile object as query string
   user.id = user._id;
   delete user._id;
-  user.picture = 'api/users/' + user.id + '/picture';
+  user.picture = '/api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
