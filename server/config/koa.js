@@ -20,20 +20,24 @@ module.exports = function (app) {
   require('../controllers/public').init(app);
   require('../controllers/signin').init(app);
 
-  // serve the angular static files from the /client directory
-  var sendOpts = {root: 'client', maxage: config.app.cacheTime};
+  // serve the static files in the /client directory, use caching only in production (7 days)
+  var sendOpts = config.app.env === 'production' ? {root: 'client', maxage: 1000 * 60 * 60 * 24 * 7} : {root: 'client'};
   app.use(function *(next) {
-    // skip any route that starts with /api as it doesn't have any static files
+    // do not handle /api paths
     if (this.path.substr(0, 5).toLowerCase() === '/api/') {
       yield next;
       return;
-    }
-    // if the requested path matched a file and it is served successfully, exit the middleware
-    if (yield send(this, this.path, sendOpts)) {
+    } else if (yield send(this, this.path, sendOpts)) {
+      // file exists and request successfully served so do nothing
       return;
+    } else if (this.path.indexOf('.') !== -1) {
+      // file does not exist so do nothing and koa will return 404 by default
+      // we treat any path with a dot '.' in it as a request for a file
+      return;
+    } else {
+      // request is for a subdirectory so treat it as an angular route and serve index.html, letting angular handle the routing properly
+      yield send(this, '/index.html', sendOpts);
     }
-    // if given path didn't match any file, just let angular handle the routing
-    yield send(this, '/index.html', sendOpts);
   });
 
   // middleware below this line is only reached if jwt token is valid
