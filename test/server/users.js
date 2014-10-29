@@ -12,6 +12,10 @@ describe('Users controller', function () {
         .post('/users')
         .set('Authorization', token)
         .send({name: 'Test User', email: 'test@koanjs.com'})
-        .expect(201, done);
+        .expect(201)
+        .expect(function (res) {
+          res.body.should.have.property('id'); // should.js goodness
+        })
+        .end(done);
   });
 });

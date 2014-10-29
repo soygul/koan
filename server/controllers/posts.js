@@ -45,7 +45,7 @@ function *createPost() {
   var results = yield mongo.posts.insert(post);
 
   this.status = 201;
-  this.body = results[0]._id.toString(); // we need .toString() here to return text/plain response
+  this.body = {id: results[0]._id};
 
   // now notify everyone about this new post
   post.id = post._id;
@@ -70,7 +70,7 @@ function *createComment(postId) {
   );
 
   this.status = 201;
-  this.body = commentId.toString(); // we need .toString() here to return text/plain response
+  this.body = {id: commentId};
 
   // now notify everyone about this new comment
   comment.id = comment._id;

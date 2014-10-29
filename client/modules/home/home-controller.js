@@ -29,13 +29,13 @@ angular.module('koan.home').controller('HomeCtrl', function ($scope, api) {
     // disable the post box and push the new post to server
     $scope.postBox.disabled = true;
     api.posts.create({message: $scope.postBox.message})
-        .success(function (postId) {
+        .success(function (post) {
           // only add the post if we don't have it already in the posts list to avoid dupes
           if (!_.some($scope.posts, function (p) {
-            return p.id === postId;
+            return p.id === post.id;
           })) {
             $scope.posts.unshift({
-              id: postId,
+              id: post.id,
               from: user,
               message: $scope.postBox.message,
               createdTime: new Date(),
@@ -69,13 +69,13 @@ angular.module('koan.home').controller('HomeCtrl', function ($scope, api) {
     // disable the comment box and push the new comment to server
     post.commentBox.disabled = true;
     api.posts.comments.create(post.id, {message: post.commentBox.message})
-        .success(function (commentId) {
+        .success(function (comment) {
           // only add the comment if we don't have it already in the post's comments list to avoid dupes
           if (!_.some(post.comments, function (c) {
-            return c.id === commentId;
+            return c.id === comment.id;
           })) {
             post.comments.push({
-              id: commentId,
+              id: comment.id,
               from: user,
               message: post.commentBox.message,
               createdTime: new Date()
