@@ -26,7 +26,7 @@
       <ul class="media-list post-comments">
         <li class="media"><span class="arrow-up-small"></span></li>
         <li class="media post-comment" ng-repeat="comment in post.comments">
-          <a href="#" class="pull-left">
+          <a href="#" class="media-left">
             <img class="media-object" ng-src="{{comment.from.picture}}" alt="">
           </a>
           <div class="media-body story-comment-body">
@@ -37,7 +37,7 @@
           </div>
         </li>
         <li class="media post-comment comment-box">
-          <a href="#" class="pull-left">
+          <a href="#" class="media-left">
             <img class="media-object" ng-src="{{common.user.picture}}" alt="">
           </a>
           <div class="media-body post-comment-body">
@@ -109,6 +109,10 @@
   }
 
   .post-comment .comment-box {
+  }
+
+  .post-comment-body {
+    width: 100%;
   }
 
   .post-comment-body textarea {
