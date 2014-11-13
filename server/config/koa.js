@@ -15,6 +15,12 @@ module.exports = function (app) {
   if (config.app.env === 'development') {
     app.use(livereload({excludes: ['/modules']}));
   }
+  app.use(cors({
+    maxAge: config.app.cacheTime / 1000,
+    credentials: true,
+    methods: 'GET, HEAD, OPTIONS, PUT, POST, DELETE',
+    headers: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  }));
 
   // register special controllers which should come before any jwt token check and be publicly accessible
   require('../controllers/public').init(app);
