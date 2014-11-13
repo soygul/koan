@@ -5,6 +5,7 @@ var fs = require('fs'),
     send = require('koa-send'),
     jwt = require('koa-jwt'),
     livereload = require('koa-livereload'),
+    cors = require('koa-cors'),
     config = require('./config');
 
 module.exports = function (app) {
