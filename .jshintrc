@@ -11,6 +11,9 @@
     "beforeEach": false,
     "afterEach": false,
     "module": false,
-    "inject": false
+    "inject": false,
+    "require": false,
+    "exports": false,
+    "console": false
   }
 }
