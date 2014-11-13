@@ -10,7 +10,7 @@
 
 <ul class="media-list posts">
   <li class="media post" ng-repeat="post in posts" id="post_{{post.id}}">
-    <a href="#" class="pull-left">
+    <a href="#" class="media-left">
       <img class="media-object" ng-src="{{post.from.picture}}" alt="">
     </a>
     <div class="media-body post-body">
@@ -102,10 +102,6 @@
   .post-comment img {
     height: 32px;
     width: 32px;
-  }
-
-  .post-comment > .pull-left {
-    margin-right: 8px;
   }
 
   .post-comment .comment-box {
