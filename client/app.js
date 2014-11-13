@@ -7,12 +7,15 @@
 angular
     .module('koan', [
       'ngRoute',
+      'angular-loading-bar',
       'koan.common',
       'koan.home',
       'koan.profile'
     ])
 
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider, cfpLoadingBarProvider) {
+      cfpLoadingBarProvider.includeSpinner = false;
+      cfpLoadingBarProvider.latencyThreshold = 500;//ms
       $locationProvider.html5Mode(true);
       $routeProvider
           .otherwise({
