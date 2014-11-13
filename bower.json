@@ -2,13 +2,16 @@
   "name": "koan",
   "version": "1.0.0",
   "dependencies": {
-    "jquery": "~2",
-    "font-awesome": "~4",
+    "angular": "~1",
+    "angular-animate": "~1",
+    "angular-elastic": "~2",
+    "angular-loading-bar": "~0",
+    "angular-route": "~1",
+    "angular-bootstrap": "~0",
     "bootstrap": "~3",
     "bootstrap-social": "~4",
-    "angular": "~1",
-    "angular-route": "~1",
-    "angular-elastic": "~2",
+    "font-awesome": "~4",
+    "jquery": "~2",
     "lodash": "~2"
   },
   "devDependencies": {
