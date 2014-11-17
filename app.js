@@ -39,5 +39,6 @@ app.init = co.wrap(function *(overwriteDB) {
 if (!module.parent) {
   app.init().catch(function (err) {
     console.error(err.stack);
+    process.exit(1);
   });
 }
