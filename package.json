@@ -20,6 +20,13 @@
     "postupdate": "bower update"
   },
   "dependencies": {
+    "bower": "~1",
+    "co": "~3",
+    "co-body": "~1",
+    "co-mongo": "~0",
+    "co-request": "~0",
+    "forever": "~0",
+    "grunt-cli": "~0",
     "koa": "~0",
     "koa-route": "~2",
     "koa-logger": "~1",
@@ -27,27 +34,21 @@
     "koa-jwt": "~0",
     "koa-livereload": "~0",
     "koa-cors": "~0",
-    "co": "~3",
-    "co-body": "~1",
-    "co-mongo": "~0",
-    "co-request": "~0",
     "lodash": "~2",
-    "ws": "~0",
-    "forever": "~0",
-    "bower": "~1",
-    "grunt-cli": "~0"
+    "ws": "~0"
   },
   "devDependencies": {
-    "grunt-env": "~0",
-    "grunt-protractor-runner": "~1",
-    "grunt-contrib-watch": "~0",
-    "grunt-nodemon": "~0",
+    "co-mocha": "^1.0.4",
+    "co-supertest": "~0",
     "grunt-concurrent": "~1",
-    "grunt-mocha-test": "~0",
+    "grunt-contrib-watch": "~0",
+    "grunt-env": "~0",
     "grunt-karma": "~0",
+    "grunt-mocha-test": "~0",
+    "grunt-nodemon": "~0",
+    "grunt-protractor-runner": "~1",
     "karma-jasmine": "~0",
     "karma-phantomjs-launcher": "~0",
-    "supertest": "~0",
     "should": "~4"
   }
 }

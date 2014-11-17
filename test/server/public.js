@@ -6,10 +6,11 @@ var mochaConf = require('./mocha.conf'),
     request = mochaConf.request;
 
 describe('Public controller', function () {
-  it('/users/:id/picture route should return user image', function (done) {
-    request
+  it('/users/:id/picture route should return user image', function *() {
+    yield request
         .get('/users/1/picture')
         .expect('Content-Type', 'image/jpeg')
-        .expect(200, done);
+        .expect(200)
+        .end();
   });
 });

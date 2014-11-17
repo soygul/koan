@@ -7,15 +7,14 @@ var mochaConf = require('./mocha.conf'),
     token = mochaConf.token;
 
 describe('Users controller', function () {
-  it('POST /users should create a new user', function (done) {
-    request
+  it('POST /users should create a new user', function *() { // co-mocha goodness, we can use generator functions!
+    var res = yield request // co-supertest goodness, we can yield!
         .post('/users')
         .set('Authorization', token)
         .send({name: 'Test User', email: 'test@koanjs.com'})
         .expect(201)
-        .expect(function (res) {
-          res.body.should.have.property('id'); // should.js goodness
-        })
-        .end(done);
+        .end();
+
+    res.body.should.have.property('id'); // should.js goodness
   });
 });
