@@ -56,6 +56,8 @@ You can run all the tests with `npm test`. Tests are run with:
 * Client (e2e): Jasmine + Protractor (Angular default)
 * Server: Mocha/SuperTest/Should (Koa default)
 
+Server tests utilize [co](https://github.com/tj/co) so you can use */yields expressions writing tests. See [test/server/users.js](test/server/users.js) as an example.
+
 ## Credits
 Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
 
