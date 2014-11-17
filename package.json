@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "co-mocha": "~1",
-    "co-supertest": "git://github.com/soygul/grunt-maven-tasks.git#patch-1",
+    "co-supertest": "git://github.com/soygul/co-supertest.git#patch-1",
     "grunt-concurrent": "~1",
     "grunt-contrib-watch": "~0",
     "grunt-env": "~0",
