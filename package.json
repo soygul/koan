@@ -28,12 +28,11 @@
     "forever": "~0",
     "grunt-cli": "~0",
     "koa": "~0",
-    "koa-route": "~2",
-    "koa-logger": "~1",
-    "koa-send": "~1",
-    "koa-jwt": "~0",
-    "koa-livereload": "~0",
     "koa-cors": "~0",
+    "koa-jwt": "~0",
+    "koa-logger": "~1",
+    "koa-route": "~2",
+    "koa-send": "~1",
     "lodash": "~2",
     "ws": "~0"
   },
@@ -49,6 +48,7 @@
     "grunt-protractor-runner": "~1",
     "karma-jasmine": "~0",
     "karma-phantomjs-launcher": "~0",
+    "koa-livereload": "~0",
     "should": "~4"
   }
 }
