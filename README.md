@@ -46,7 +46,7 @@ git push heroku master
 heroku open
 ```
 
-Optionally, you can pass credentials to KOAN via environment variables as it might not be secure to store them in your repo.
+Optionally, you can pass credentials to KOAN via environment variables as it might not be secure to store them in your repo. Note that if you do this, you'll need to adjust other configuration options accordingly (i.e. FB/Google client IDs, etc.).
 
 ```bash
 heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oauth_secret GOOGLE_SECRET=google_oauth_secret
