@@ -5,7 +5,10 @@ module.exports = function (config) {
     basePath: '../../',
 
     files: [
+      'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/angular/angular.js',
+      'client/bower_components/angular-animate/angular-animate.js',
+      'client/bower_components/angular-loading-bar/build/loading-bar.js',
       'client/bower_components/angular-route/angular-route.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       'client/bower_components/angular-elastic/elastic.js',
