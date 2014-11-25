@@ -41,10 +41,15 @@ git add .
 git commit -m "initial version"
 heroku apps:create
 heroku addons:add mongohq
-heroku labs:enable websockets
 heroku config:add NODE_ENV=production
 git push heroku master
 heroku open
+```
+
+Optionally, you can pass credentials to KOAN via environment variables as it might not be secure to store them in your repo.
+
+```bash
+heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oauth_secret GOOGLE_SECRET=google_oauth_secret
 ```
 
 ## Receiving updates from upstream
