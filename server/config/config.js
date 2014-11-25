@@ -11,10 +11,12 @@ var baseConfig = {
   app: {
     root: path.normalize(__dirname + '/../..'),
     env: process.env.NODE_ENV,
-    secret: 'secret key' /* used in signing the jwt tokens */
+    secret: process.env.SECRET || 'secret key' /* used in signing the jwt tokens */,
+    pass: process.env.PASS || 'pass' /* generic password for seed user logins */
   }
 };
 
+// environment specific config overrides
 var platformConfig = {
   development: {
     app: {
