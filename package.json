@@ -48,6 +48,7 @@
     "grunt-protractor-runner": "~1",
     "karma-coverage": "~0",
     "karma-jasmine": "~0",
+    "karma-ng-html2js-preprocessor": "~0",
     "karma-phantomjs-launcher": "~0",
     "koa-livereload": "~0",
     "should": "~4"

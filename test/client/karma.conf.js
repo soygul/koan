@@ -5,6 +5,7 @@ module.exports = function (config) {
     basePath: '../../',
 
     preprocessors: {
+      '**/*.html': ['ng-html2js'],
       'client/!(bower_components)/**/*.js': 'coverage'
     },
 
@@ -18,7 +19,8 @@ module.exports = function (config) {
       'client/bower_components/angular-elastic/elastic.js',
       'client/app.js',
       'client/modules/**/!(*-*).js',
-      'client/modules/**/*.js'
+      'client/modules/**/*.js',
+      'client/modules/**/*.html'
     ],
 
     autoWatch: false,
@@ -33,6 +35,10 @@ module.exports = function (config) {
 
     coverageReporter: {
       type: 'text-summary'
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'client/'
     }
   });
 };
