@@ -46,6 +46,7 @@
     "grunt-mocha-test": "~0",
     "grunt-nodemon": "~0",
     "grunt-protractor-runner": "~1",
+    "karma-coverage": "~0",
     "karma-jasmine": "~0",
     "karma-phantomjs-launcher": "~0",
     "koa-livereload": "~0",

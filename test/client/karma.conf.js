@@ -4,6 +4,10 @@ module.exports = function (config) {
   config.set({
     basePath: '../../',
 
+    preprocessors: {
+      'client/!(bower_components)/**/*.js': 'coverage'
+    },
+
     files: [
       'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/angular/angular.js',
@@ -25,6 +29,10 @@ module.exports = function (config) {
 
     browsers: ['PhantomJS'],
 
-    reporters: ['dots']
+    reporters: ['dots', 'coverage'],
+
+    coverageReporter: {
+      type: 'text-summary'
+    }
   });
 };
