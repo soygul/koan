@@ -29,7 +29,7 @@
     "grunt-cli": "~0",
     "koa": "~0",
     "koa-cors": "~0",
-    "koa-jwt": "0.1.2",
+    "koa-jwt": "~0",
     "koa-logger": "~1",
     "koa-route": "~2",
     "koa-send": "~1",
