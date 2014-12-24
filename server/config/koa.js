@@ -4,7 +4,6 @@ var fs = require('fs'),
     logger = require('koa-logger'),
     send = require('koa-send'),
     jwt = require('koa-jwt'),
-    livereload = require('koa-livereload'),
     cors = require('koa-cors'),
     config = require('./config');
 
@@ -14,7 +13,7 @@ module.exports = function (app) {
     app.use(logger());
   }
   if (config.app.env === 'development') {
-    app.use(livereload({excludes: ['/modules']}));
+    app.use(require('koa-livereload')({excludes: ['/modules']}));
   }
   app.use(cors({
     maxAge: config.app.cacheTime / 1000,
