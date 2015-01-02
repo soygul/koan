@@ -22,7 +22,7 @@ exports.init = function (app) {
 };
 
 /**
- * Retrieves the user credentials and returns a JSON Web Token along with user profile info in JSON format.
+ * Receives the user credentials and returns a JSON Web Token along with user profile info in JSON format.
  */
 function *signin() {
   var credentials = yield parse(this);
