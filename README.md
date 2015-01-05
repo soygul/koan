@@ -52,9 +52,6 @@ Optionally, you can pass credentials to KOAN via environment variables as it mig
 heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oauth_secret GOOGLE_SECRET=google_oauth_secret
 ```
 
-## Receiving updates from upstream
-Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project, or cherry pick the changes that you want separately.
-
 ## Testing
 You can run all the tests with `npm test`. Tests are run with:
 * Client (unit): Jasmine + Karma (Angular default)
