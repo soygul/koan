@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('../../server/config/config'),
+    mongoSeed = require('../../server/config/mongo-seed'),
     app = require('../../app'),
     jwt = require('koa-jwt'),
     baseUrl = 'http://localhost:' + config.app.port + '/api',
@@ -8,7 +9,8 @@ var config = require('../../server/config/config'),
     request = supertest(baseUrl);
 
 // create a valid jwt token to be sent with every request
-var token = jwt.sign({id: 2, name: 'Chuck Norris', mail: 'chuck@koanjs.com'}, config.app.secret);
+var user = mongoSeed.users[1];
+var token = jwt.sign({id: user._id, name: user.name, email: user.email}, config.app.secret);
 token = 'Bearer ' + token;
 
 // make request and token objects available
