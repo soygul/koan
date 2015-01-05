@@ -53,7 +53,7 @@ heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oau
 ```
 
 ## Receiving updates from upstream
-Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project with git.
+Whenever we update KOAN's repo, you can just fetch the changes and merge them into your project, or cherry pick the changes that you want separately.
 
 ## Testing
 You can run all the tests with `npm test`. Tests are run with:
