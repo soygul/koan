@@ -1,4 +1,4 @@
-[![KOAN](https://raw.github.com/soygul/koan/master/client/images/koan.png)](http://koanjs.com/)
+[![KOAN](https://raw.github.com/soygul/koan/master/client/images/koan.png)](https://koan.herokuapp.com)
 
 [![Build Status](https://travis-ci.org/soygul/koan.svg?branch=master)](https://travis-ci.org/soygul/koan)
 
@@ -11,7 +11,7 @@ KOAN Stack is a boilerplate that provides a nice starting point for full stack J
 * MongoDB for persistence. Possibly more to be added.
 
 ## Live Example
-Browse the live KOAN example on [http://koanjs.com](http://koanjs.com) which is a Facebook like real-time sharing app.
+Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
 
 ## Getting Started
 Make sure that you have Node.js (v0.11 or above) and MongoDB (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:

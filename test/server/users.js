@@ -11,7 +11,7 @@ describe('Users controller', function () {
     var res = yield request // co-supertest goodness, we can yield!
         .post('/users')
         .set('Authorization', token)
-        .send({name: 'Test User', email: 'test@koanjs.com'})
+        .send({name: 'Test User', email: 'test@koan.herokuapp.com'})
         .expect(201)
         .end();
 
