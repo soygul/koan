@@ -6,9 +6,9 @@ KOAN Stack is a boilerplate that provides a nice starting point for full stack J
 * **Client**: AngularJS and Twitter Bootstrap with pure html partials (no server side rendering so it's fully static and CDN ready). Bower packages are located at `client\bower_packages`.
 * **Server**: Koa for RESTful API on top of Node.js v0.11+ with the use of `--harmony` and generators.
 * WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
-* Passport.js is used for social auth. Instead of auth cookies, we use JWT along with HTML5 *local storage*.
+* OAuth 2 is used for social authentications. Instead of auth cookies, we use JWT along with HTML5 *local storage*.
 * Grunt tasks are used to facilitate development and testing.
-* MongoDB for persistence. Possibly more to be added.
+* MongoDB for persistence.
 
 ## Live Example
 Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
@@ -61,7 +61,7 @@ You can run all the tests with `npm test`. Tests are run with:
 Server tests utilize [co](https://github.com/tj/co) so you can use `*`/`yield` expressions while writing tests. See [/test/server/users.js](test/server/users.js) as an example.
 
 ## Credits
-Client side is entirely based on: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
+Client side is entirely based on the official: [Angular Seed](https://github.com/angular/angular-seed). Server side simply utilizes generally accepted Koa middleware and Node.js best practices.
 
 ## The Name
 The project name is an acronym for Koa, Angular, and Node. It also is the name for a Zen Buddhist riddle used to focus the mind during meditation and to develop intuitive thinking.
