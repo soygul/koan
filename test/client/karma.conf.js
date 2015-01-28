@@ -11,7 +11,7 @@ module.exports = function (config) {
 
     files: [
       'client/bower_components/jquery/dist/jquery.js',
-      'client/bower_components/lodash/dist/lodash.js',
+      'client/bower_components/lodash/lodash.js',
       'client/bower_components/angular/angular.js',
       'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/angular-loading-bar/build/loading-bar.js',

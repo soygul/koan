@@ -33,7 +33,7 @@
     "koa-logger": "~1",
     "koa-route": "~2",
     "koa-send": "~1",
-    "lodash": "~2",
+    "lodash": "~3",
     "ws": "~0"
   },
   "devDependencies": {
