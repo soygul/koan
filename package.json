@@ -51,6 +51,6 @@
     "karma-ng-html2js-preprocessor": "~0",
     "karma-phantomjs-launcher": "~0",
     "koa-livereload": "~0",
-    "should": "~4"
+    "should": "~5"
   }
 }
