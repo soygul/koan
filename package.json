@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "co-mocha": "~1",
-    "co-supertest": "git://github.com/avbel/co-supertest.git",
+    "co-supertest": "~0",
     "grunt-concurrent": "~1",
     "grunt-contrib-watch": "~0",
     "grunt-env": "~0",
