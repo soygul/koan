@@ -25,10 +25,10 @@ exports.listen = function (server) {
     var query = url.parse(info.req.url, true).query,
         accessToken = query.access_token;
 
-    // this bit is a bit of hack to make a sync function out of thunkified async function! might better use 'jws' (npm) package here
-    jwt.verify(accessToken, config.app.secret)(function (err, jwtPayload) {
-      info.req.user = jwtPayload;
-    });
+    // attach the user info to the request context if the token is valid
+    try {
+      info.req.user = jwt.verify(accessToken, config.app.secret);
+    } catch(e) {}
 
     return info.req.user;
   }});
