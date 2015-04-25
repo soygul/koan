@@ -40,7 +40,7 @@ function *listPosts() {
 function *createPost() {
   // it is best to validate post body with something like node-validator here, before saving it in the database..
   var post = yield parse(this);
-  post.from = this.state.user;
+  post.from = this.state.user; // user info is stored in 'this.state.user' field after successful login, as suggested by Koa docs: http://koajs.com/#ctx-state
   post.createdTime = new Date();
   var results = yield mongo.posts.insert(post);
 
