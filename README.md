@@ -4,7 +4,7 @@
 
 KOAN Stack is a boilerplate that provides a nice starting point for full stack JavaScript Web development with [Koa](http://koajs.com/), [AngularJS](http://angularjs.org/), and [Node.js](http://www.nodejs.org/) along with [MongoDB](https://www.mongodb.org/) and [WebSockets](https://developer.mozilla.org/en/docs/WebSockets). A summary of tech stack:
 * **Client**: AngularJS and Twitter Bootstrap with pure html partials (no server side rendering so it's fully static and CDN ready). Bower packages are located at `client\bower_packages`.
-* **Server**: Koa for RESTful API on top of Node.js v0.11+ with the use of `--harmony` and generators.
+* **Server**: Koa for RESTful API on top of Node.js v0.12 with the use of `--harmony` flag and ES6 generators.
 * WebSockets along with JSON-RPC is used for real-time client-server communication and browser sync.
 * OAuth 2 is used for social authentications. Instead of auth cookies, we use JWT along with HTML5 *local storage*.
 * Grunt tasks are used to facilitate development and testing.
@@ -14,7 +14,7 @@ KOAN Stack is a boilerplate that provides a nice starting point for full stack J
 Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
 
 ## Getting Started
-Make sure that you have Node.js (v0.11 or above) and MongoDB v2.x (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
+Make sure that you have Node.js v0.12 (or io.js) and MongoDB v2.x (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
 
 ```bash
 git clone --depth 1 https://github.com/soygul/koan.git
