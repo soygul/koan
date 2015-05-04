@@ -7,7 +7,8 @@
     "url": "git://github.com/soygul/koan.git"
   },
   "engines": {
-    "node": ">=0.12"
+    "node": ">=0.12",
+    "iojs": ">=1.0"
   },
   "author": {
     "name": "Teoman Soygul",
