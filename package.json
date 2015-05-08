@@ -28,12 +28,12 @@
     "forever": "~0",
     "grunt-cli": "~0",
     "koa": "~0",
+    "koa-bodyparser": "~2",
     "koa-cors": "~0",
     "koa-jwt": "~1",
     "koa-logger": "~1",
     "koa-route": "~2",
     "koa-send": "~1",
-    "koa-bodyparser": "~2",
     "lodash": "~3",
     "ws": "~0"
   },
