@@ -5,7 +5,6 @@
  */
 
 var route = require('koa-route'),
-    parse = require('co-body'),
     mongo = require('../config/mongo'),
     ws = require('../config/ws'),
     ObjectID = mongo.ObjectID;
@@ -39,7 +38,7 @@ function *listPosts() {
  */
 function *createPost() {
   // it is best to validate post body with something like node-validator here, before saving it in the database..
-  var post = yield parse(this);
+  var post = this.request.body;
   post.from = this.state.user; // user info is stored in 'this.state.user' field after successful login, as suggested by Koa docs: http://koajs.com/#ctx-state
   post.createdTime = new Date();
   var results = yield mongo.posts.insert(post);
@@ -59,7 +58,7 @@ function *createPost() {
  */
 function *createComment(postId) {
   postId = new ObjectID(postId);
-  var comment = yield parse(this);
+  var comment = this.request.body;
   var commentId = new ObjectID();
 
   // update post document with the new comment

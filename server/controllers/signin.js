@@ -6,7 +6,6 @@
 
 var qs = require('querystring'),
     route = require('koa-route'),
-    parse = require('co-body'),
     jwt = require('koa-jwt'),
     request = require('co-request'),
     config = require('../config/config'),
@@ -25,7 +24,7 @@ exports.init = function (app) {
  * Receives the user credentials and returns a JSON Web Token along with user profile info in JSON format.
  */
 function *signin() {
-  var credentials = yield parse(this);
+  var credentials = this.request.body;
   var user = yield mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
 
   if (!user) {
