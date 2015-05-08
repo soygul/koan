@@ -23,7 +23,7 @@
   "dependencies": {
     "bower": "~1",
     "co": "~4",
-    "co-body": "~1",
+    "co-body": "~2",
     "co-mongo": "~0",
     "co-request": "~0",
     "forever": "~0",
