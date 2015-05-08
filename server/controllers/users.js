@@ -5,7 +5,6 @@
  */
 
 var route = require('koa-route'),
-    parse = require('co-body'),
     mongo = require('../config/mongo');
 
 // register koa routes
@@ -19,7 +18,7 @@ exports.init = function (app) {
 function *createUser() {
   // todo: check user role === 'admin' when role system is ready
   // we need to validate user body with node-validator here not to save junk data in the database..
-  var user = yield parse(this);
+  var user = this.request.body;
 
   // get the latest userId+1 as the new user id
   // this is exceptional to user creation as we want user ids to be sequential numbers and not standard mongo guids
