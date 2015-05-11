@@ -12,6 +12,7 @@
     "afterEach": false,
     "browser": false,
     "element": false,
+    "by": false,
     "module": false,
     "inject": false,
     "require": false,
