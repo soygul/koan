@@ -10,10 +10,16 @@
     "expect": false,
     "beforeEach": false,
     "afterEach": false,
+    "browser": false,
+    "element": false,
     "module": false,
     "inject": false,
     "require": false,
     "exports": false,
-    "console": false
+    "console": false,
+    "$": false,
+    "window": false,
+    "spyOn": false,
+    "_": false
   }
 }
