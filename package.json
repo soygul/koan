@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "co-mocha": "~1",
-    "co-supertest": "~0",
+    "co-supertest": "0.0.8",
     "grunt-concurrent": "~1",
     "grunt-contrib-watch": "~0",
     "grunt-env": "~0",
