@@ -1,6 +1,7 @@
 {
   "name": "koan",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "KOAN Stack (Koa, Angular, Node, Mongo, WebSockets) for real-time full-stack JavaScript web development.",
   "repository": {
     "type": "git",
