@@ -1,4 +1,4 @@
-[![KOAN](https://raw.github.com/soygul/koan/master/client/images/koan.png)](https://koan.herokuapp.com)
+[![KOAN](/client/images/koan.png)](https://koan.herokuapp.com)
 
 [![Build Status](https://travis-ci.org/soygul/koan.svg?branch=master)](https://travis-ci.org/soygul/koan)
 
@@ -30,7 +30,7 @@ npm test
 ```
 
 ## Configuration
-All configuration is specified in the [server/config](server/config/) folder, particularly the [config.js](server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
+All configuration is specified in the [server/config](/server/config/) folder, particularly the [config.js](/server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
 ## Heroku Deployment
 Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed.
@@ -75,8 +75,8 @@ Screenshots from the demo app, in case Heroku is down.
 
 **Login page:**
 
-![Login Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_login.png)
+![Login Page](/client/images/scrshot_login.png)
 
 **User home page:**
 
-![Home Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_home.png)
+![Home Page](/client/images/scrshot_home.png)
