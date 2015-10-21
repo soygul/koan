@@ -71,8 +71,12 @@ MIT
 
 ## Screenshots
 
-Screenshots from the demo app, in case Heroku app is not up:
+Screenshots from the demo app, in case Heroku is down.
+
+Login page:
 
 ![Login Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_login.png)
+
+User home page:
 
 ![Home Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_home.png)
