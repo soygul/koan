@@ -73,10 +73,10 @@ MIT
 
 Screenshots from the demo app, in case Heroku is down.
 
-### Login page:
+#### Login page:
 
 ![Login Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_login.png)
 
-### User home page:
+#### User home page:
 
 ![Home Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_home.png)
