@@ -68,3 +68,11 @@ The project name is an acronym for Koa, Angular, and Node. It also is the name f
 
 ## License
 MIT
+
+## Screenshots
+
+Screenshots from the demo app, in case Heroku app is not up:
+
+![Login Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_login.png)
+
+![Home Page](https://raw.github.com/soygul/koan/master/client/images/scrshot_home.png)
