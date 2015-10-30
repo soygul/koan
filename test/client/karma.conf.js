@@ -20,6 +20,8 @@ module.exports = function (config) {
       'client/bower_components/angular-elastic/elastic.js',
       'client/app.js',
       'client/modules/**/!(*-*).js',
+      'client/modules/**/!(*-*-*).js',
+      'client/modules/**/!(*-*-*-*).js',
       'client/modules/**/*.js',
       'client/modules/**/*.html'
     ],
