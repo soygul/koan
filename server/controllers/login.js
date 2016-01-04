@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Password based signin and OAuth signin functions.
+ * Password based login and OAuth login functions.
  */
 
 var qs = require('querystring'),
@@ -13,17 +13,17 @@ var qs = require('querystring'),
 
 // register koa routes
 exports.init = function (app) {
-  app.use(route.post('/signin', signin));
-  app.use(route.get('/signin/facebook', facebookSignin));
-  app.use(route.get('/signin/facebook/callback', facebookCallback));
-  app.use(route.get('/signin/google', googleSignin));
-  app.use(route.get('/signin/google/callback', googleCallback));
+  app.use(route.post('/login', login));
+  app.use(route.get('/login/facebook', facebookLogin));
+  app.use(route.get('/login/facebook/callback', facebookCallback));
+  app.use(route.get('/login/google', googleLogin));
+  app.use(route.get('/login/google/callback', googleCallback));
 };
 
 /**
  * Receives the user credentials and returns a JSON Web Token along with user profile info in JSON format.
  */
-function *signin() {
+function *login() {
   var credentials = this.request.body;
   var user = yield mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
 
@@ -44,9 +44,9 @@ function *signin() {
 }
 
 /**
- * Facebook OAuth 2.0 signin endpoint.
+ * Facebook OAuth 2.0 login endpoint.
  */
-function *facebookSignin() {
+function *facebookLogin() {
   this.redirect(
           'https://www.facebook.com/dialog/oauth?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
@@ -57,7 +57,7 @@ function *facebookSignin() {
  */
 function *facebookCallback() {
   if (this.query.error) {
-    this.redirect('/signin');
+    this.redirect('/login');
     return;
   }
 
@@ -69,7 +69,7 @@ function *facebookCallback() {
           '&code=' + this.query.code);
   var token = qs.parse(tokenResponse.body);
   if (!token.access_token) {
-    this.redirect('/signin');
+    this.redirect('/login');
     return;
   }
 
@@ -96,9 +96,9 @@ function *facebookCallback() {
 }
 
 /**
- * Google OAuth 2.0 signin endpoint.
+ * Google OAuth 2.0 login endpoint.
  */
-function *googleSignin() {
+function *googleLogin() {
   this.redirect(
           'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.google.clientId +
           '&redirect_uri=' + config.oauth.google.callbackUrl + '&response_type=code&scope=profile%20email');
@@ -106,7 +106,7 @@ function *googleSignin() {
 
 function *googleCallback() {
   if (this.query.error) {
-    this.redirect('/signin');
+    this.redirect('/login');
     return;
   }
 
@@ -120,7 +120,7 @@ function *googleCallback() {
   }});
   var token = JSON.parse(tokenResponse.body);
   if (!token.access_token) {
-    this.redirect('/signin');
+    this.redirect('/login');
     return;
   }
 

@@ -26,7 +26,7 @@ module.exports = function (app) {
 
   // register special controllers which should come before any jwt token check and be publicly accessible
   require('../controllers/public').init(app);
-  require('../controllers/signin').init(app);
+  require('../controllers/login').init(app);
 
   // serve the static files in the /client directory, use caching only in production (7 days)
   var sendOpts = config.app.env === 'production' ? {root: 'client', maxage: config.app.cacheTime} : {root: 'client'};
