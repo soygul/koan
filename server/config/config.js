@@ -29,12 +29,12 @@ var platformConfig = {
       facebook: {
         clientId: '231235687068678',
         clientSecret: process.env.FACEBOOK_SECRET || '4a90381c6bfa738bb18fb7d6046c14b8',
-        callbackUrl: 'http://localhost:3000/signin/facebook/callback'
+        callbackUrl: 'http://localhost:3000/login/facebook/callback'
       },
       google: {
         clientId: '147832090796-ckhu1ehvsc8vv9nso7iefvu5fi7jrsou.apps.googleusercontent.com',
         clientSecret: process.env.GOOGLE_SECRET || 'MGOwKgcLPEfCsLjcJJSPeFYu',
-        callbackUrl: 'http://localhost:3000/signin/google/callback'
+        callbackUrl: 'http://localhost:3000/login/google/callback'
       }
     }
   },
@@ -60,12 +60,12 @@ var platformConfig = {
       facebook: {
         clientId: '231235687068678',
         clientSecret: process.env.FACEBOOK_SECRET || '4a90381c6bfa738bb18fb7d6046c14b8',
-        callbackUrl: 'https://koan.herokuapp.com/signin/facebook/callback'
+        callbackUrl: 'https://koan.herokuapp.com/login/facebook/callback'
       },
       google: {
         clientId: '147832090796-ckhu1ehvsc8vv9nso7iefvu5fi7jrsou.apps.googleusercontent.com',
         clientSecret: process.env.GOOGLE_SECRET || 'MGOwKgcLPEfCsLjcJJSPeFYu',
-        callbackUrl: 'https://koan.herokuapp.com/signin/google/callback'
+        callbackUrl: 'https://koan.herokuapp.com/login/google/callback'
       }
     }
   }
