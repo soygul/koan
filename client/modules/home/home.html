@@ -9,36 +9,36 @@
 </div>
 
 <ul class="media-list posts">
-  <li class="media post" ng-repeat="post in posts" id="post_{{post.id}}">
+  <li class="media post" ng-repeat="post in posts" id="post_{{::post.id}}">
     <a href="#" class="media-left">
-      <img class="media-object" ng-src="{{post.from.picture}}" alt="">
+      <img class="media-object" ng-src="{{::post.from.picture}}" alt="">
     </a>
     <div class="media-body post-body">
       <h5 class="media-heading">
-        <a href="#">{{post.from.name}}</a>
-        <span ng-if="post.to"><span class="glyphicon glyphicon-play"></span> <a href="#">{{post.to.name}}</a></span>
+        <a href="#">{{::post.from.name}}</a>
+        <span ng-if="post.to"><span class="glyphicon glyphicon-play"></span> <a href="#">{{::post.to.name}}</a></span>
       </h5>
-      {{post.message}}
+      {{::post.message}}
       <small class="post-tools">
-        {{post.createdTime | date:'medium'}}
-        &middot; <span class="glyphicon glyphicon-{{post.to ? 'envelope' : 'globe'}}"></span>
+        {{::post.createdTime | date:'medium'}}
+        &middot; <span class="glyphicon glyphicon-{{::post.to ? 'envelope' : 'globe'}}"></span>
       </small>
       <ul class="media-list post-comments">
         <li class="media"><span class="arrow-up-small"></span></li>
         <li class="media post-comment" ng-repeat="comment in post.comments">
           <a href="#" class="media-left">
-            <img class="media-object" ng-src="{{comment.from.picture}}" alt="">
+            <img class="media-object" ng-src="{{::comment.from.picture}}" alt="">
           </a>
           <div class="media-body story-comment-body">
-            <small><a href="#" class="bold">{{comment.from.name}}</a> {{comment.message}}</small>
+            <small><a href="#" class="bold">{{::comment.from.name}}</a> {{::comment.message}}</small>
             <small class="post-comment-tools">
-              {{comment.createdTime | date:'short'}}
+              {{::comment.createdTime | date:'short'}}
             </small>
           </div>
         </li>
         <li class="media post-comment comment-box">
           <a href="#" class="media-left">
-            <img class="media-object" ng-src="{{common.user.picture}}" alt="">
+            <img class="media-object" ng-src="{{::common.user.picture}}" alt="">
           </a>
           <div class="media-body post-comment-body">
             <textarea msd-elastic ng-model="post.commentBox.message" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>
