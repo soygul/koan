@@ -22,7 +22,6 @@
   "dependencies": {
     "bower": "1.6.5",
     "co": "4.6.0",
-    "co-mongo": "0.0.2",
     "co-request": "1.0.0",
     "forever": "0.15.1",
     "grunt-cli": "0.1.13",
@@ -34,6 +33,7 @@
     "koa-route": "2.4.2",
     "koa-send": "3.1.0",
     "lodash": "3.10.1",
+    "mongodb": "2.1.4",
     "ws": "0.8.0"
   },
   "devDependencies": {

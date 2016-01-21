@@ -41,10 +41,10 @@ function *createPost() {
   var post = this.request.body;
   post.from = this.state.user; // user info is stored in 'this.state.user' field after successful login, as suggested by Koa docs: http://koajs.com/#ctx-state
   post.createdTime = new Date();
-  var results = yield mongo.posts.insert(post);
+  var results = yield mongo.posts.insertOne(post);
 
   this.status = 201;
-  this.body = {id: results[0]._id};
+  this.body = {id: results.ops[0]._id};
 
   // now notify everyone about this new post
   post.id = post._id;
