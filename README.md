@@ -14,7 +14,7 @@ KOAN Stack is a boilerplate that provides a nice starting point for full stack J
 Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
 
 ## Getting Started
-Make sure that you have Node.js v0.12 or v4.x, and MongoDB v3.x (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
+Make sure that you have Node.js v0.12 or higher, and MongoDB v2 or higher (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
 
 ```bash
 git clone --depth 1 https://github.com/soygul/koan.git
