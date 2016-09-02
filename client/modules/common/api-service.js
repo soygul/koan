@@ -25,9 +25,9 @@ angular.module('koan.common').factory('api', function ($rootScope, $http, $windo
       subscribe: function (componentCtrl, fn) {
         if (fn) {
           // unsubscribe from event on component destruction to prevent memory leaks
-          componentCtrl.$onDestroy(function () {
+          componentCtrl.$onDestroy = function () {
             callbacks.remove(fn);
-          });
+          };
         } else {
           fn = componentCtrl;
         }
