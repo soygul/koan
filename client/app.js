@@ -58,11 +58,11 @@ angular
         $rootScope.common.title = current.$$route.title;
 
         // set active menu class for the left navigation (.sidenav)
-        var currentCtrl = current.controller.substring(0, current.controller.indexOf('Ctrl')).toLowerCase();
-        $rootScope.common.active[currentCtrl] = 'active';
-        if (previous) {
-          var previousCtrl = previous.controller.substring(0, previous.controller.indexOf('Ctrl')).toLowerCase();
-          delete $rootScope.common.active[previousCtrl];
-        }
+        // var currentCtrl = current.controller.substring(0, current.controller.indexOf('Ctrl')).toLowerCase();
+        // $rootScope.common.active[currentCtrl] = 'active';
+        // if (previous) {
+        //   var previousCtrl = previous.controller.substring(0, previous.controller.indexOf('Ctrl')).toLowerCase();
+        //   delete $rootScope.common.active[previousCtrl];
+        // }
       });
     });
