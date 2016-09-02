@@ -8,7 +8,7 @@ angular.module('koan.home').component('home', {
   templateUrl: 'modules/home/home.template.html',
   controller: function ($rootScope, api) {
     var ctrl = this;
-    var user = $rootScope.common.user;
+    var user = ctrl.user = $rootScope.common.user;
     ctrl.postBox = {message: null, disabled: false};
 
     // retrieve posts from server
