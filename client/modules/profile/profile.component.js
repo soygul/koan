@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Profile controller gives the user the means to view/edit their public profile info.
+ * Profile component gives the user the means to view/edit their public profile info.
  */
 
 angular.module('koan.profile').component('profile', {

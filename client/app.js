@@ -24,7 +24,7 @@ angular
     })
 
     .run(function ($location, $rootScope, $window, $route, api) {
-      // attach commonly used info to root scope to be available to all controllers/views
+      // attach commonly used info to root scope to be available to all components/views
       var common = $rootScope.common = $rootScope.common || {
         active: {},
         user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
