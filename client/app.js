@@ -55,14 +55,12 @@ angular
       // set actions to be taken each time the user navigates
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         // set page title
-        $rootScope.common.title = current.$$route.title;
+        $rootScope.common.title = current.title;
 
         // set active menu class for the left navigation (.sidenav)
-        // var currentCtrl = current.controller.substring(0, current.controller.indexOf('Ctrl')).toLowerCase();
-        // $rootScope.common.active[currentCtrl] = 'active';
-        // if (previous) {
-        //   var previousCtrl = previous.controller.substring(0, previous.controller.indexOf('Ctrl')).toLowerCase();
-        //   delete $rootScope.common.active[previousCtrl];
-        // }
+        $rootScope.common.active[current.menuItem] = 'active';
+        if (previous) {
+          delete $rootScope.common.active[previous.menuItem];
+        }
       });
     });

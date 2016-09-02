@@ -13,6 +13,7 @@ angular
       $routeProvider
           .when('/profile', {
             title: 'User Profile',
-            template: '<profile></profile>'
+            template: '<profile></profile>',
+            menuItem: 'profile'
           });
     });

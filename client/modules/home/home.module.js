@@ -14,6 +14,7 @@ angular
       $routeProvider
           .when('/', {
             title: 'KOAN Home',
-            template: '<home></home>'
+            template: '<home></home>',
+            menuItem: 'home'
           });
     });
