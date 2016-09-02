@@ -14,7 +14,6 @@ angular
       $routeProvider
           .when('/', {
             title: 'KOAN Home',
-            templateUrl: 'modules/home/home.template.html',
-            controller: 'HomeCtrl'
+            template: '<home></home>'
           });
     });
