@@ -20,10 +20,10 @@
   </script>
   <title ng-bind="common.title">KOAN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.css">
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" style="margin-right: 25px;" href="/">
-        <img class="brand-image" src="/images/koan.png" width="97" height="30" alt="KOAN">
+        <img class="brand-image" src="images/koan.png" width="97" height="30" alt="KOAN">
       </a>
     </div>
     <div class="navbar-collapse collapse">
@@ -51,7 +51,7 @@
           </a>
           <ul class="dropdown-menu">
             <li ng-repeat="notification in common.user.notifications">
-              <a ng-href="/notifications/{{::notification.id}}">{{::notification.title}}</a> {{::notification.message}}
+              <a ng-href="notifications/{{::notification.id}}">{{::notification.title}}</a> {{::notification.message}}
             </li>
             <li ng-if="!common.user.notifications" class="dropdown-header">No new notifications</li>
           </ul>
@@ -65,7 +65,7 @@
           </a>
           <ul class="dropdown-menu">
             <li ng-repeat="message in common.user.messages">
-              <a ng-href="/messages/{{::message.id}}">{{::message.title}}</a> {{::message.message}}
+              <a ng-href="messages/{{::message.id}}">{{::message.title}}</a> {{::message.message}}
             </li>
             <li ng-if="!common.user.messages" class="dropdown-header">No unread messages</li>
             <li class="divider"></li>
@@ -121,20 +121,20 @@
   </footer>
 </div>
 
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/lodash/lodash.js"></script>
-<script src="/bower_components/angular/angular.js"></script>
-<script src="/bower_components/angular-animate/angular-animate.js"></script>
-<script src="/bower_components/angular-route/angular-route.js"></script>
-<script src="/bower_components/angular-elastic/elastic.js"></script>
-<script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="/app.js"></script>
-<script src="/modules/common/common.js"></script>
-<script src="/modules/common/api-service.js"></script>
-<script src="/modules/home/home.js"></script>
-<script src="/modules/home/home-controller.js"></script>
-<script src="/modules/profile/profile.js"></script>
-<script src="/modules/profile/profile-controller.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-elastic/elastic.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="app.js"></script>
+<script src="modules/common/common.js"></script>
+<script src="modules/common/api-service.js"></script>
+<script src="modules/home/home.js"></script>
+<script src="modules/home/home-controller.js"></script>
+<script src="modules/profile/profile.js"></script>
+<script src="modules/profile/profile-controller.js"></script>
 </body>
 </html>

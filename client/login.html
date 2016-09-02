@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <title>Welcome to KOAN - Log In, Sign Up or Learn More</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" href="/bower_components/bootstrap-social/bootstrap-social.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css">
   <style type="text/css">
     body {
       background-color: #f8f8f8;
@@ -55,7 +55,7 @@
   <div class="container visible-xs">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">
-        <img class="brand-image" src="/images/koan.png" width="97" height="30" alt="KOAN">
+        <img class="brand-image" src="images/koan.png" width="97" height="30" alt="KOAN">
       </a>
     </div>
   </div>
@@ -70,7 +70,7 @@
     <div class="col-sm-6">
       <div class="logo-align hidden-xs">
         <a href="/">
-          <img src="/images/koan.png" alt="KOAN">
+          <img src="images/koan.png" alt="KOAN">
         </a>
 
         <h1 class="logo-info">
@@ -79,7 +79,7 @@
 
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="/images/koa.png" alt="Koa">
+            <img class="media-object" src="images/koa.png" alt="Koa">
           </div>
           <div class="media-body">
             Koa framework provides the RESTful backend API, utilizing the harmony generators.
@@ -87,7 +87,7 @@
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="/images/angularjs.png" alt="AngularJS">
+            <img class="media-object" src="images/angularjs.png" alt="AngularJS">
           </div>
           <div class="media-body">
             AngularJS is our fully static client side app framework, and it is heroic!
@@ -95,7 +95,7 @@
         </div>
         <div class="media">
           <div class="pull-left">
-            <img class="media-object" src="/images/nodejs.png" alt="Node.js">
+            <img class="media-object" src="images/nodejs.png" alt="Node.js">
           </div>
           <div class="media-body" style="padding-top: 10px;">
             Node.js is super glue, runtime for the backend, build system for the front.
@@ -119,13 +119,13 @@
         You can also log in with your Facebook or Google account.
       </p>
 
-      <form action="/login" method="post" style="width: 50%">
+      <form action="login" method="post" style="width: 50%">
         <p class="social-login">
-          <a class="btn btn-sm btn-social btn-facebook" href="/login/facebook">
+          <a class="btn btn-sm btn-social btn-facebook" href="login/facebook">
             <span class="fa fa-facebook"></span> <strong>Log In with Facebook</strong>
           </a>
 
-          <a class="btn btn-sm btn-social btn-google" href="/login/google">
+          <a class="btn btn-sm btn-social btn-google" href="login/google">
             <span class="fa fa-google-plus"></span> <strong>Log In with Google</strong>
           </a>
         </p>
@@ -164,8 +164,8 @@
   </footer>
 </div>
 
-<script src="/bower_components/jquery/dist/jquery.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script>
   // send form data with AJAX and store the incoming access token before redirecting user to index page
   $('form').submit(function (event) {
