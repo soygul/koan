@@ -12,6 +12,7 @@
       var data = JSON.parse(tokenParam);
       window.localStorage.token = data.token;
       window.localStorage.user = JSON.stringify(data.user);
+      window.location.replace('/');
     } else {
       var token = window.sessionStorage.token || window.localStorage.token,
           user = token && JSON.parse(window.sessionStorage.user || window.localStorage.user);
