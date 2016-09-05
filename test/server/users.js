@@ -7,8 +7,8 @@ var mochaConf = require('./mocha.conf'),
     token = mochaConf.token;
 
 describe('Users controller', function () {
-  it('POST /users should create a new user', function *() { // co-mocha goodness, we can use generator functions!
-    var res = yield request // co-supertest goodness, we can yield!
+  it('POST /users should create a new user', function *() { // co and mocha goodness, we can use generator functions!
+    var res = yield request // co and supertest goodness, we can yield!
         .post('/users')
         .set('Authorization', token)
         .send({name: 'Test User', email: 'test@koan.herokuapp.com'})
