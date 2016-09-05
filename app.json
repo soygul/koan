@@ -6,6 +6,6 @@
     }
   },
   "addons": [
-    "mlab"
+    "mongolab"
   ]
 }
