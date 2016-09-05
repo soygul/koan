@@ -22,14 +22,14 @@ angular.module('koan.common').factory('api', function ($rootScope, $http, $windo
   function event() {
     var callbacks = $.Callbacks();
     return {
-      subscribe: function ($scope, fn) {
+      subscribe: function (componentCtrl, fn) {
         if (fn) {
-          // unsubscribe from event on controller destruction to prevent memory leaks
-          $scope.$on('$destroy', function () {
+          // unsubscribe from event on component destruction to prevent memory leaks
+          componentCtrl.$onDestroy = function () {
             callbacks.remove(fn);
-          });
+          };
         } else {
-          fn = $scope;
+          fn = componentCtrl;
         }
         callbacks.add(fn);
       },

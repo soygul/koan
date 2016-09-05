@@ -1,6 +1,6 @@
 <div class="message-box">
-  <form ng-submit="createPost($event)">
-    <textarea msd-elastic ng-model="postBox.message" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="postBox.disabled"></textarea>
+  <form ng-submit="$ctrl.createPost($event)">
+    <textarea msd-elastic ng-model="$ctrl.postBox.message" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="$ctrl.postBox.disabled"></textarea>
 
     <div class="message-box-tools">
       <input type="submit" class="btn btn-default btn-sm pull-right" value="Post">
@@ -9,7 +9,7 @@
 </div>
 
 <ul class="media-list posts">
-  <li class="media post" ng-repeat="post in posts" id="post_{{::post.id}}">
+  <li class="media post" ng-repeat="post in $ctrl.posts" id="post_{{::post.id}}">
     <a href="#" class="media-left">
       <img class="media-object" ng-src="{{::post.from.picture}}" alt="">
     </a>
@@ -38,10 +38,10 @@
         </li>
         <li class="media post-comment comment-box">
           <a href="#" class="media-left">
-            <img class="media-object" ng-src="{{::common.user.picture}}" alt="">
+            <img class="media-object" ng-src="{{::$ctrl.user.picture}}" alt="">
           </a>
           <div class="media-body post-comment-body">
-            <textarea msd-elastic ng-model="post.commentBox.message" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>
+            <textarea msd-elastic ng-model="post.commentBox.message" ng-keypress="$ctrl.createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>
           </div>
         </li>
       </ul>

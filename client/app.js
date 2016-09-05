@@ -24,7 +24,7 @@ angular
     })
 
     .run(function ($location, $rootScope, $window, $route, api) {
-      // attach commonly used info to root scope to be available to all controllers/views
+      // attach commonly used info to root scope to be available to all components/views
       var common = $rootScope.common = $rootScope.common || {
         active: {},
         user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
@@ -55,14 +55,12 @@ angular
       // set actions to be taken each time the user navigates
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         // set page title
-        $rootScope.common.title = current.$$route.title;
+        $rootScope.common.title = current.title;
 
         // set active menu class for the left navigation (.sidenav)
-        var currentCtrl = current.controller.substring(0, current.controller.indexOf('Ctrl')).toLowerCase();
-        $rootScope.common.active[currentCtrl] = 'active';
+        $rootScope.common.active[current.menuItem] = 'active';
         if (previous) {
-          var previousCtrl = previous.controller.substring(0, previous.controller.indexOf('Ctrl')).toLowerCase();
-          delete $rootScope.common.active[previousCtrl];
+          delete $rootScope.common.active[previous.menuItem];
         }
       });
     });

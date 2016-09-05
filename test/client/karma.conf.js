@@ -19,11 +19,9 @@ module.exports = function (config) {
       'client/bower_components/angular-mocks/angular-mocks.js',
       'client/bower_components/angular-elastic/elastic.js',
       'client/app.js',
-      'client/modules/**/!(*-*).js',
-      'client/modules/**/!(*-*-*).js',
-      'client/modules/**/!(*-*-*-*).js',
-      'client/modules/**/*.js',
-      'client/modules/**/*.html'
+      'client/modules/**/*.module.js',
+      'client/modules/**/!(.module|.spec).js',
+      'client/modules/**/*.spec.js'
     ],
 
     autoWatch: false,

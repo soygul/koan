@@ -1,18 +1,18 @@
 <div class="col-md-4">
-  <img ng-src="{{::user.picture}}" width="100px" height="100px" class="img-responsive profile-image img-circle"/>
+  <img ng-src="{{::$ctrl.user.picture}}" width="100px" height="100px" class="img-responsive profile-image img-circle"/>
 </div>
 <div class="col-md-8">
-  <h4>{{::user.name}}</h4>
+  <h4>{{::$ctrl.user.name}}</h4>
 
   <table class="table table-striped">
     <tr>
       <td><strong>id:</strong></td>
-      <td>{{::user.id}}</td>
+      <td>{{::$ctrl.user.id}}</td>
     </tr>
     <tr>
       <td><strong>email:</strong></td>
       <td>
-        <a href="mailto:{{::user.email}}">{{::user.email}}</a>
+        <a href="mailto:{{::$ctrl.user.email}}">{{::$ctrl.user.email}}</a>
       </td>
     </tr>
   </table>

@@ -10,14 +10,14 @@ describe('Profile controller', function () {
 
   beforeEach(module('koan.profile'));
 
-  beforeEach(inject(function ($rootScope, $controller) {
+  beforeEach(inject(function ($rootScope, $componentController) {
     $scope = $rootScope.$new();
     $scope.common = {user: {id: 7}};
-    ctrl = $controller('ProfileCtrl', {$scope: $scope});
+    ctrl = $componentController('profile', {$rootScope: $scope});
   }));
 
   it('should have "user" object defined in scope', function () {
-    expect($scope.user.id).toBe(7);
+    expect(ctrl.user.id).toBe(7);
   });
 
 });
