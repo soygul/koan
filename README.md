@@ -35,7 +35,7 @@ All configuration is specified in the [/server/config](/server/config/) director
 ## Heroku Deployment
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-`Procfile` and `app.json` are ready making this repo readily available for Heroku deployment. You can start by clicking the above button.
+`Procfile` and `app.json` are making this repo readily available for Heroku deployment. You can start by clicking the above button.
 
 ## Testing
 You can run all the tests with `npm test`. Tests are run with:
