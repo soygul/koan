@@ -1,0 +1,11 @@
+{
+  "name": "KOAN",
+  "env": {
+    "NODE_ENV": {
+      "value": "production"
+    }
+  },
+  "addons": [
+    "mlab"
+  ]
+}

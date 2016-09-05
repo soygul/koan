@@ -33,24 +33,9 @@ npm test
 All configuration is specified in the [/server/config](/server/config/) directory, particularly the [config.js](/server/config/config.js) file. Here you can hook up any social app keys if you want integration with Twitter, Facebook, or Google.
 
 ## Heroku Deployment
-Before you start make sure you have <a href="https://toolbelt.heroku.com/">heroku toolbelt</a> installed.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-```bash
-git init
-git add .
-git commit -m "initial version"
-heroku apps:create
-heroku addons:add mongohq
-heroku config:add NODE_ENV=production
-git push heroku master
-heroku open
-```
-
-Optionally, you can pass credentials to KOAN via environment variables as it might not be secure to store them in your repo. Note that if you do this, you'll need to adjust other configuration options accordingly (i.e. FB/Google client IDs, etc.).
-
-```bash
-heroku config:add SECRET=jwt_secret PASS=login_pass FACEBOOK_SECRET=facebook_oauth_secret GOOGLE_SECRET=google_oauth_secret
-```
+`Procfile` and `app.json` are ready making this repo readily available for Heroku deployment. You can start by clicking the above button.
 
 ## Testing
 You can run all the tests with `npm test`. Tests are run with:
