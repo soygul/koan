@@ -35,11 +35,11 @@ mongodb.connect = function *() {
  * Useful for generating sequential integer IDs for certain collections (i.e. user collection).
  */
 mongodb.getNextSequence = function *(counterName) {
-  var results = yield mongodb.counters.findAndModify(
+  var results = yield mongodb.counters.findOneAndUpdate(
       {_id: counterName},
-      [],
       {$inc: {seq: 1}},
-      {new: true}
+      {returnOriginal: false}
   );
-  return results.value.seq;
+
+  return results.value.seq
 };
