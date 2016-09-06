@@ -6,22 +6,22 @@ module.exports = function (config) {
 
     preprocessors: {
       '**/*.html': ['ng-html2js'],
-      'client/!(bower_components)/**/*.js': 'coverage'
+      'client/build/!(bower_components)/**/*.js': 'coverage'
     },
 
     files: [
-      'client/bower_components/jquery/dist/jquery.js',
-      'client/bower_components/lodash/lodash.js',
-      'client/bower_components/angular/angular.js',
-      'client/bower_components/angular-animate/angular-animate.js',
-      'client/bower_components/angular-loading-bar/build/loading-bar.js',
-      'client/bower_components/angular-route/angular-route.js',
-      'client/bower_components/angular-mocks/angular-mocks.js',
-      'client/bower_components/angular-elastic/elastic.js',
-      'client/app.js',
-      'client/modules/**/*.module.js',
-      'client/modules/**/!(.module|.spec).js',
-      'client/modules/**/*.spec.js'
+      'client/build/bower_components/jquery/dist/jquery.js',
+      'client/build/bower_components/lodash/lodash.js',
+      'client/build/bower_components/angular/angular.js',
+      'client/build/bower_components/angular-animate/angular-animate.js',
+      'client/build/bower_components/angular-loading-bar/build/loading-bar.js',
+      'client/build/bower_components/angular-route/angular-route.js',
+      'client/build/bower_components/angular-mocks/angular-mocks.js',
+      'client/build/bower_components/angular-elastic/elastic.js',
+      'client/build/app.js',
+      'client/build/modules/**/*.module.js',
+      'client/build/modules/**/!(.module|.spec).js',
+      'client/build/modules/**/*.spec.js'
     ],
 
     autoWatch: false,
@@ -39,7 +39,7 @@ module.exports = function (config) {
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'client/'
+      stripPrefix: 'client/build/'
     }
   });
 };
