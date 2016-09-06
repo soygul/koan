@@ -9,7 +9,7 @@ angular.module('koan.common').factory('api', function ($rootScope, $http, $windo
   var apiBase = 'api' /* base /api uri */,
       token = ($window.sessionStorage.token || $window.localStorage.token),
       headers = {Authorization: 'Bearer ' + token},
-      wsHost = ($window.document.location.origin || ($window.location.protocol + '//' + $window.location.host)).replace(/^http/, 'ws'),
+      wsHost = ($window.location.protocol + '//' + $window.location.hostname + ':3000').replace(/^http/, 'ws'),
       api = {events: {}};
 
   // initiate the websocket connection to the host

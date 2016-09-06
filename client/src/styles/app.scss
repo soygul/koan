@@ -83,3 +83,49 @@ body {
   margin-left: 1px;
   margin-bottom: 1px;
 }
+
+
+/*----------------------------------------------------------------------
+ * Login
+ *---------------------------------------------------------------------*/
+
+body.login {
+  background-color: #f8f8f8;
+}
+
+/* Left-side bullets and large logo */
+
+.logo-align {
+  margin-top: 5%;
+  margin-bottom: 10%;
+  margin-left: 5%;
+  max-width: 75%;
+}
+
+.logo-align .logo-info {
+  margin-bottom: 40px;
+  margin-left: 5px;
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.logo-align .media {
+  margin-top: 35px;
+}
+
+.logo-align .media img {
+  margin-right: 10px;
+}
+
+/* Login layout */
+
+.social-login {
+  margin-left: 20%;
+  padding-bottom: 15px;
+
+}
+
+.social-login a {
+  margin-top: 10px;
+}
