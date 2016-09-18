@@ -16,7 +16,7 @@ var config = require('./server/config/config'),
 module.exports = app;
 
 /**
- * Initiates a new KOAN server. Returns a promise.
+ * Initializes a new KOAN server. Returns a promise.
  * @param overwriteDB Overwrite existing database with the seed data. Useful for testing environment.
  */
 app.init = co.wrap(function *(overwriteDB) {
