@@ -23,6 +23,21 @@ angular
           });
     })
 
+    // Capture HTTP 401 with Angular.js interceptor
+    .service('authInterceptor', function($q) {
+      var service = this;
+
+      service.responseError = function(response) {
+        if (response.status == 401){
+          window.location = "/login.html";
+        }
+        return $q.reject(response);
+      };
+    })
+    .config(['$httpProvider', function($httpProvider) {
+      $httpProvider.interceptors.push('authInterceptor');
+    }])
+
     .run(function ($location, $rootScope, $window, $route, api) {
       // attach commonly used info to root scope to be available to all components/views
       var common = $rootScope.common = $rootScope.common || {
