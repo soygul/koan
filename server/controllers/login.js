@@ -39,7 +39,7 @@ function *login() {
   }
 
   // sign and send the token along with the user info
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
+  var token = jwt.sign(user, config.app.secret);
   this.body = {token: token, user: user};
 }
 
@@ -91,7 +91,7 @@ function *facebookCallback() {
   user.id = user._id;
   delete user._id;
   user.picture = '/api/users/' + user.id + '/picture';
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
+  var token = jwt.sign(user, config.app.secret);
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
 
@@ -142,6 +142,6 @@ function *googleCallback() {
   user.id = user._id;
   delete user._id;
   user.picture = '/api/users/' + user.id + '/picture';
-  var token = jwt.sign(user, config.app.secret, {expiresInMinutes: 90 * 24 * 60 /* 90 days */});
+  var token = jwt.sign(user, config.app.secret);
   this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
