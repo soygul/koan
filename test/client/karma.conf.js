@@ -21,7 +21,8 @@ module.exports = function (config) {
       'client/app.js',
       'client/modules/**/*.module.js',
       'client/modules/**/!(.module|.spec).js',
-      'client/modules/**/*.spec.js'
+      'client/modules/**/*.spec.js',
+      'client/modules/**/*.html'
     ],
 
     autoWatch: false,
