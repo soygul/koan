@@ -37,7 +37,7 @@ angular
         },
         clearDatabase: function () {
           var self = this;
-          api.debug.clearDatabase().success(function () {
+          api.debug.clearDatabase().then(function () {
             self.logout();
           });
         }

@@ -12,7 +12,9 @@ angular.module('koan.home').component('home', {
     ctrl.postBox = {message: null, disabled: false};
 
     // retrieve posts from server
-    api.posts.list().success(function (posts) {
+    api.posts.list().then(function successCallback(response) {
+      var posts = response.data;
+
       posts.forEach(function (post) {
         post.commentBox = {message: '', disabled: false};
         post.comments = post.comments || [];
@@ -31,7 +33,9 @@ angular.module('koan.home').component('home', {
       // disable the post box and push the new post to server
       ctrl.postBox.disabled = true;
       api.posts.create({message: ctrl.postBox.message})
-          .success(function (post) {
+          .then(function successCallback(response) {
+            var post = response.data;
+
             // only add the post if we don't have it already in the posts list to avoid dupes
             if (!_.some(ctrl.posts, function (p) {
                   return p.id === post.id;
@@ -49,8 +53,7 @@ angular.module('koan.home').component('home', {
             // clear the post box and enable it
             ctrl.postBox.message = '';
             ctrl.postBox.disabled = false;
-          })
-          .error(function () {
+          }, function errorCallback(response) {
             // don't clear the post box but enable it so the user can re-try
             ctrl.postBox.disabled = false;
           });
@@ -71,7 +74,9 @@ angular.module('koan.home').component('home', {
       // disable the comment box and push the new comment to server
       post.commentBox.disabled = true;
       api.posts.comments.create(post.id, {message: post.commentBox.message})
-          .success(function (comment) {
+          .then(function successCallback(response) {
+            var comment = response.data;
+
             // only add the comment if we don't have it already in the post's comments list to avoid dupes
             if (!_.some(post.comments, function (c) {
                   return c.id === comment.id;
@@ -87,8 +92,7 @@ angular.module('koan.home').component('home', {
             // clear the comment field and enable it
             post.commentBox.message = '';
             post.commentBox.disabled = false;
-          })
-          .error(function () {
+          }, function errorCallback(response) {
             // don't clear the comment box but enable it so the user can re-try
             post.commentBox.disabled = false;
           });
