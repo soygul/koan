@@ -54,7 +54,7 @@ module.exports = function (grunt) {
       server: {
         options: {
           reporter: 'dot',
-          require: ['should', 'co-mocha']
+          require: ['should']
         },
         src: ['test/server/**/*.js']
       }

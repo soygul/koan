@@ -38,7 +38,6 @@
     "ws": "2.2.1"
   },
   "devDependencies": {
-    "co-mocha": "1.2.0",
     "grunt-concurrent": "2.3.1",
     "grunt-contrib-watch": "1.0.0",
     "grunt-env": "0.4.4",
