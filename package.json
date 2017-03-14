@@ -20,10 +20,10 @@
     "postupdate": "bower update"
   },
   "dependencies": {
-    "bower": "1.7.9",
+    "bower": "1.8.0",
     "co": "4.6.0",
     "co-request": "1.0.0",
-    "forever": "0.15.2",
+    "forever": "0.15.3",
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
     "koa": "1.2.2",
@@ -32,30 +32,29 @@
     "koa-jwt": "1.2.0",
     "koa-logger": "1.3.0",
     "koa-route": "2.4.2",
-    "koa-send": "3.2.0",
-    "lodash": "4.15.0",
-    "mongodb": "2.2.9",
-    "ws": "1.1.1"
+    "koa-send": "3.3.0",
+    "lodash": "4.17.4",
+    "mongodb": "2.2.24",
+    "ws": "2.2.1"
   },
   "devDependencies": {
-    "co-mocha": "1.1.3",
-    "co-supertest": "0.0.10",
+    "co-mocha": "1.2.0",
     "grunt-concurrent": "2.3.1",
     "grunt-contrib-watch": "1.0.0",
     "grunt-env": "0.4.4",
     "grunt-karma": "2.0.0",
-    "grunt-mocha-test": "0.12.7",
+    "grunt-mocha-test": "0.13.2",
     "grunt-nodemon": "0.4.2",
-    "grunt-protractor-runner": "3.2.0",
-    "karma": "1.2.0",
+    "grunt-protractor-runner": "4.0.0",
+    "karma": "1.5.0",
     "karma-coverage": "1.1.1",
-    "karma-jasmine": "1.0.2",
+    "karma-jasmine": "1.1.0",
     "karma-ng-html2js-preprocessor": "1.0.0",
-    "karma-phantomjs-launcher": "1.0.2",
+    "karma-phantomjs-launcher": "1.0.4",
     "koa-livereload": "0.1.23",
-    "mocha": "3.0.2",
-    "phantomjs-prebuilt": "2.1.12",
-    "should": "11.1.0",
-    "supertest": "1.2.0"
+    "mocha": "3.2.0",
+    "phantomjs-prebuilt": "2.1.14",
+    "should": "11.2.1",
+    "supertest": "3.0.0"
   }
 }

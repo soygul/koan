@@ -5,7 +5,7 @@ var config = require('../../server/config/config'),
     app = require('../../app'),
     jwt = require('koa-jwt'),
     baseUrl = 'http://localhost:' + config.app.port + '/api',
-    supertest = require('co-supertest'),
+    supertest = require('supertest'),
     request = supertest(baseUrl);
 
 // create a valid jwt token to be sent with every request
