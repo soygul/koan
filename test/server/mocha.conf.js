@@ -3,7 +3,7 @@
 var config = require('../../server/config/config'),
     mongoSeed = require('../../server/config/mongo-seed'),
     app = require('../../app'),
-    jwt = require('koa-jwt'),
+    jwt = require('jsonwebtoken'),
     baseUrl = 'http://localhost:' + config.app.port + '/api',
     supertest = require('supertest'),
     request = supertest(baseUrl);

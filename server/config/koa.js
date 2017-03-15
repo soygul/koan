@@ -30,12 +30,12 @@ module.exports = function (app) {
 
   // serve the static files in the /client directory, use caching only in production (7 days)
   var sendOpts = config.app.env === 'production' ? {root: 'client', maxage: config.app.cacheTime} : {root: 'client'};
-  app.use(function *(next) {
+  app.use(async function (next) {
     // do not handle /api paths
     if (this.path.substr(0, 5).toLowerCase() === '/api/') {
-      yield next;
+      await next;
       return;
-    } else if (yield send(this, this.path, sendOpts)) {
+    } else if (await send(this, this.path, sendOpts)) {
       // file exists and request successfully served so do nothing
       return;
     } else if (this.path.indexOf('.') !== -1) {
@@ -44,7 +44,7 @@ module.exports = function (app) {
       return;
     } else {
       // request is for a subdirectory so treat it as an angular route and serve index.html, letting angular handle the routing properly
-      yield send(this, '/index.html', sendOpts);
+      await send(this, '/index.html', sendOpts);
     }
   });
 
