@@ -23,14 +23,14 @@ exports.init = function (app) {
 /**
  * Receives the user credentials and returns a JSON Web Token along with user profile info in JSON format.
  */
-async function login() {
-  var credentials = this.request.body;
+async function login(ctx) {
+  var credentials = ctx.request.body;
   var user = await mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
 
   if (!user) {
-    this.throw(401, 'Incorrect e-mail address.');
+    ctx.throw(401, 'Incorrect e-mail address.');
   } else if (user.password !== credentials.password) {
-    this.throw(401, 'Incorrect password.');
+    ctx.throw(401, 'Incorrect password.');
   } else {
     user.id = user._id;
     delete user._id;
@@ -40,14 +40,14 @@ async function login() {
 
   // sign and send the token along with the user info
   var token = jwt.sign(user, config.app.secret);
-  this.body = {token: token, user: user};
+  ctx.body = {token: token, user: user};
 }
 
 /**
  * Facebook OAuth 2.0 login endpoint.
  */
-function facebookLogin() {
-  this.redirect(
+function facebookLogin(ctx) {
+  ctx.redirect(
           'https://www.facebook.com/dialog/oauth?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
 }
@@ -55,9 +55,9 @@ function facebookLogin() {
 /**
  * Facebook OAuth 2.0 callback endpoint.
  */
-async function facebookCallback() {
-  if (this.query.error) {
-    this.redirect('/login');
+async function facebookCallback(ctx) {
+  if (ctx.query.error) {
+    ctx.redirect('/login');
     return;
   }
 
@@ -66,10 +66,10 @@ async function facebookCallback() {
           'https://graph.facebook.com/oauth/access_token?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl +
           '&client_secret=' + config.oauth.facebook.clientSecret +
-          '&code=' + this.query.code);
+          '&code=' + ctx.query.code);
   var token = qs.parse(tokenResponse.body);
   if (!token.access_token) {
-    this.redirect('/login');
+    ctx.redirect('/login');
     return;
   }
 
@@ -92,27 +92,27 @@ async function facebookCallback() {
   delete user._id;
   user.picture = '/api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret);
-  this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
+  ctx.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }
 
 /**
  * Google OAuth 2.0 login endpoint.
  */
-function googleLogin() {
-  this.redirect(
+function googleLogin(ctx) {
+  ctx.redirect(
           'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.google.clientId +
           '&redirect_uri=' + config.oauth.google.callbackUrl + '&response_type=code&scope=profile%20email');
 }
 
-async function googleCallback() {
-  if (this.query.error) {
-    this.redirect('/login');
+async function googleCallback(ctx) {
+  if (ctx.query.error) {
+    ctx.redirect('/login');
     return;
   }
 
   // get an access token from google in exchange for oauth code
   var tokenResponse = await request.post('https://accounts.google.com/o/oauth2/token', {form: {
-    code: this.query.code,
+    code: ctx.query.code,
     client_id: config.oauth.google.clientId,
     client_secret: config.oauth.google.clientSecret,
     redirect_uri: config.oauth.google.callbackUrl,
@@ -120,7 +120,7 @@ async function googleCallback() {
   }});
   var token = JSON.parse(tokenResponse.body);
   if (!token.access_token) {
-    this.redirect('/login');
+    ctx.redirect('/login');
     return;
   }
 
@@ -143,5 +143,5 @@ async function googleCallback() {
   delete user._id;
   user.picture = '/api/users/' + user.id + '/picture';
   var token = jwt.sign(user, config.app.secret);
-  this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
+  ctx.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: user})));
 }

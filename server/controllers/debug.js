@@ -13,8 +13,8 @@ exports.init = function (app) {
   app.use(route.post('/api/debug/clearDatabase', clearDatabase));
 };
 
-async function clearDatabase() {
+async function clearDatabase(ctx) {
   // todo: check user role === 'admin' when role system is ready
   await mongoSeed(true);
-  this.status = 200;
+  ctx.status = 200;
 }

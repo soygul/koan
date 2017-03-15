@@ -19,7 +19,7 @@ exports.init = function (app) {
 /**
  * Lists last 15 posts with latest 15 comments in them.
  */
-async function listPosts() {
+async function listPosts(ctx) {
   var posts = await mongo.posts.find(
       {},
       {comments: {$slice: -15 /* only get last x many comments for each post */}},
@@ -30,21 +30,21 @@ async function listPosts() {
     delete post._id;
   });
 
-  this.body = posts;
+  ctx.body = posts;
 }
 
 /**
  * Saves a new post in the database after proper validations.
  */
-async function createPost() {
+async function createPost(ctx) {
   // it is best to validate post body with something like node-validator here, before saving it in the database..
-  var post = this.request.body;
-  post.from = this.state.user; // user info is stored in 'this.state.user' field after successful login, as suggested by Koa docs: http://koajs.com/#ctx-state
+  var post = ctx.request.body;
+  post.from = ctx.state.user; // user info is stored in 'ctx.state.user' field after successful login, as suggested by Koa docs: http://koajs.com/#ctx-state
   post.createdTime = new Date();
   var results = await mongo.posts.insertOne(post);
 
-  this.status = 201;
-  this.body = {id: results.ops[0]._id};
+  ctx.status = 201;
+  ctx.body = {id: results.ops[0]._id};
 
   // now notify everyone about this new post
   post.id = post._id;
@@ -58,18 +58,18 @@ async function createPost() {
  */
 async function createComment(ctx, postId) {
   postId = new ObjectID(postId);
-  var comment = this.request.body;
+  var comment = ctx.request.body;
   var commentId = new ObjectID();
 
   // update post document with the new comment
-  comment = {_id: commentId, from: this.state.user, createdTime: new Date(), message: comment.message};
+  comment = {_id: commentId, from: ctx.state.user, createdTime: new Date(), message: comment.message};
   var result = await mongo.posts.update(
       {_id: postId},
       {$push: {comments: comment}}
   );
 
-  this.status = 201;
-  this.body = {id: commentId};
+  ctx.status = 201;
+  ctx.body = {id: commentId};
 
   // now notify everyone about this new comment
   comment.id = comment._id;

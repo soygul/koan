@@ -22,10 +22,10 @@ async function getPicture(ctx, id) {
   var user = await mongo.users.findOne({_id: id}, {picture: 1});
   if (user) {
     var img = new Buffer(user.picture, 'base64');
-    this.set('Content-Type', 'image/jpeg');
+    ctx.set('Content-Type', 'image/jpeg');
     if (config.app.cacheTime) {
-      this.set('Cache-Control', 'max-age=' + (config.app.cacheTime / 1000));
+      ctx.set('Cache-Control', 'max-age=' + (config.app.cacheTime / 1000));
     }
-    this.body = img;
+    ctx.body = img;
   }
 }
