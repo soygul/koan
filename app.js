@@ -9,7 +9,6 @@ var config = require('./server/config/config'),
     mongoSeed = require('./server/config/mongo-seed'),
     koaConfig = require('./server/config/koa'),
     ws = require('./server/config/ws'),
-    co = require('co'),
     Koa = require('koa'),
     app = new Koa();
 
@@ -19,10 +18,10 @@ module.exports = app;
  * Initializes a new KOAN server.
  * @param overwriteDB Overwrite existing database with the seed data. Useful for testing environment.
  */
-app.init = co.wrap(function *(overwriteDB) {
+app.init = async function (overwriteDB) {
   // initialize mongodb and populate the database with seed data if empty
-  yield mongo.connect();
-  yield mongoSeed(overwriteDB);
+  await mongo.connect();
+  await mongoSeed(overwriteDB);
 
   // koa config
   koaConfig(app);
@@ -33,12 +32,12 @@ app.init = co.wrap(function *(overwriteDB) {
   if (config.app.env !== 'test') {
     console.log('KOAN listening on port ' + config.app.port);
   }
-});
+};
 
 // auto init if this app is not being initialized by another module (i.e. using require('./app').init();)
 if (!module.parent) {
   app.init().catch(function (err) {
-    console.error(err.stack);
+    console.error(err);
     process.exit(1);
   });
 }

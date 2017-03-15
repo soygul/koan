@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "bower": "1.8.0",
-    "co": "4.6.0",
     "co-request": "1.0.0",
     "forever": "0.15.3",
     "grunt": "1.0.1",
