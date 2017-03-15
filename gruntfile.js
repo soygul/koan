@@ -28,7 +28,6 @@ module.exports = function (grunt) {
       dev: {
         script: 'app.js',
         options: {
-          nodeArgs: ['--debug', '--harmony'],
           ignore: ['node_modules/**', 'client/**'],
           callback: function (nodemon) {
             fs.writeFileSync('.nodemon', 'started');
