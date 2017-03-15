@@ -10,7 +10,6 @@ describe('Public controller', function () {
     yield request
         .get('/users/1/picture')
         .expect('Content-Type', 'image/jpeg')
-        .expect(200)
-        .end();
+        .expect(200);
   });
 });

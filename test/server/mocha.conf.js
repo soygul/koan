@@ -3,9 +3,9 @@
 var config = require('../../server/config/config'),
     mongoSeed = require('../../server/config/mongo-seed'),
     app = require('../../app'),
-    jwt = require('koa-jwt'),
+    jwt = require('jsonwebtoken'),
     baseUrl = 'http://localhost:' + config.app.port + '/api',
-    supertest = require('co-supertest'),
+    supertest = require('supertest'),
     request = supertest(baseUrl);
 
 // create a valid jwt token to be sent with every request
@@ -20,8 +20,8 @@ exports.token = token;
 // initiate KOAN server before each test is run
 // also drop and re-seed the test database before each run
 console.log('Mocha starting to run server tests on port ' + config.app.port);
-beforeEach(function *() {
-  yield app.init(true);
+beforeEach(async function () {
+  await app.init(true);
 });
 
 // close the server after each test is done

@@ -12,8 +12,7 @@ describe('Users controller', function () {
         .post('/users')
         .set('Authorization', token)
         .send({name: 'Test User', email: 'test@koan.herokuapp.com'})
-        .expect(201)
-        .end();
+        .expect(201);
 
     res.body.should.have.property('id'); // should.js goodness
   });

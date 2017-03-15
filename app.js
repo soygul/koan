@@ -10,8 +10,8 @@ var config = require('./server/config/config'),
     koaConfig = require('./server/config/koa'),
     ws = require('./server/config/ws'),
     co = require('co'),
-    koa = require('koa'),
-    app = koa();
+    Koa = require('koa'),
+    app = new Koa();
 
 module.exports = app;
 

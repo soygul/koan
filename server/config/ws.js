@@ -8,7 +8,7 @@
 
 var WebSocketServer = require('ws').Server,
     url = require('url'),
-    jwt = require('koa-jwt'),
+    jwt = require('jsonwebtoken'),
     _ = require('lodash'),
     config = require('../config/config');
 

@@ -28,7 +28,6 @@ module.exports = function (grunt) {
       dev: {
         script: 'app.js',
         options: {
-          nodeArgs: ['--debug', '--harmony'],
           ignore: ['node_modules/**', 'client/**'],
           callback: function (nodemon) {
             fs.writeFileSync('.nodemon', 'started');
@@ -54,7 +53,7 @@ module.exports = function (grunt) {
       server: {
         options: {
           reporter: 'dot',
-          require: ['should', 'co-mocha']
+          require: ['should']
         },
         src: ['test/server/**/*.js']
       }
