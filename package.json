@@ -11,11 +11,11 @@
   },
   "author": {
     "name": "Teoman Soygul",
-    "url": "http://www.soygul.com/"
+    "url": "http://soygul.com/"
   },
   "scripts": {
     "start": "grunt",
-    "test": "node node_modules/grunt-cli/bin/grunt test",
+    "test": "grunt test",
     "postinstall": "bower install",
     "postupdate": "bower update"
   },
