@@ -6,7 +6,7 @@
 
 var qs = require('querystring'),
     route = require('koa-route'),
-    jwt = require('koa-jwt'),
+    jwt = require('jsonwebtoken'),
     request = require('co-request'),
     config = require('../config/config'),
     mongo = require('../config/mongo');
@@ -23,9 +23,9 @@ exports.init = function (app) {
 /**
  * Receives the user credentials and returns a JSON Web Token along with user profile info in JSON format.
  */
-function *login() {
+async function login() {
   var credentials = this.request.body;
-  var user = yield mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
+  var user = await mongo.users.findOne({email: credentials.email}, {email: 1, name: 1, password: 1});
 
   if (!user) {
     this.throw(401, 'Incorrect e-mail address.');
@@ -46,7 +46,7 @@ function *login() {
 /**
  * Facebook OAuth 2.0 login endpoint.
  */
-function *facebookLogin() {
+function facebookLogin() {
   this.redirect(
           'https://www.facebook.com/dialog/oauth?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl + '&response_type=code&scope=email');
@@ -55,14 +55,14 @@ function *facebookLogin() {
 /**
  * Facebook OAuth 2.0 callback endpoint.
  */
-function *facebookCallback() {
+async function facebookCallback() {
   if (this.query.error) {
     this.redirect('/login');
     return;
   }
 
   // get an access token from facebook in exchange for oauth code
-  var tokenResponse = yield request.get(
+  var tokenResponse = await request.get(
           'https://graph.facebook.com/oauth/access_token?client_id=' + config.oauth.facebook.clientId +
           '&redirect_uri=' + config.oauth.facebook.callbackUrl +
           '&client_secret=' + config.oauth.facebook.clientSecret +
@@ -74,17 +74,17 @@ function *facebookCallback() {
   }
 
   // get user profile (including email address) from facebook and save user data in our database if necessary
-  var profileResponse = yield request.get('https://graph.facebook.com/me?fields=name,email,picture&access_token=' + token.access_token);
+  var profileResponse = await request.get('https://graph.facebook.com/me?fields=name,email,picture&access_token=' + token.access_token);
   var profile = JSON.parse(profileResponse.body);
-  var user = yield mongo.users.findOne({email: profile.email}, {email: 1, name: 1});
+  var user = await mongo.users.findOne({email: profile.email}, {email: 1, name: 1});
   if (!user) {
     user = {
-      _id: (yield mongo.getNextSequence('userId')),
+      _id: (await mongo.getNextSequence('userId')),
       email: profile.email,
       name: profile.name,
-      picture: (yield request.get(profile.picture.data.url, {encoding: 'base64'})).body
+      picture: (await request.get(profile.picture.data.url, {encoding: 'base64'})).body
     };
-    var results = yield mongo.users.insert(user);
+    var results = await mongo.users.insert(user);
   }
 
   // redirect the user to index page along with user profile object as query string
@@ -98,20 +98,20 @@ function *facebookCallback() {
 /**
  * Google OAuth 2.0 login endpoint.
  */
-function *googleLogin() {
+function googleLogin() {
   this.redirect(
           'https://accounts.google.com/o/oauth2/auth?client_id=' + config.oauth.google.clientId +
           '&redirect_uri=' + config.oauth.google.callbackUrl + '&response_type=code&scope=profile%20email');
 }
 
-function *googleCallback() {
+async function googleCallback() {
   if (this.query.error) {
     this.redirect('/login');
     return;
   }
 
   // get an access token from google in exchange for oauth code
-  var tokenResponse = yield request.post('https://accounts.google.com/o/oauth2/token', {form: {
+  var tokenResponse = await request.post('https://accounts.google.com/o/oauth2/token', {form: {
     code: this.query.code,
     client_id: config.oauth.google.clientId,
     client_secret: config.oauth.google.clientSecret,
@@ -125,17 +125,17 @@ function *googleCallback() {
   }
 
   // get user profile (including email address) from facebook and save user data in our database if necessary
-  var profileResponse = yield request.get('https://www.googleapis.com/plus/v1/people/me?access_token=' + token.access_token);
+  var profileResponse = await request.get('https://www.googleapis.com/plus/v1/people/me?access_token=' + token.access_token);
   var profile = JSON.parse(profileResponse.body);
-  var user = yield mongo.users.findOne({email: profile.emails[0].value}, {email: 1, name: 1});
+  var user = await mongo.users.findOne({email: profile.emails[0].value}, {email: 1, name: 1});
   if (!user) {
     user = {
-      _id: (yield mongo.getNextSequence('userId')),
+      _id: (await mongo.getNextSequence('userId')),
       email: profile.emails[0].value,
       name: profile.displayName,
-      picture: (yield request.get(profile.image.url, {encoding: 'base64'})).body
+      picture: (await request.get(profile.image.url, {encoding: 'base64'})).body
     };
-    var results = yield mongo.users.insert(user);
+    var results = await mongo.users.insert(user);
   }
 
   // redirect the user to index page along with user profile object as query string

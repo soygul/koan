@@ -26,6 +26,7 @@
     "forever": "0.15.3",
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
+    "jsonwebtoken": "7.3.0",
     "koa": "2.2.0",
     "koa-bodyparser": "4.1.0",
     "koa-cors": "0.0.16",

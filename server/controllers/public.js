@@ -17,9 +17,9 @@ exports.init = function (app) {
  * Serves user profile picture in jpeg format.
  * @param id - User ID.
  */
-function *getPicture(id) {
+async function getPicture(id) {
   id = parseInt(id);
-  var user = yield mongo.users.findOne({_id: id}, {picture: 1});
+  var user = await mongo.users.findOne({_id: id}, {picture: 1});
   if (user) {
     var img = new Buffer(user.picture, 'base64');
     this.set('Content-Type', 'image/jpeg');
