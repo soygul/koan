@@ -16,13 +16,13 @@ module.exports = mongodb;
 /**
  * Opens a new connection to the mongo database, closing the existing one if exists.
  */
-mongodb.connect = function *() {
+mongodb.connect = async function () {
   if (mongodb.db) {
-    yield mongodb.db.close();
+    await mongodb.db.close();
   }
 
   // export mongo db instance
-  var db = mongodb.db = yield connect(config.mongo.url);
+  var db = mongodb.db = await connect(config.mongo.url);
 
   // export default collections
   mongodb.counters = db.collection('counters');
@@ -34,8 +34,8 @@ mongodb.connect = function *() {
  * Retrieves the next sequence number for the given counter (indicated by @counterName).
  * Useful for generating sequential integer IDs for certain collections (i.e. user collection).
  */
-mongodb.getNextSequence = function *(counterName) {
-  var results = yield mongodb.counters.findOneAndUpdate(
+mongodb.getNextSequence = async function (counterName) {
+  var results = await mongodb.counters.findOneAndUpdate(
       {_id: counterName},
       {$inc: {seq: 1}},
       {returnOriginal: false}

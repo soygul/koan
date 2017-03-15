@@ -8,8 +8,8 @@ var mongo = require('./mongo'),
  * Populates the database with seed data.
  * @param overwrite Overwrite existing database even if it is not empty.
  */
-function *seed(overwrite) {
-  var count = yield mongo.users.count({}, {limit: 1});
+async function seed(overwrite) {
+  var count = await mongo.users.count({}, {limit: 1});
   if (overwrite || count === 0) {
 
     // first remove any leftover data in collections
@@ -17,7 +17,7 @@ function *seed(overwrite) {
     for (var collection in mongo) {
       if (mongo[collection].drop) {
         try {
-          yield mongo[collection].drop();
+          await mongo[collection].drop();
         } catch (err) {
           if (err.message !== collerrmsg) {
             throw err;
@@ -27,9 +27,9 @@ function *seed(overwrite) {
     }
 
     // now populate collections with fresh data
-    yield mongo.counters.insert({_id: 'userId', seq: users.length});
-    yield mongo.users.insert(users);
-    yield mongo.posts.insert(posts);
+    await mongo.counters.insert({_id: 'userId', seq: users.length});
+    await mongo.users.insert(users);
+    await mongo.posts.insert(posts);
   }
 }
 
