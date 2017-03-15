@@ -56,7 +56,7 @@ async function createPost() {
  * Appends a new comment to a given post.
  * @param postId - Post ID.
  */
-async function createComment(postId) {
+async function createComment(ctx, postId) {
   postId = new ObjectID(postId);
   var comment = this.request.body;
   var commentId = new ObjectID();
