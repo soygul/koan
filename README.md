@@ -55,7 +55,7 @@ The project name is an acronym for Koa, Angular, and Node. It also is the name f
 MIT
 
 ## Screenshots
-Screenshots from the demo app, in case Heroku is down.
+Screenshots from the demo app, in case Heroku app is down.
 
 **Login page:**
 
