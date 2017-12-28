@@ -67,7 +67,7 @@ async function facebookCallback(ctx) {
           '&redirect_uri=' + config.oauth.facebook.callbackUrl +
           '&client_secret=' + config.oauth.facebook.clientSecret +
           '&code=' + ctx.query.code);
-  var token = qs.parse(tokenResponse.body);
+  var token = JSON.parse(tokenResponse.body);
   if (!token.access_token) {
     ctx.redirect('/login');
     return;
