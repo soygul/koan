@@ -33,7 +33,7 @@
     "koa-logger": "2.0.1",
     "koa-route": "3.2.0",
     "koa-send": "3.3.0",
-    "lodash": "4.17.4",
+    "lodash": "4.17.15",
     "mongodb": "2.2.24",
     "ws": "2.2.1"
   },
