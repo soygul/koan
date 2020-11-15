@@ -10,7 +10,7 @@ KOAN Stack is a boilerplate that provides a starting point for full stack JavaSc
 * Grunt tasks are used to facilitate development and testing.
 * MongoDB for persistence.
 
-## Live Example Screenshots
+## Live Example
 Below are the screenshots from the bundled demo app, which is a Facebook like real-time sharing app. Follow instructions in the next section if you want to play with it locally, or deploy it to Heroku.
 
 **Login page:**
