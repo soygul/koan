@@ -1,4 +1,4 @@
-[![KOAN](/client/images/koan.png)](https://koan.herokuapp.com)
+![KOAN](/client/images/koan.png)
 
 [![Build Status](https://travis-ci.org/soygul/koan.svg?branch=master)](https://travis-ci.org/soygul/koan)
 
@@ -10,8 +10,16 @@ KOAN Stack is a boilerplate that provides a starting point for full stack JavaSc
 * Grunt tasks are used to facilitate development and testing.
 * MongoDB for persistence.
 
-## Live Example
-Browse the live KOAN example on [https://koan.herokuapp.com](https://koan.herokuapp.com) which is a Facebook like real-time sharing app.
+## Live Example Screenshots
+Below are the screenshots from the bundled demo app, which is a Facebook like real-time sharing app. Follow instructions in the next section if you want to play with it locally, or deploy it to Heroku.
+
+**Login page:**
+
+![Login Page](/client/images/scrshot_login.png)
+
+**User home page:**
+
+![Home Page](/client/images/scrshot_home.png)
 
 ## Getting Started
 Make sure that you have Node.js v7.6 or higher (for Node <7.6, use [v1.6 release](https://github.com/soygul/koan/releases/tag/v1.6)), and MongoDB v2 or higher (running on the default port 27017) installed on your computer. To get started with KOAN stack, do following:
@@ -53,14 +61,3 @@ The project name is an acronym for Koa, Angular, and Node. It also is the name f
 
 ## License
 MIT
-
-## Screenshots
-Screenshots from the demo app, in case Heroku app is down.
-
-**Login page:**
-
-![Login Page](/client/images/scrshot_login.png)
-
-**User home page:**
-
-![Home Page](/client/images/scrshot_home.png)
