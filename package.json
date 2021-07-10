@@ -35,7 +35,7 @@
     "koa-send": "3.3.0",
     "lodash": "4.17.4",
     "mongodb": "2.2.24",
-    "ws": "2.2.1"
+    "ws": "7.2.1"
   },
   "devDependencies": {
     "grunt-concurrent": "2.3.1",
