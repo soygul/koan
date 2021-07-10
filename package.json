@@ -34,7 +34,7 @@
     "koa-route": "3.2.0",
     "koa-send": "3.3.0",
     "lodash": "4.17.4",
-    "mongodb": "2.2.24",
+    "mongodb": "3.6.1",
     "ws": "2.2.1"
   },
   "devDependencies": {
